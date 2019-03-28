@@ -1,11 +1,28 @@
 package LeetCode;
 
-import java.util.HashMap;
 import java.util.HashSet;
-
-import javax.xml.soap.Node;
-
+/**
+ * 编写一个函数来查找字符串数组中的最长公共前缀。
+ * 
+ * 如果不存在公共前缀，返回空字符串 ""。 <br>
+ * <b>重点关注字典树结构！</b>
+ * 
+ * @author zm
+ *
+ */
 public class LEET014 {
+	public static void main(String[] args) {
+		String[] strs = {"aa", "aa", "aaa"};
+		LEET014 L014 = new LEET014();
+		System.out.println(L014.longestCommonPrefix6(strs));
+	}
+
+	/**
+	 * 找出最短字符串，遍历它
+	 * 
+	 * @param strs
+	 * @return
+	 */
 	public String longestCommonPrefix(String[] strs) {
 		if (strs == null || strs.length == 0) {
 			return "";
@@ -42,15 +59,12 @@ public class LEET014 {
 		return ans;
 	}
 
-
-	public Trie test(String[] strs) {
-		Trie trie = new Trie();
-		for (int i = 0; i < strs.length; i++) {
-			trie.insert(strs[i]);
-		}
-		return trie;
-	}
-
+	/**
+	 * 把每一个字符串的第一个字符存到set中如果set超过1，则说明有不同的
+	 * 
+	 * @param strs
+	 * @return
+	 */
 	public String longestCommonPrefix2(String[] strs) {
 		if (strs == null || strs.length == 0) {
 			return "";
@@ -75,10 +89,15 @@ public class LEET014 {
 		return ans;
 	}
 
+	/**
+	 * 以第一个字符为基准
+	 * 
+	 * @param strs
+	 * @return
+	 */
 	public String longestCommonPrefix3(String[] strs) {
-		if (strs == null || strs.length == 0) {
+		if (strs == null || strs.length == 0)
 			return "";
-		}
 		String ans = strs[0];
 		for (int i = 0; i < strs.length; i++) {
 			while (strs[i].indexOf(ans) != 0) {
@@ -88,6 +107,12 @@ public class LEET014 {
 		return ans;
 	}
 
+	/**
+	 * 暴力
+	 * 
+	 * @param strs
+	 * @return
+	 */
 	public String longestCommonPrefix4(String[] strs) {
 		if (strs == null || strs.length == 0)
 			return "";
@@ -101,6 +126,12 @@ public class LEET014 {
 		return strs[0];
 	}
 
+	/**
+	 * 分治: abcdfg acbd abc ab abcd ab ab
+	 * 
+	 * @param strs
+	 * @return
+	 */
 	public String longestCommonPrefix5(String[] strs) {
 		if (strs == null || strs.length == 0)
 			return "";
@@ -125,14 +156,53 @@ public class LEET014 {
 		return left.substring(0, min);
 	}
 
-	public static void main(String[] args) {
-		String[] strs = {"aa", "aa", "aaa"};
-		LEET014 L014 = new LEET014();
-		System.out.println(L014.longestCommonPrefix6(strs));
-	}
-	
-	// 字典树
+	/**
+	 * 二分法算法进行的过程中一共会出现两种可能情况：
+	 * 
+	 * S[1...mid] 不是所有串的公共前缀。 这表明对于所有的 j > i S[1..j] 也不是公共前缀，于是我们就可以丢弃后半个查找区间。
+	 * 
+	 * S[1...mid] 是所有串的公共前缀。 这表示对于所有的 i < j S[1..i]
+	 * 都是可行的公共前缀，因为我们要找最长的公共前缀，所以我们可以把前半个查找区间丢弃 先找出最短长度 abcdef3 abceawer1
+	 * abcaewfdsa minLen=7 low=1 high=7 mid=4 遍历所有字符串判断前4位是否是公共子串
+	 * 发现不是，那么high=mid-1=3 mid=(1+3)/2=2 遍历所有字符串判断前2位是否是公共子串 发现是，那么low=min+1=3
+	 * mid=(3+3)/2=3 遍历所有字符串判断前2位是否是公共子串 ok...
+	 * 
+	 * @param strs
+	 * @return
+	 */
 	public String longestCommonPrefix6(String[] strs) {
+		if (strs == null || strs.length == 0)
+			return "";
+		int minLen = Integer.MAX_VALUE;
+		for (String str : strs)
+			minLen = Math.min(minLen, str.length());
+		int low = 1;
+		int high = minLen;
+		while (low <= high) {
+			int middle = (low + high) / 2;
+			if (isCommonPrefix(strs, middle))
+				low = middle + 1;
+			else
+				high = middle - 1;
+		}
+		return strs[0].substring(0, (low + high) / 2);
+	}
+
+	private boolean isCommonPrefix(String[] strs, int len) {
+		String str1 = strs[0].substring(0, len);
+		for (int i = 1; i < strs.length; i++)
+			if (!strs[i].startsWith(str1))
+				return false;
+		return true;
+	}
+
+	/**
+	 * 字典树
+	 * 
+	 * @param strs
+	 * @return
+	 */
+	public String longestCommonPrefix7(String[] strs) {
 		if (strs == null || strs.length == 0)
 			return "";
 		if (strs.length == 1)
@@ -188,12 +258,17 @@ public class LEET014 {
 		}
 	}
 
+	/**
+	 * 字典树
+	 * 
+	 * @author zm
+	 *
+	 */
 	public class Trie {
-
-		private TrieNode root;
+		private TrieNode root;// 根节点
 
 		public Trie() {
-			root = new TrieNode();
+			root = new TrieNode(); // 构造方法生成根节点
 		}
 
 		// 假设方法 insert、search、searchPrefix 都已经实现了
@@ -203,6 +278,10 @@ public class LEET014 {
 			StringBuilder prefix = new StringBuilder();
 			while (true) {
 				if (node.getLinks() == 1 && node.isEnd == false) {
+					// 有下一节点而且不是某个字符串的最后一位
+					// 如：abc和ab
+					// b的下面虽然有c但是b是ab的最后一位
+					// 这在insert方法中会对b节点设置isend=True
 					for (int i = 0; i < node.links.length; i++) {
 						if (node.links[i] != null) {
 							prefix.append((char) (i + 'a'));
@@ -210,8 +289,7 @@ public class LEET014 {
 							break;
 						}
 					}
-				}
-				else {
+				} else {
 					break;
 				}
 			}
@@ -227,8 +305,22 @@ public class LEET014 {
 				}
 				curr = curr.get(currentChar);
 			}
-			curr.setEnd();
+			curr.setEnd();// 对节点设置isend=True
 		}
+	}
+
+	/**
+	 * 测试方法
+	 * 
+	 * @param strs
+	 * @return
+	 */
+	public Trie test(String[] strs) {
+		Trie trie = new Trie();
+		for (int i = 0; i < strs.length; i++) {
+			trie.insert(strs[i]);
+		}
+		return trie;
 	}
 
 }

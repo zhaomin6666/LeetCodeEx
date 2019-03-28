@@ -2,11 +2,22 @@ package LeetCode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
-
+/**
+ * 给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0
+ * 找出所有满足条件且不重复的三元组。
+ * 
+ * 注意：答案中不可以包含重复的三元组。
+ * 
+ * 例如, 给定数组 nums = [-1, 0, 1, 2, -1, -4]，
+ * 
+ * 满足要求的三元组集合为： [ [-1, 0, 1], [-1, -1, 2] ]
+ * 
+ * @author zm
+ *
+ */
 public class LEET015 {
 	public static void main(String[] args) {
 		int[] intArray = {-1, 2, -2, 3, -3, 1};
@@ -15,6 +26,12 @@ public class LEET015 {
 		System.out.println(JSONObject.toJSONString(ans));
 	}
 
+	/**
+	 * 思路类似下面一个官方方法，详见下面
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static List<List<Integer>> threeSum(int[] nums) {
 		List<List<Integer>> ret = new ArrayList<List<Integer>>();
 		if (nums.length < 3) {
@@ -48,8 +65,14 @@ public class LEET015 {
 		return ret;
 	}
 
+	/**
+	 * <b>双指针法</b><br>
+	 * 先进行排序，取定第一个数之后使用双指针法 如果和大了那么右指针左移，如果和小了左指针右移
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static List<List<Integer>> threeSum2(int[] nums) {
-
 		Arrays.sort(nums);
 		List<List<Integer>> lists = new ArrayList<>();
 		int len = nums.length;
