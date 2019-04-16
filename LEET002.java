@@ -125,7 +125,6 @@ public class LEET002 {
 		}
 		return "[" + result.substring(0, result.length() - 2) + "]";
 	}
-
 }
 
 class ListNode {
