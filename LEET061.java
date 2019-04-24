@@ -14,9 +14,9 @@ package LeetCode;
 public class LEET061 {
 	public static void main(String[] args) {
 		LEET061 l061 = new LEET061();
-		ListNode node1 = LEET002.stringToListNode("[1,2,3]");
-		System.out
-				.println(LEET002.listNodeToString(l061.rotateRight(node1, 3)));
+		ListNode node1 = CommonFunctions.stringToListNode("[1,2,3]");
+		System.out.println(
+				CommonFunctions.listNodeToString(l061.rotateRight(node1, 3)));
 	}
 
 	/**

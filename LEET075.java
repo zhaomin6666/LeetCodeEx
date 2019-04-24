@@ -24,7 +24,7 @@ public class LEET075 {
 		System.out.println(JSON.toJSONString(a1));
 		int[] a2 = {2};
 		l075.sortColors3(a2);
-		System.out.println(JSON.toJSONString(a1));
+		System.out.println(JSON.toJSONString(a2));
 	}
 
 	/**
