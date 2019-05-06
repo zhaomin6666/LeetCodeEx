@@ -20,7 +20,7 @@ public class CommonFunctions {
 		}
 		return map;
 	}
-	
+
 	/**
 	 * 把word写成map key = 某个字母 ; value = 出现次数
 	 * 
@@ -38,7 +38,7 @@ public class CommonFunctions {
 		}
 		return map;
 	}
-	
+
 	public static ListNode stringToListNode(String input) {
 		// Generate array from the input
 		int[] nodeValues = stringToIntegerArray(input);
@@ -65,9 +65,10 @@ public class CommonFunctions {
 		}
 		return "[" + result.substring(0, result.length() - 2) + "]";
 	}
-	
+
 	/**
 	 * "[1,2,3]" ----> [1,2,3]
+	 * 
 	 * @param input
 	 * @return
 	 */
@@ -87,4 +88,31 @@ public class CommonFunctions {
 		return output;
 	}
 
+	/**
+	 * [1,2,3] 0 最后一个节点连接到第一个节点 [1,2,3] 1 最后一个节点连接到第二个节点
+	 * 
+	 * @param input
+	 * @param pos
+	 * @return
+	 */
+	public static ListNode stringToListNodeWithCircle(String input, int pos) {
+		// Generate array from the input
+		int[] nodeValues = stringToIntegerArray(input);
+
+		// Now convert that list into linked list
+		ListNode dummyRoot = new ListNode(0);
+		ListNode ptr = dummyRoot;
+		for (int item : nodeValues) {
+			ptr.next = new ListNode(item);
+			ptr = ptr.next;
+		}
+		ListNode posNode = dummyRoot.next;
+		for (int i = 0; i < pos; i++) {
+			posNode = posNode.next;
+		}
+		if (pos >= 0) {
+			ptr.next = posNode;
+		}
+		return dummyRoot.next;
+	}
 }
