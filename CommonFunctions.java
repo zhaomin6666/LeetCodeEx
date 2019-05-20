@@ -115,4 +115,26 @@ public class CommonFunctions {
 		}
 		return dummyRoot.next;
 	}
+	
+	/**
+	 * 获取一个listnode在链表中的位置
+	 * @param head
+	 * @param node
+	 * @return
+	 */
+	public static int findIndexOfNode(ListNode head, ListNode node) {
+		if (head == null) {
+			return -1;
+		}
+		int i = 0;
+		while (head != null) {
+			if (head == node) {
+				return i;
+			} else {
+				i++;
+				head = head.next;
+			}
+		}
+		return -1;
+	}
 }
