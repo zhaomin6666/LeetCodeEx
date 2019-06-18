@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 请判断一个链表是否为回文链表。
@@ -74,7 +74,7 @@ public class LEET234 {
 			slow = slow.next;
 			fast = fast.next.next;
 		}
-		if (fast.next != null&& fast.next.next == null) {
+		if (fast.next != null && fast.next.next == null) {
 			slow = slow.next;
 		}
 		System.out.println(CommonFunctions.listNodeToString(nodeRevTemp));
@@ -88,33 +88,33 @@ public class LEET234 {
 		}
 		return true;
 	}
-	
-	public boolean isPalindrome3(ListNode head) {
-        if(head==null||head.next==null){
-            return true;
-        }
-        if(head.next.next==null){
-            return head.val == head.next.val;
-        }
-        ListNode slow = head;
-        ListNode fast = head.next;
-        
-        while(fast.next!=null){
-            if(slow.val == fast.next.val){
-                if(fast.next.next!=null){
-                    return false;
-                }
-                fast.next = null;
-                slow = slow.next;
-                fast = slow.next;
-                if(fast==null || slow.val == fast.val){
-                    return true;
-                }
-            }else{
-                fast = fast.next;
-            }
-        }
-        return false;
 
-    }
+	public boolean isPalindrome3(ListNode head) {
+		if (head == null || head.next == null) {
+			return true;
+		}
+		if (head.next.next == null) {
+			return head.val == head.next.val;
+		}
+		ListNode slow = head;
+		ListNode fast = head.next;
+
+		while (fast.next != null) {
+			if (slow.val == fast.next.val) {
+				if (fast.next.next != null) {
+					return false;
+				}
+				fast.next = null;
+				slow = slow.next;
+				fast = slow.next;
+				if (fast == null || slow.val == fast.val) {
+					return true;
+				}
+			} else {
+				fast = fast.next;
+			}
+		}
+		return false;
+
+	}
 }

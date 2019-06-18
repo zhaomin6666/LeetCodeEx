@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
+
 /**
  * 给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c
  * + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
@@ -27,15 +28,12 @@ import com.alibaba.fastjson.JSONObject;
 public class LEET018 {
 	public static void main(String[] args) {
 		LEET018 l018 = new LEET018();
-		int[] numarray = {1, 0, -1, 0, -2, 2};
-		int[] numarray2 = {0, 0, 0, 0};
-		int[] numarray3 = {1, -2, -5, -4, -3, 3, 3, 5};// [1,-2,-5,-4,-3,3,3,5]
-		System.out
-				.println(JSONObject.toJSONString(l018.fourSum(numarray3, -11)));
-		System.out
-		.println(JSONObject.toJSONString(l018.fourSum(numarray, 1)));
-		System.out
-		.println(JSONObject.toJSONString(l018.fourSum(numarray2, 0)));
+		int[] numarray = { 1, 0, -1, 0, -2, 2 };
+		int[] numarray2 = { 0, 0, 0, 0 };
+		int[] numarray3 = { 1, -2, -5, -4, -3, 3, 3, 5 };// [1,-2,-5,-4,-3,3,3,5]
+		System.out.println(JSONObject.toJSONString(l018.fourSum(numarray3, -11)));
+		System.out.println(JSONObject.toJSONString(l018.fourSum(numarray, 1)));
+		System.out.println(JSONObject.toJSONString(l018.fourSum(numarray2, 0)));
 	}
 
 	HashMap<Character, String> hashMap = new HashMap<>();
@@ -43,6 +41,7 @@ public class LEET018 {
 
 	/**
 	 * 利用之前的三数之和，新增一个target参数使三数之和等于某一值
+	 * 
 	 * @param nums
 	 * @param target
 	 * @return
@@ -54,9 +53,7 @@ public class LEET018 {
 		}
 		Arrays.sort(nums);
 		for (int i = 0; i < nums.length - 3; i++) {
-			List<List<Integer>> ans = threeSum2(
-					Arrays.copyOfRange(nums, i + 1, nums.length),
-					-nums[i] + target);
+			List<List<Integer>> ans = threeSum2(Arrays.copyOfRange(nums, i + 1, nums.length), -nums[i] + target);
 			if (!ans.isEmpty()) {
 				for (List<Integer> list : ans) {
 					List<Integer> lst = new ArrayList<Integer>();

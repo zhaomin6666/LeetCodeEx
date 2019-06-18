@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import com.alibaba.fastjson.JSON;
 
@@ -19,10 +19,10 @@ import com.alibaba.fastjson.JSON;
 public class LEET075 {
 	public static void main(String[] args) {
 		LEET075 l075 = new LEET075();
-		int[] a1 = {2, 0, 2, 1, 1, 0};
+		int[] a1 = { 2, 0, 2, 1, 1, 0 };
 		l075.sortColors3(a1);
 		System.out.println(JSON.toJSONString(a1));
-		int[] a2 = {2};
+		int[] a2 = { 2 };
 		l075.sortColors3(a2);
 		System.out.println(JSON.toJSONString(a2));
 	}
@@ -86,22 +86,22 @@ public class LEET075 {
 		int k = nums.length - 1;
 		while (j <= k) {
 			switch (nums[j]) {
-				case 0 :
-					int temp = nums[i];
-					nums[i] = nums[j];
-					nums[j] = temp;
-					i++;
-					j++;
-					break;
-				case 2 :
-					int temp2 = nums[k];
-					nums[k] = nums[j];
-					nums[j] = temp2;
-					k--;
-					break;
-				default :
-					j++;
-					break;
+			case 0:
+				int temp = nums[i];
+				nums[i] = nums[j];
+				nums[j] = temp;
+				i++;
+				j++;
+				break;
+			case 2:
+				int temp2 = nums[k];
+				nums[k] = nums[j];
+				nums[j] = temp2;
+				k--;
+				break;
+			default:
+				j++;
+				break;
 			}
 		}
 	}

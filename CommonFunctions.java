@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.HashMap;
 
@@ -115,9 +115,10 @@ public class CommonFunctions {
 		}
 		return dummyRoot.next;
 	}
-	
+
 	/**
 	 * 获取一个listnode在链表中的位置
+	 * 
 	 * @param head
 	 * @param node
 	 * @return

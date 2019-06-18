@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 给定一个字符串 s ，找出 至多 包含两个不同字符的最长子串 t 。
@@ -25,6 +25,7 @@ public class LEET147 {
 		System.out.println(l147.lengthOfLongestSubstringTwoDistinct(input3));
 
 	}
+
 	/**
 	 * 利用一个二位数组来记录窗口中的两个数，再用两个数来记录这两个数在字符串中连续出现的最早的位置
 	 * 

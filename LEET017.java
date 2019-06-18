@@ -1,10 +1,11 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
+
 /**
  * 给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。
  * 
@@ -16,8 +17,7 @@ import com.alibaba.fastjson.JSONObject;
 public class LEET017 {
 	public static void main(String[] args) {
 		LEET017 l016 = new LEET017();
-		System.out.println(
-				JSONObject.toJSONString(l016.letterCombinations("23")));
+		System.out.println(JSONObject.toJSONString(l016.letterCombinations("23")));
 	}
 
 	HashMap<Character, String> hashMap = new HashMap<>();
@@ -25,6 +25,7 @@ public class LEET017 {
 
 	/**
 	 * 递归调用即可
+	 * 
 	 * @param digits
 	 * @return
 	 */

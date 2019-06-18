@@ -1,4 +1,5 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
+
 /**
  * 罗马数字包含以下七种字符： I， V， X， L，C，D 和 M。
  * 
@@ -19,16 +20,16 @@ public class LEET012 {
 	public static void main(String[] args) {
 		System.out.println(new LEET012().intToRoman(1841));
 	}
-	
+
 	/**
 	 * 由于数字肯定小于3999，所以把数组中的数全部遍历一遍就会得到最大值。没有太大的难度
+	 * 
 	 * @param num
 	 * @return
 	 */
 	public String intToRoman(int num) {
-		int values[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-		String reps[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX",
-				"V", "IV", "I"};
+		int values[] = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+		String reps[] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
 
 		String res = "";
 		for (int i = 0; i < 13; i++) {

@@ -1,8 +1,4 @@
-package LeetCode;
-
-import java.util.LinkedList;
-
-import javax.print.attribute.standard.NumberUpSupported;
+package com.zm.LeetCodeEx;
 
 import com.alibaba.fastjson.JSON;
 
@@ -26,15 +22,13 @@ import com.alibaba.fastjson.JSON;
 public class LEET360 {
 	public static void main(String[] args) {
 		LEET360 l349 = new LEET360();
-		int[] nums1 = {-4, -2, 2, 4};
+		int[] nums1 = { -4, -2, 2, 4 };
 		int a1 = 1, b1 = 3, c1 = 5;
 
-		int[] nums2 = {-2, 0, 2, 4};
+		int[] nums2 = { -2, 0, 2, 4 };
 		int a2 = 0, b2 = -1, c2 = 5;
-		System.out.println(JSON
-				.toJSONString(l349.sortTransformedArray(nums1, a1, b1, c1)));
-		System.out.println(JSON
-				.toJSONString(l349.sortTransformedArray(nums2, a2, b2, c2)));
+		System.out.println(JSON.toJSONString(l349.sortTransformedArray(nums1, a1, b1, c1)));
+		System.out.println(JSON.toJSONString(l349.sortTransformedArray(nums2, a2, b2, c2)));
 	}
 
 	/**

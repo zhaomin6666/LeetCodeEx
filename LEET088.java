@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import com.alibaba.fastjson.JSON;
 
@@ -20,8 +20,8 @@ import com.alibaba.fastjson.JSON;
 public class LEET088 {
 	public static void main(String[] args) {
 		LEET088 l088 = new LEET088();
-		int[] nums1 = {1, 2, 3, 0, 0, 0};
-		int[] nums2 = {2, 5, 6};
+		int[] nums1 = { 1, 2, 3, 0, 0, 0 };
+		int[] nums2 = { 2, 5, 6 };
 		l088.merge(nums1, nums1.length - nums2.length, nums2, nums2.length);
 		System.out.println(JSON.toJSONString(nums1));
 	}

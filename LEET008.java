@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 请你来实现一个 atoi 函数，使其能将字符串转换成整数。
@@ -24,6 +24,7 @@ package LeetCode;
 public class LEET008 {
 	/**
 	 * 去掉空格后判断第一个字符，然后去除连续的数字
+	 * 
 	 * @param str
 	 * @return
 	 */

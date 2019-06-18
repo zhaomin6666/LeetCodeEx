@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import com.alibaba.fastjson.JSON;
 
@@ -22,27 +22,27 @@ import com.alibaba.fastjson.JSON;
 public class LEET167 {
 	public static void main(String[] args) {
 		LEET167 l167 = new LEET167();
-		int[] input1 = {2, 7, 11, 15};
+		int[] input1 = { 2, 7, 11, 15 };
 		System.out.println(JSON.toJSONString(l167.twoSum(input1, 9))); // 3
-		int[] input2 = {2, 7, 8, 15};
+		int[] input2 = { 2, 7, 8, 15 };
 		System.out.println(JSON.toJSONString(l167.twoSum(input2, 15)));
 
 	}
 
 	public int[] twoSum(int[] numbers, int target) {
 		if (numbers == null || numbers.length < 2) {
-			return new int[]{};
+			return new int[] {};
 		}
 		int i = 0, j = numbers.length - 1;
 		while (i < j) {
 			if (numbers[i] + numbers[j] == target) {
-				return new int[]{i, j};
+				return new int[] { i, j };
 			} else if (numbers[i] + numbers[j] > target) {
 				--j;
 			} else {
 				++i;
 			}
 		}
-		return new int[]{};
+		return new int[] {};
 	}
 }

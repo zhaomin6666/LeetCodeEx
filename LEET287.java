@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,7 +25,7 @@ import java.util.HashMap;
 public class LEET287 {
 	public static void main(String[] args) {
 		LEET287 l287 = new LEET287();
-		int[] nums = {3, 1, 3, 4, 2};
+		int[] nums = { 3, 1, 3, 4, 2 };
 		System.out.println(l287.findDuplicate4(nums));
 	}
 

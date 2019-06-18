@@ -1,4 +1,5 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
+
 /**
  * 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
  * 
@@ -19,7 +20,7 @@ public class LEET013 {
 	public static void main(String[] args) {
 		System.out.println(new LEET013().romanToInt("MDCCCXLI"));// 1841
 	}
-	
+
 	/**
 	 * 调换*M和M的顺序再做判断
 	 * 
@@ -27,9 +28,8 @@ public class LEET013 {
 	 * @return
 	 */
 	public int romanToInt(String s) {
-		int values[] = {900, 1000, 400, 500, 90, 100, 40, 50, 10, 9, 5, 4, 1};
-		String reps[] = {"CM", "M", "CD", "D", "XC", "C", "XL", "L", "IX", "X",
-				"IV", "V", "I"};
+		int values[] = { 900, 1000, 400, 500, 90, 100, 40, 50, 10, 9, 5, 4, 1 };
+		String reps[] = { "CM", "M", "CD", "D", "XC", "C", "XL", "L", "IX", "X", "IV", "V", "I" };
 		int res = 0;
 		while (s.length() > 0) {
 			for (int i = 0; i < 13; i++) {

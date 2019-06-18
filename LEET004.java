@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m +
@@ -9,24 +9,21 @@ package LeetCode;
  */
 public class LEET004 {
 	public static void main(String[] args) {
-		int[] nums1 = {1, 2, 8, 9};
-		int[] nums2 = {3, 4};
+		int[] nums1 = { 1, 2, 8, 9 };
+		int[] nums2 = { 3, 4 };
 		LEET004 l004 = new LEET004();
-/*		long starttime = System.currentTimeMillis();
-		for (long i = 0; i < 100000000; i++) {
-			//System.out.println(l004.findMedianSortedArrays(nums1, nums2));
-			l004.findMedianSortedArrays(nums1, nums2);
-		}
-		long midtime = System.currentTimeMillis();
-		for (long i = 0; i < 100000000; i++) {
-			//System.out.println(l004.findMedianSortedArrays2(nums1, nums2));
-			l004.findMedianSortedArrays2(nums1, nums2);
-		}
-		long endtime = System.currentTimeMillis();
-		System.out.println("1:"+String.valueOf(midtime - starttime));
-		System.out.println(endtime - midtime);*/
-		System.out.println(l004.findMedianSortedArrays(nums1, nums2));  // 不满足时间要求
-		System.out.println(l004.findMedianSortedArrays2(nums1, nums2));  // 快很多
+		/*
+		 * long starttime = System.currentTimeMillis(); for (long i = 0; i < 100000000;
+		 * i++) { //System.out.println(l004.findMedianSortedArrays(nums1, nums2));
+		 * l004.findMedianSortedArrays(nums1, nums2); } long midtime =
+		 * System.currentTimeMillis(); for (long i = 0; i < 100000000; i++) {
+		 * //System.out.println(l004.findMedianSortedArrays2(nums1, nums2));
+		 * l004.findMedianSortedArrays2(nums1, nums2); } long endtime =
+		 * System.currentTimeMillis(); System.out.println("1:"+String.valueOf(midtime -
+		 * starttime)); System.out.println(endtime - midtime);
+		 */
+		System.out.println(l004.findMedianSortedArrays(nums1, nums2)); // 不满足时间要求
+		System.out.println(l004.findMedianSortedArrays2(nums1, nums2)); // 快很多
 	}
 
 	public double findMedianSortedArrays(int[] nums1, int[] nums2) {
@@ -65,25 +62,13 @@ public class LEET004 {
 	}
 
 	/**
-	 * 官方解答
-	 * 理解：
-	 * 假设有A=[1,9,10,11],B=[2,3,4,8,12]
-	 * m=4, n=5
-	 * 确保m>n, m=5,n=4
-	 * 把A分成两部分A1&A2  A1<A2
-	 * 把B分成两部分B1&B2  B1<B2
-	 * 把A1和B1放在一起     A2和B2放在一起
-	 * 因为A1<A2,B1<B2, 如果能够满足A1<B2,B1<A2,那么 {A1,B1}就小于 {A2,B2}
-	 * 同时如果两边元素个数相同，或者相差1就找到了
+	 * 官方解答 理解： 假设有A=[1,9,10,11],B=[2,3,4,8,12] m=4, n=5 确保m>n, m=5,n=4 把A分成两部分A1&A2
+	 * A1<A2 把B分成两部分B1&B2 B1<B2 把A1和B1放在一起 A2和B2放在一起 因为A1<A2,B1<B2,
+	 * 如果能够满足A1<B2,B1<A2,那么 {A1,B1}就小于 {A2,B2} 同时如果两边元素个数相同，或者相差1就找到了
 	 * 
-	 * iMin=0  iMax=5  halflen=5
-	 * i=2  j=3
-	 * 把A1: 1,9   &B1: 2,3,4放在了一起                A2: 10,11  &  B2: 8,12  放在一起
-	 * 发现A1并不是小于B2(9>8)
-	 * i--  i=1,j=4
-	 * A1:1 B1:2,3,4,8    A2:9,10,11 B2:12
-	 * 5====4
-	 * 所以是左边的最后一个  就是8
+	 * iMin=0 iMax=5 halflen=5 i=2 j=3 把A1: 1,9 &B1: 2,3,4放在了一起 A2: 10,11 & B2: 8,12
+	 * 放在一起 发现A1并不是小于B2(9>8) i-- i=1,j=4 A1:1 B1:2,3,4,8 A2:9,10,11 B2:12 5====4
+	 * 所以是左边的最后一个 就是8
 	 * 
 	 * @param A
 	 * @param B

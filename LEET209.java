@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组。如果不存在符合条件的连续子数组，返回 0。
@@ -14,7 +14,7 @@ package LeetCode;
 public class LEET209 {
 	public static void main(String[] args) {
 		LEET209 l209 = new LEET209();
-		int[] nums = {2,3,1,2,4,3};
+		int[] nums = { 2, 3, 1, 2, 4, 3 };
 		int s = 7;
 		System.out.println(l209.minSubArrayLen3(s, nums));
 
@@ -61,8 +61,7 @@ public class LEET209 {
 		}
 		int sum = nums[0];
 		while (i < nums.length && j < nums.length) {
-			System.out.println("i=" + i + ",j=" + j + ",sum=" + sum + ",len="
-					+ (j - i + 1));
+			System.out.println("i=" + i + ",j=" + j + ",sum=" + sum + ",len=" + (j - i + 1));
 			if (sum < s) {
 				if (++j < nums.length) {
 					sum += nums[j];
@@ -97,6 +96,7 @@ public class LEET209 {
 		}
 		return minlen == nums.length + 1 ? 0 : minlen;
 	}
+
 	public int minSubArrayLen3(int s, int[] nums) {
 		int i = 0, j = 0;
 		int sum = 0;
@@ -104,10 +104,9 @@ public class LEET209 {
 		for (j = 0; j < nums.length; j++) {
 			sum += nums[j];
 			while (sum >= s && i <= j) {
-				System.out.println("i=" + i + ",j=" + j + ",sum=" + sum + ",len="
-						+ (j - i + 1));
+				System.out.println("i=" + i + ",j=" + j + ",sum=" + sum + ",len=" + (j - i + 1));
 				minlen = Math.min(minlen, j - i + 1);
-				if (minlen==1) {
+				if (minlen == 1) {
 					break;
 				}
 				sum -= nums[i++];

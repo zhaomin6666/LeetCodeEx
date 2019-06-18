@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.Arrays;
 
@@ -19,7 +19,7 @@ import java.util.Arrays;
 public class LEET259 {
 	public static void main(String[] args) {
 		LEET259 l234 = new LEET259();
-		int[] nums = {1, -2, 2, 1, 0};
+		int[] nums = { 1, -2, 2, 1, 0 };
 		int target = 1;
 		System.out.println(l234.threeSumSmaller(nums, target));
 	}

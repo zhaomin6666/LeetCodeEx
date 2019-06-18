@@ -1,17 +1,19 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.Arrays;
 
 import com.alibaba.fastjson.JSONObject;
+
 /**
- * 给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。
+ * 给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target
+ * 最接近。返回这三个数的和。假定每组输入只存在唯一答案。
  * 
  * @author zm
  *
  */
 public class LEET016 {
 	public static void main(String[] args) {
-		int[] intArray = {-1, 2, 1, -4};
+		int[] intArray = { -1, 2, 1, -4 };
 		// int[] intArray = {-1, 2};
 		int ans = new LEET016().threeSumClosest(intArray, 1);
 		System.out.println(JSONObject.toJSONString(ans));
@@ -19,6 +21,7 @@ public class LEET016 {
 
 	/**
 	 * 类似于上一题，加入偏差值而已
+	 * 
 	 * @param nums
 	 * @param target
 	 * @return

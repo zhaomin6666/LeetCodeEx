@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.HashSet;
 
@@ -16,20 +16,19 @@ import java.util.HashSet;
 public class LEET011 {
 	public static void main(String[] args) {
 		LEET011 L011 = new LEET011();
-		int[] test = {2, 3, 10, 5, 7, 8, 9};
+		int[] test = { 2, 3, 10, 5, 7, 8, 9 };
 		System.out.println(L011.maxArea3(test));
 	}
 
 	/**
-	 * 一条线从0的高度网上提，能否穿过两个柱体 取决于最高柱体和长度 最坏情况 Max*n 比如 {2, 3, 10, 5, 7, 8, 9} 0： 0
-	 * 1： 6 2： 12 3： 15 4： 16 5： 15 6： 12 7： 14 8： 8
+	 * 一条线从0的高度网上提，能否穿过两个柱体 取决于最高柱体和长度 最坏情况 Max*n 比如 {2, 3, 10, 5, 7, 8, 9} 0： 0 1：
+	 * 6 2： 12 3： 15 4： 16 5： 15 6： 12 7： 14 8： 8
 	 *
 	 * @param height
 	 * @return
 	 */
 	public int maxArea(int[] height) {
-		int sum = Math.min(height[0], height[height.length - 1])
-				* (height.length - 1);
+		int sum = Math.min(height[0], height[height.length - 1]) * (height.length - 1);
 		int maxheight = 0;
 		while (true) {
 			int l = 0;
@@ -53,8 +52,7 @@ public class LEET011 {
 			if (l == r || (!f1 && !f2)) {
 				break;
 			}
-			System.out.println("h:" + maxheight + "   ====>   " + l + "----" + r
-					+ "  ===>  " + (r - l) * maxheight);
+			System.out.println("h:" + maxheight + "   ====>   " + l + "----" + r + "  ===>  " + (r - l) * maxheight);
 			int sumtemp = (r - l) * maxheight;
 			if (sumtemp > sum) {
 				sum = sumtemp;
@@ -71,8 +69,7 @@ public class LEET011 {
 	 * @return
 	 */
 	public int maxArea2(int[] height) {
-		int sum = Math.min(height[0], height[height.length - 1])
-				* (height.length - 1);
+		int sum = Math.min(height[0], height[height.length - 1]) * (height.length - 1);
 		HashSet<Integer> hset = new HashSet<>();
 		for (int item : height) {
 			if (hset.contains(item)) {
@@ -94,8 +91,7 @@ public class LEET011 {
 					break;
 				}
 			}
-			System.out.println("h:" + item + "   ====>   " + l + "----" + r
-					+ "  ===>  " + (r - l) * item);
+			System.out.println("h:" + item + "   ====>   " + l + "----" + r + "  ===>  " + (r - l) * item);
 			int sumtemp = (r - l) * item;
 			if (sumtemp > sum) {
 				sum = sumtemp;

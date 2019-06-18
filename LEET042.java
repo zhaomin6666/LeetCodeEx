@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.Comparator;
 import java.util.HashMap;
@@ -15,14 +15,12 @@ import java.util.TreeMap;
 public class LEET042 {
 	public static void main(String[] args) {
 		LEET042 l042 = new LEET042();
-		int[] heights = {10527,740,9013,1300,29680};
-		int[] heights2 = {0,1,0,2,1,0,1,3,2,1,2,1};
+		int[] heights = { 10527, 740, 9013, 1300, 29680 };
+		int[] heights2 = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
 		System.out.println(l042.trap2(heights));
 		System.out.println(l042.trap2(heights2));
 
 	}
-
-	
 
 	/**
 	 * 思路是算出接满水的总和减去所有的柱子
@@ -85,17 +83,15 @@ public class LEET042 {
 		long vall = 0;
 		for (int i = o.length - 1; i >= 0; i--) {
 			if (i == 0) {
-				vall += (mapmax.get(o[i]) - mapmin.get(o[i]) + 1)
-						* (Integer) o[i];
+				vall += (mapmax.get(o[i]) - mapmin.get(o[i]) + 1) * (Integer) o[i];
 			} else {
-				vall += (mapmax.get(o[i]) - mapmin.get(o[i]) + 1)
-						* ((Integer) o[i] - (Integer) o[i - 1]);
+				vall += (mapmax.get(o[i]) - mapmin.get(o[i]) + 1) * ((Integer) o[i] - (Integer) o[i - 1]);
 			}
 			vall -= map.get(o[i]) * (Integer) o[i];
 		}
 		return (int) (vall);
 	}
-	
+
 	/**
 	 * 先判断左指针和右指针大小，小的往中间移，最终到达最高点，这样只要有指针移动后比某侧当前最高点低的，就能接到水
 	 * 
@@ -104,29 +100,29 @@ public class LEET042 {
 	 */
 	public int trap2(int[] height) {
 		int left = 0;
-        int right = height.length - 1;
+		int right = height.length - 1;
 
-        int leftMax = 0;
-        int rightMax = 0;
+		int leftMax = 0;
+		int rightMax = 0;
 
-        int v = 0;
-        while (left < right) {
-            if (height[left] < height[right]) {
-                if (height[left] > leftMax) {
-                    leftMax = height[left];
-                } else {
-                    v += leftMax - height[left];
-                }
-                left++;
-            } else {
-                if (height[right] > rightMax) {
-                    rightMax = height[right];
-                } else {
-                    v += rightMax - height[right];
-                }
-                right--;
-            }
-        }
-        return v;
+		int v = 0;
+		while (left < right) {
+			if (height[left] < height[right]) {
+				if (height[left] > leftMax) {
+					leftMax = height[left];
+				} else {
+					v += leftMax - height[left];
+				}
+				left++;
+			} else {
+				if (height[right] > rightMax) {
+					rightMax = height[right];
+				} else {
+					v += rightMax - height[right];
+				}
+				right--;
+			}
+		}
+		return v;
 	}
 }

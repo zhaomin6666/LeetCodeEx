@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.Arrays;
 
@@ -25,10 +25,10 @@ import com.alibaba.fastjson.JSON;
 public class LEET349 {
 	public static void main(String[] args) {
 		LEET349 l349 = new LEET349();
-		int[] nums1 = {1, 2, 2, 1};
-		int[] nums2 = {2, 2};
-		int[] nums3 = {4, 9, 5};
-		int[] nums4 = {9, 4, 9, 8, 4};
+		int[] nums1 = { 1, 2, 2, 1 };
+		int[] nums2 = { 2, 2 };
+		int[] nums3 = { 4, 9, 5 };
+		int[] nums4 = { 9, 4, 9, 8, 4 };
 		System.out.println(JSON.toJSONString(l349.intersection(nums1, nums2)));
 		System.out.println(JSON.toJSONString(l349.intersection(nums3, nums4)));
 	}
@@ -36,9 +36,7 @@ public class LEET349 {
 	public int[] intersection(int[] nums1, int[] nums2) {
 		Arrays.sort(nums1);
 		Arrays.sort(nums2);
-		int[] res = new int[nums1.length > nums2.length
-				? nums2.length
-				: nums1.length];
+		int[] res = new int[nums1.length > nums2.length ? nums2.length : nums1.length];
 		int k = 0;
 		int i = 0, j = 0;
 		while (i < nums1.length && j < nums2.length) {
@@ -66,7 +64,7 @@ public class LEET349 {
 			}
 		}
 		if (k == 0) {
-			return new int[]{};
+			return new int[] {};
 		}
 		return Arrays.copyOfRange(res, 0, k);
 	}

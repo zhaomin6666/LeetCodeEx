@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。 输入: "babad" 输出: "bab" 注意: "aba"
@@ -32,7 +32,7 @@ public class LEET005 {
 				int dev1 = 0;
 				int len1 = 0;
 
-				loop1 : while (i - dev1 > 0 && i + dev1 < chars.length) { // abba
+				loop1: while (i - dev1 > 0 && i + dev1 < chars.length) { // abba
 					if (chars[i + dev1] == chars[i - dev1 - 1]) {
 						len1 = len1 + 2;
 						if (len1 > max) {
@@ -47,8 +47,7 @@ public class LEET005 {
 				if (i > 1) {
 					int dev2 = 0;
 					int len2 = 1;
-					loop2 : while (i - dev2 - 1 > 0
-							&& i + dev2 < chars.length) { // abcba
+					loop2: while (i - dev2 - 1 > 0 && i + dev2 < chars.length) { // abcba
 						if (chars[i + dev2] == chars[i - dev2 - 2]) {
 							len2 = len2 + 2;
 							if (len2 > max) {
@@ -68,6 +67,7 @@ public class LEET005 {
 
 	/**
 	 * 把每次判断的代码提取出来
+	 * 
 	 * @param s
 	 * @return
 	 */
@@ -90,8 +90,7 @@ public class LEET005 {
 		}
 
 		int ret = hi;
-		while (lo > 0 && hi < s.length() - 1
-				&& s.charAt(lo - 1) == s.charAt(hi + 1)) {
+		while (lo > 0 && hi < s.length() - 1 && s.charAt(lo - 1) == s.charAt(hi + 1)) {
 			lo--;
 			hi++;
 		}
@@ -103,34 +102,36 @@ public class LEET005 {
 
 		return ret;
 	}
-	
+
 	/**
 	 * 官方题解，进一步优化代码
+	 * 
 	 * @param s
 	 * @return
 	 */
 	public String longestPalindrome3(String s) {
-	 
-	    if (s == null || s.length() < 1) return "";
-	    int start = 0, end = 0;
-	    for (int i = 0; i < s.length(); i++) {
-	        int len1 = expandAroundCenter(s, i, i);
-	        int len2 = expandAroundCenter(s, i, i + 1);
-	        int len = Math.max(len1, len2);
-	        if (len > end - start) {
-	            start = i - (len - 1) / 2;
-	            end = i + len / 2;
-	        }
-	    }
-	    return s.substring(start, end + 1);
+
+		if (s == null || s.length() < 1)
+			return "";
+		int start = 0, end = 0;
+		for (int i = 0; i < s.length(); i++) {
+			int len1 = expandAroundCenter(s, i, i);
+			int len2 = expandAroundCenter(s, i, i + 1);
+			int len = Math.max(len1, len2);
+			if (len > end - start) {
+				start = i - (len - 1) / 2;
+				end = i + len / 2;
+			}
+		}
+		return s.substring(start, end + 1);
 	}
 
 	private int expandAroundCenter(String s, int left, int right) {
-	    int L = left, R = right;
-	    while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
-	        L--;
-	        R++;
-	    }
-	    return R - L - 1;
+		int L = left, R = right;
+		while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+			L--;
+			R++;
+		}
+		return R - L - 1;
 	}
 }

@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。
@@ -9,7 +9,7 @@ package LeetCode;
  * 
  * 输入: "A man, a plan, a canal: Panama" 输出: true
  * 
- *  示例 2:
+ * 示例 2:
  * 
  * 输入: "race a car" 输出: false
  * 
@@ -25,6 +25,7 @@ public class LEET125 {
 
 	/**
 	 * 双指针
+	 * 
 	 * @param s
 	 * @return
 	 */
@@ -40,11 +41,11 @@ public class LEET125 {
 				--r;
 				continue;
 			}
-			if (!isSame(s.charAt(l),s.charAt(r))) {
+			if (!isSame(s.charAt(l), s.charAt(r))) {
 				return false;
 			}
-            ++l;
-            --r;
+			++l;
+			--r;
 		}
 		return true;
 	}
@@ -54,12 +55,12 @@ public class LEET125 {
 	}
 
 	boolean isSame(char l, char r) {
-		if(l < 'a' && l > '9'){
-            l = (char)(l - 'A' + 'a');
-        }
-        if(r < 'a' && r > '9'){
-            r = (char)(r - 'A' + 'a');
-        }
-        return l == r;
+		if (l < 'a' && l > '9') {
+			l = (char) (l - 'A' + 'a');
+		}
+		if (r < 'a' && r > '9') {
+			r = (char) (r - 'A' + 'a');
+		}
+		return l == r;
 	}
 }

@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.HashMap;
 
@@ -19,10 +19,11 @@ public class LEET003 {
 		System.out.println(new LEET003().lengthOfLongestSubstring2("a"));// 1
 		System.out.println(new LEET003().lengthOfLongestSubstring2(""));// 0
 	}
-	
+
 	/**
 	 * 循环遍历字符串，把子串的初始位置设为-1（因为第一个是0，这样第一个字符的时候长度就是0-（-1）=1）。没有重复的时候长度就+1，并且判断一下是否是最长的数，保存一下。
 	 * 当有重复的时候，判断重复的第一个字符所在位置和当前起始位置，取较后面的为子串的初始位置。
+	 * 
 	 * @param s
 	 * @return
 	 */
@@ -52,8 +53,8 @@ public class LEET003 {
 	}
 
 	/**
-	 * 滑动窗口（官方题解）
-	 * 貌似和上面的方法思路差不多，但是优化了代码
+	 * 滑动窗口（官方题解） 貌似和上面的方法思路差不多，但是优化了代码
+	 * 
 	 * @param s
 	 * @return
 	 */

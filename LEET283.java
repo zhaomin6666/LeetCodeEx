@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import com.alibaba.fastjson.JSON;
 
@@ -17,14 +17,14 @@ import com.alibaba.fastjson.JSON;
 public class LEET283 {
 	public static void main(String[] args) {
 		LEET283 l283 = new LEET283();
-		int[] nums = {0, 1, 0, 3, 12};
+		int[] nums = { 0, 1, 0, 3, 12 };
 		l283.moveZeroes2(nums);
 		System.out.println(JSON.toJSONString(nums));
 	}
 
 	public void moveZeroes(int[] nums) {
 		int i = 0, j = 0;
-		loop : while (i < nums.length && j < nums.length) {
+		loop: while (i < nums.length && j < nums.length) {
 			if (nums[i] == 0) {
 				while (nums[j] == 0) {
 					++j;
@@ -39,17 +39,17 @@ public class LEET283 {
 			++j;
 		}
 	}
-	
+
 	public void moveZeroes2(int[] nums) {
-        int i = 0; 
-        for(int j = 0; j < nums.length; j++){
-            if(nums[j] != 0){
-                nums[i] = nums[j];
-                i++;
-            }
-        }
-        for(int p = i; p < nums.length; p++){
-            nums[p] = 0;
-        }
-    }
+		int i = 0;
+		for (int j = 0; j < nums.length; j++) {
+			if (nums[j] != 0) {
+				nums[i] = nums[j];
+				i++;
+			}
+		}
+		for (int p = i; p < nums.length; p++) {
+			nums[p] = 0;
+		}
+	}
 }

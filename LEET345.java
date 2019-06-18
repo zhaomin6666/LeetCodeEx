@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.HashSet;
 
@@ -80,9 +80,9 @@ public class LEET345 {
 		}
 		return String.valueOf(ch);
 	}
-	
-	private boolean isValid(char c){
-        return c=='a' || c=='e' || c=='i' || c=='o' || c=='u'
-            || c=='A' || c=='E' || c=='I' || c=='O' || c=='U';
-    }
+
+	private boolean isValid(char c) {
+		return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O'
+				|| c == 'U';
+	}
 }

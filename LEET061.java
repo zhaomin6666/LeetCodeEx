@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 给定一个链表，旋转链表，将链表每个节点向右移动 k 个位置，其中 k 是非负数。
@@ -15,8 +15,7 @@ public class LEET061 {
 	public static void main(String[] args) {
 		LEET061 l061 = new LEET061();
 		ListNode node1 = CommonFunctions.stringToListNode("[1,2,3]");
-		System.out.println(
-				CommonFunctions.listNodeToString(l061.rotateRight(node1, 3)));
+		System.out.println(CommonFunctions.listNodeToString(l061.rotateRight(node1, 3)));
 	}
 
 	/**

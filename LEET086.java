@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 x 的节点都在大于或等于 x 的节点之前。
@@ -17,10 +17,8 @@ public class LEET086 {
 		LEET086 l086 = new LEET086();
 		ListNode node = CommonFunctions.stringToListNode("[1,4,3,2,5,2]");
 		ListNode node2 = CommonFunctions.stringToListNode("[1]");
-		System.out.println(
-				CommonFunctions.listNodeToString(l086.partition2(node, 0)));
-		System.out.println(
-				CommonFunctions.listNodeToString(l086.partition2(node2, 0)));
+		System.out.println(CommonFunctions.listNodeToString(l086.partition2(node, 0)));
+		System.out.println(CommonFunctions.listNodeToString(l086.partition2(node2, 0)));
 	}
 
 	/**

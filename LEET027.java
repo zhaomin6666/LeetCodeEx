@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import com.alibaba.fastjson.JSON;
 
@@ -31,8 +31,8 @@ import com.alibaba.fastjson.JSON;
 public class LEET027 {
 	public static void main(String[] args) {
 		LEET027 l027 = new LEET027();
-		int[] nums1 = {0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-		int[] nums2 = {0, 0, 2, 0};
+		int[] nums1 = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
+		int[] nums2 = { 0, 0, 2, 0 };
 		System.out.println(l027.removeElement(nums1, 0));
 		System.out.println(JSON.toJSONString(nums1));
 		System.out.println(l027.removeElement2(nums2, 0));
@@ -41,6 +41,7 @@ public class LEET027 {
 
 	/**
 	 * 两个指针都从头开始，如果是需要去除的，右指针右移1，不是的话，把右指针位置的元素放到左指针上，并且左右指针一起右移
+	 * 
 	 * @param nums
 	 * @param val
 	 * @return
@@ -58,23 +59,24 @@ public class LEET027 {
 		}
 		return l;
 	}
-	
+
 	/**
 	 * 更简洁，没必要上面一个方法多余的步骤
+	 * 
 	 * @param nums
 	 * @param val
 	 * @return
 	 */
 	public int removeElement2(int[] nums, int val) {
-        if(nums == null || nums.length == 0){
-            return 0;
-        }
-        int i = 0;
-        for(int j = 0;j < nums.length;j++){
-            if(nums[j] != val){
-                nums[i++] = nums[j];
-            }
-        }
-        return i ;
-    }
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
+		int i = 0;
+		for (int j = 0; j < nums.length; j++) {
+			if (nums[j] != val) {
+				nums[i++] = nums[j];
+			}
+		}
+		return i;
+	}
 }

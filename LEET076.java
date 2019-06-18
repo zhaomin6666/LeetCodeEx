@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.HashMap;
 
@@ -19,8 +19,8 @@ public class LEET076 {
 		LEET076 l076 = new LEET076();
 		String s1 = "ADOBECODEBANCz";
 		String s2 = "ABCz";
-		//String s3 = "BAB";
-		//String s4 = "A";
+		// String s3 = "BAB";
+		// String s4 = "A";
 		System.out.println(l076.minWindow2(s1, s2));
 		// 测试下自己写的第二种方法和网上答案中比较快的进行下比较，时间差不多
 		long a = System.currentTimeMillis();
@@ -28,12 +28,11 @@ public class LEET076 {
 			l076.minWindow3(s1, s2);
 		}
 		long b = System.currentTimeMillis();
-		System.out.println(b-a);
+		System.out.println(b - a);
 	}
 
 	public String minWindow(String s, String t) {
-		HashMap<Character, Integer> tmap = CommonFunctions
-				.convertStringToMap(t);
+		HashMap<Character, Integer> tmap = CommonFunctions.convertStringToMap(t);
 		HashMap<Character, Integer> win = new HashMap<>();
 		int minlen = s.length() + 1;
 		String ret = "";
@@ -52,8 +51,7 @@ public class LEET076 {
 			// 判断两个map的符合程度
 			boolean flag = true;
 			for (Character c : tmap.keySet()) {
-				if (tmap.get(c) == null || tmap
-						.get(c) > (win.get(c) == null ? 0 : win.get(c))) {
+				if (tmap.get(c) == null || tmap.get(c) > (win.get(c) == null ? 0 : win.get(c))) {
 					flag = false;
 					break;
 				}
@@ -65,11 +63,8 @@ public class LEET076 {
 				}
 			}
 			boolean flag1 = l < r && win.get(s.charAt(l)) != null
-					&& win.get(s.charAt(l)) > (tmap.get(s.charAt(l)) == null
-							? 0
-							: tmap.get(s.charAt(l)));
-			boolean flag2 = l < s.length() && l < r
-					&& tmap.get(s.charAt(l)) == null;
+					&& win.get(s.charAt(l)) > (tmap.get(s.charAt(l)) == null ? 0 : tmap.get(s.charAt(l)));
+			boolean flag2 = l < s.length() && l < r && tmap.get(s.charAt(l)) == null;
 			boolean flag4 = false;
 			while (flag1 || flag2) {
 				flag4 = true;
@@ -78,11 +73,8 @@ public class LEET076 {
 				}
 				l++;
 				flag1 = l < r && win.get(s.charAt(l)) != null
-						&& win.get(s.charAt(l)) > (tmap.get(s.charAt(l)) == null
-								? 0
-								: tmap.get(s.charAt(l)));
-				flag2 = l < s.length() && l < r
-						&& tmap.get(s.charAt(l)) == null;
+						&& win.get(s.charAt(l)) > (tmap.get(s.charAt(l)) == null ? 0 : tmap.get(s.charAt(l)));
+				flag2 = l < s.length() && l < r && tmap.get(s.charAt(l)) == null;
 			}
 			if (flag4 && flag) {
 				if (r - l < minlen) {
@@ -96,6 +88,7 @@ public class LEET076 {
 
 	/**
 	 * 换用数组，提升速度
+	 * 
 	 * @param s
 	 * @param t
 	 * @return
@@ -154,6 +147,7 @@ public class LEET076 {
 
 	/**
 	 * 网站上所有提交中找的较快的，时间差不多
+	 * 
 	 * @param s
 	 * @param t
 	 * @return

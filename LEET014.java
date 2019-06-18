@@ -1,6 +1,7 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.HashSet;
+
 /**
  * 编写一个函数来查找字符串数组中的最长公共前缀。
  * 
@@ -12,7 +13,7 @@ import java.util.HashSet;
  */
 public class LEET014 {
 	public static void main(String[] args) {
-		String[] strs = {"aa", "aa", "aaa"};
+		String[] strs = { "aa", "aa", "aaa" };
 		LEET014 L014 = new LEET014();
 		System.out.println(L014.longestCommonPrefix6(strs));
 	}
@@ -44,8 +45,7 @@ public class LEET014 {
 		for (int i = 0; i < strchars.length; i++) {
 			boolean flag = true;
 			for (String c : strs) {
-				if (!c.substring(i, i + 1)
-						.equals(String.valueOf(strchars[i]))) {
+				if (!c.substring(i, i + 1).equals(String.valueOf(strchars[i]))) {
 					flag = false;
 					break;
 				}
@@ -71,7 +71,7 @@ public class LEET014 {
 		}
 		String ans = "";
 		int index = 0;
-		loop1 : while (true) {
+		loop1: while (true) {
 			HashSet<Character> item = new HashSet<>();
 			for (String string : strs) {
 				if (string.length() <= index) {
@@ -137,6 +137,7 @@ public class LEET014 {
 			return "";
 		return longestCommonPrefix5(strs, 0, strs.length - 1);
 	}
+
 	private String longestCommonPrefix5(String[] strs, int l, int r) {
 		if (l == r) {
 			return strs[l];
@@ -147,6 +148,7 @@ public class LEET014 {
 			return commonPrefix(lcpLeft, lcpRight);
 		}
 	}
+
 	String commonPrefix(String left, String right) {
 		int min = Math.min(left.length(), right.length());
 		for (int i = 0; i < min; i++) {
@@ -162,10 +164,10 @@ public class LEET014 {
 	 * S[1...mid] 不是所有串的公共前缀。 这表明对于所有的 j > i S[1..j] 也不是公共前缀，于是我们就可以丢弃后半个查找区间。
 	 * 
 	 * S[1...mid] 是所有串的公共前缀。 这表示对于所有的 i < j S[1..i]
-	 * 都是可行的公共前缀，因为我们要找最长的公共前缀，所以我们可以把前半个查找区间丢弃 先找出最短长度 abcdef3 abceawer1
-	 * abcaewfdsa minLen=7 low=1 high=7 mid=4 遍历所有字符串判断前4位是否是公共子串
-	 * 发现不是，那么high=mid-1=3 mid=(1+3)/2=2 遍历所有字符串判断前2位是否是公共子串 发现是，那么low=min+1=3
-	 * mid=(3+3)/2=3 遍历所有字符串判断前2位是否是公共子串 ok...
+	 * 都是可行的公共前缀，因为我们要找最长的公共前缀，所以我们可以把前半个查找区间丢弃 先找出最短长度 abcdef3 abceawer1 abcaewfdsa
+	 * minLen=7 low=1 high=7 mid=4 遍历所有字符串判断前4位是否是公共子串 发现不是，那么high=mid-1=3
+	 * mid=(1+3)/2=2 遍历所有字符串判断前2位是否是公共子串 发现是，那么low=min+1=3 mid=(3+3)/2=3
+	 * 遍历所有字符串判断前2位是否是公共子串 ok...
 	 * 
 	 * @param strs
 	 * @return
@@ -230,6 +232,7 @@ public class LEET014 {
 
 		// 非空子节点的数量
 		private int size;
+
 		public void put(char ch, TrieNode node) {
 			links[ch - 'a'] = node;
 			size++;

@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.HashSet;
 
@@ -22,14 +22,13 @@ public class LEET141 {
 	public static void main(String[] args) {
 		LEET141 l141 = new LEET141();
 		String head = "[3,2,0,-4]";
-		//String head1 = "[3]";
+		// String head1 = "[3]";
 		ListNode node1 = CommonFunctions.stringToListNodeWithCircle(head, 1);
 		System.out.println(l141.hasCycle2(node1));
 	}
 
 	/**
-	 * 使用Hashset记录所有的node
-	 * 空间复杂度  O(N)
+	 * 使用Hashset记录所有的node 空间复杂度 O(N)
 	 * 
 	 * @param head
 	 * @return
@@ -51,9 +50,8 @@ public class LEET141 {
 	}
 
 	/**
-	 * 使用双指针，一个指针一次移动两步，另一个移动一步，如果是环形列表那么快的最终会追上慢的
-	 * 时间复杂度  O(N+K) k为环长度 所以即O(N)
-	 * 空间复杂度  O(1)
+	 * 使用双指针，一个指针一次移动两步，另一个移动一步，如果是环形列表那么快的最终会追上慢的 时间复杂度 O(N+K) k为环长度 所以即O(N) 空间复杂度
+	 * O(1)
 	 * 
 	 * @param head
 	 * @return

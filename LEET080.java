@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import com.alibaba.fastjson.JSON;
 
@@ -18,9 +18,9 @@ import com.alibaba.fastjson.JSON;
 public class LEET080 {
 	public static void main(String[] args) {
 		LEET080 l080 = new LEET080();
-		int[] nums = {1, 1, 1, 1, 2, 3, 4, 4, 4, 5};
-		int[] nums2 = {1, 1, 1, 2, 2, 3};
-		int[] nums3 = {1, 2};
+		int[] nums = { 1, 1, 1, 1, 2, 3, 4, 4, 4, 5 };
+		int[] nums2 = { 1, 1, 1, 2, 2, 3 };
+		int[] nums3 = { 1, 2 };
 		System.out.println(l080.removeDuplicates2(nums));
 		System.out.println(JSON.toJSON(nums));
 		System.out.println(l080.removeDuplicates2(nums2));
@@ -32,9 +32,10 @@ public class LEET080 {
 
 	/**
 	 * 评论中的方法。直接判断当前数字和他前面的第二个
+	 * 
 	 * @param nums
 	 * @return
-	 */ 
+	 */
 	public int removeDuplicates(int[] nums) {
 		int i = 0;
 		for (int n : nums)
@@ -45,6 +46,7 @@ public class LEET080 {
 
 	/**
 	 * 双指针，类似于之前做过一个去掉数列中重复项，这里加入cnt值。
+	 * 
 	 * @param nums
 	 * @return
 	 */

@@ -1,7 +1,8 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
+ * 
  * @author zm
  *
  */
@@ -12,9 +13,10 @@ public class LEET007 {
 		System.out.println(L007.reverse2(-1136481199));
 
 	}
-	
+
 	/**
 	 * 用String
+	 * 
 	 * @param x
 	 * @return
 	 */
@@ -29,12 +31,10 @@ public class LEET007 {
 			sb.append(xstr.substring(xstr.length() - 1 - i, xstr.length() - i));
 		}
 		String result = sb.toString();
-		return Double.valueOf(result) > Integer.MAX_VALUE
-				|| Double.valueOf(result) < Integer.MIN_VALUE
-						? 0
-						: Integer.valueOf(result);
+		return Double.valueOf(result) > Integer.MAX_VALUE || Double.valueOf(result) < Integer.MIN_VALUE ? 0
+				: Integer.valueOf(result);
 	}
-	
+
 	/**
 	 * 
 	 * @param x
@@ -55,6 +55,7 @@ public class LEET007 {
 
 	/**
 	 * 上述方法优化
+	 * 
 	 * @param x
 	 * @return
 	 */

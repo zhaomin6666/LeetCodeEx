@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 实现 strStr() 函数。
@@ -62,6 +62,7 @@ public class LEET028 {
 
 	/**
 	 * 直接判断字符串是否相等，并且减少循环次数
+	 * 
 	 * @param haystack
 	 * @param needle
 	 * @return
@@ -72,7 +73,7 @@ public class LEET028 {
 			return ret;
 		}
 		for (ret = 0; ret <= haystack.length() - needle.length(); ret++) {
-			if (haystack.substring(ret, ret+needle.length()).equals(needle)) {
+			if (haystack.substring(ret, ret + needle.length()).equals(needle)) {
 				return ret;
 			}
 		}

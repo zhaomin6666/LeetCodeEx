@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import com.alibaba.fastjson.JSON;
 
@@ -27,13 +27,14 @@ import com.alibaba.fastjson.JSON;
 public class LEET026 {
 	public static void main(String[] args) {
 		LEET026 l026 = new LEET026();
-		int[] nums1 = {0,0,1,1,1,2,2,3,3,4};
+		int[] nums1 = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
 		System.out.println(l026.removeDuplicates(nums1));
 		System.out.println(JSON.toJSONString(nums1));
 	}
 
 	/**
 	 * 有不重复的则l++，用于计数和替换
+	 * 
 	 * @param nums
 	 * @return
 	 */
@@ -43,7 +44,7 @@ public class LEET026 {
 		}
 		int l = 1;
 		for (int i = 1; i < nums.length; i++) {
-			if (nums[i] != nums[l-1])
+			if (nums[i] != nums[l - 1])
 				nums[l++] = nums[i];
 		}
 		return l;

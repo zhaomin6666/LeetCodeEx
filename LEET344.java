@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。</br>
@@ -36,8 +36,7 @@ public class LEET344 {
 	public void reverseString(char[] s) {
 		for (int i = 0; i < s.length / 2; i++) {
 			/*
-			 * char t = s[i]; s[i] = s[s.length - i - 1]; s[s.length - i - 1] =
-			 * t;
+			 * char t = s[i]; s[i] = s[s.length - i - 1]; s[s.length - i - 1] = t;
 			 */
 			s[s.length - i - 1] = (char) (s[s.length - i - 1] + s[i]);
 			s[i] = (char) (s[s.length - i - 1] - s[i]);

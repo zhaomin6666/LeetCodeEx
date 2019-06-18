@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,11 +18,11 @@ public class LEET030 {
 	public static void main(String[] args) {
 		LEET030 l030 = new LEET030();
 		String s = "barfoothefoobarman";
-		String[] words = {"bar", "foo"};
+		String[] words = { "bar", "foo" };
 		System.out.println(l030.findSubstring4(s, words));
 
 		String s2 = "wordgoodgoodgoodbestword";
-		String[] words2 = {"word", "good", "best", "good"};
+		String[] words2 = { "word", "good", "best", "good" };
 		System.out.println(l030.findSubstring4(s2, words2));
 	}
 
@@ -82,16 +82,14 @@ public class LEET030 {
 			String stemp = s.substring(i, i + length);
 			String[] stemplist = new String[words.length];
 			for (int j = 0; j < words.length; j++) {
-				stemplist[j] = stemp.substring(j * words[0].length(),
-						(j + 1) * words[0].length());
+				stemplist[j] = stemp.substring(j * words[0].length(), (j + 1) * words[0].length());
 			}
 			HashMap<String, Integer> stempmap = convertListToMap(stemplist);
 
 			// 判断两个map的符合程度
 			boolean flag = true;
 			for (String string : stempmap.keySet()) {
-				if (wordsmap.get(string) == null
-						|| wordsmap.get(string) != stempmap.get(string)) {
+				if (wordsmap.get(string) == null || wordsmap.get(string) != stempmap.get(string)) {
 					flag = false;
 					break;
 				}
@@ -135,8 +133,7 @@ public class LEET030 {
 			String stemp = s.substring(i, i + length);
 			boolean flag = true;
 			for (int j = 0; j < words.length; j++) {
-				String oneword = stemp.substring(j * onewordlen,
-						j * onewordlen + onewordlen);
+				String oneword = stemp.substring(j * onewordlen, j * onewordlen + onewordlen);
 				Integer onewordcnt = wordsmaptemp.get(oneword);
 				if (onewordcnt == null || onewordcnt == 0) {
 					flag = false;
@@ -157,14 +154,13 @@ public class LEET030 {
 	 * 如果j往后数3，窗口内是bar，bar在words中，且数量就是words中的数量，j+3 3=words[0].length()
 	 * j=3，j往后数3，窗口内是bar,foo，新增的foo在words中，且数量就是words中的数量，j+3 此时j-i=3*2
 	 * 2=words.length 满足要求记录下i=0 <br>
-	 * <b>1.上述例子</b>
-	 * j=6，j往后数3，窗口内是bar,foo,the，新增的foo不在words中，i,j=j+3 <br>
+	 * <b>1.上述例子</b> j=6，j往后数3，窗口内是bar,foo,the，新增的foo不在words中，i,j=j+3 <br>
 	 * <b>2.若，例子为 barfoobarthe，那么：</b>
-	 * j=6，j往后数3，窗口内是bar,foo,bar，新增的bar在words中，循环(若bar在窗口中的数量大于words中的数量){把窗口内最左边的去掉，i=i+3} ==> i=i+3,j=j+3
-	 * 此时j-i=3*2 满足要求记录下i=3 <br>
+	 * j=6，j往后数3，窗口内是bar,foo,bar，新增的bar在words中，循环(若bar在窗口中的数量大于words中的数量){把窗口内最左边的去掉，i=i+3}
+	 * ==> i=i+3,j=j+3 此时j-i=3*2 满足要求记录下i=3 <br>
 	 * <b>3.若，例子为 barfoofoothe，那么：</b>
-	 * j=6，j往后数3，窗口内是bar,foo,foo，新增的foo在words中，循环(若foo在窗口中的数量大于words中的数量){把窗口内最左边的去掉，i=i+3} ==> i=i+6,j=j+3
-	 * 此时j-i=3  不满足要求<br>
+	 * j=6，j往后数3，窗口内是bar,foo,foo，新增的foo在words中，循环(若foo在窗口中的数量大于words中的数量){把窗口内最左边的去掉，i=i+3}
+	 * ==> i=i+6,j=j+3 此时j-i=3 不满足要求<br>
 	 * 
 	 * @param s
 	 * @param words
@@ -172,8 +168,7 @@ public class LEET030 {
 	 */
 	public List<Integer> findSubstring4(String s, String[] words) {
 		List<Integer> result = new ArrayList<>();
-		if (s == null || s.length() == 0 || words == null
-				|| words.length == 0) {
+		if (s == null || s.length() == 0 || words == null || words.length == 0) {
 			return result;
 		}
 		Map<String, Integer> wordsCount = generateCount(words);// 将所有字符加入数组Hash表
@@ -182,8 +177,7 @@ public class LEET030 {
 			Map<String, Integer> window = new HashMap<>();
 			int left = i;
 			int right = i;
-			while (right <= s.length() - length
-					&& left <= s.length() - length * words.length) {
+			while (right <= s.length() - length && left <= s.length() - length * words.length) {
 				String sub = s.substring(right, right + length);
 				incr(window, sub);// 取一个字符加入窗口Hash表
 				if (!wordsCount.containsKey(sub)) {// 如果这个字符在数组Hash表中不存在，就清理窗口并重置left和right

@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 import java.io.IOException;
 
@@ -7,6 +7,7 @@ import java.io.IOException;
  * 如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。 您可以假设除了数字 0 之外，这两个数都不会以 0 开头。
  * 
  * 方法的区别就在于判断，减少无用的逻辑
+ * 
  * @author zm
  *
  */
@@ -18,9 +19,10 @@ public class LEET002 {
 		String out = listNodeToString(ret);
 		System.out.print(out);
 	}
-	
+
 	/**
 	 * 循环末尾判断，两数都取完并没有进位
+	 * 
 	 * @param l1
 	 * @param l2
 	 * @return
@@ -53,9 +55,10 @@ public class LEET002 {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * 只要两个数有一个没有取完，则循环继续，结束之后判断是否有进位，加上
+	 * 
 	 * @param l1
 	 * @param l2
 	 * @return

@@ -1,4 +1,4 @@
-package LeetCode;
+package com.zm.LeetCodeEx;
 
 /**
  * 反转一个单链表。
@@ -16,8 +16,7 @@ public class LEET206 {
 		LEET206 l206 = new LEET206();
 		String s = "[1,2,3,3,4,2,6]";
 		ListNode node = CommonFunctions.stringToListNode(s);
-		System.out.println(
-				CommonFunctions.listNodeToString(l206.reverseList2(node)));
+		System.out.println(CommonFunctions.listNodeToString(l206.reverseList2(node)));
 	}
 
 	/**
