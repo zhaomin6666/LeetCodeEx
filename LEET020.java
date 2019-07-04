@@ -36,6 +36,11 @@ public class LEET020 {
 		System.out.println(l020.isValid(s4));
 	}
 
+	/**
+	 * 使用栈后进后出的思想
+	 * @param s
+	 * @return
+	 */
 	public boolean isValid(String s) {
 		LinkedList<Character> list = new LinkedList<>();
 		for (int i = 0; i < s.length(); i++) {

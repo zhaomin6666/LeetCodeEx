@@ -19,6 +19,12 @@ public class LEET021 {
 		System.out.println(CommonFunctions.listNodeToString(l021.mergeTwoLists(l1, l2)));
 	}
 
+	/**
+	 * 去两个链表中比较小的那个节点，然后该链表向后移一位
+	 * @param l1
+	 * @param l2
+	 * @return
+	 */
 	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
 		ListNode head = new ListNode(0);
 		ListNode node = head;
