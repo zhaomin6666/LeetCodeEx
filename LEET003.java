@@ -10,14 +10,15 @@ import java.util.HashMap;
  */
 public class LEET003 {
 	public static void main(String[] args) {
-		System.out.println(new LEET003().lengthOfLongestSubstring("abcabcbb"));// 3
-		System.out.println(new LEET003().lengthOfLongestSubstring("tmmzuxt"));// 5
-		System.out.println(new LEET003().lengthOfLongestSubstring2("aabb"));// 2
-		System.out.println(new LEET003().lengthOfLongestSubstring2("dvdf"));// 3
-		System.out.println(new LEET003().lengthOfLongestSubstring2("aab"));// 2
-		System.out.println(new LEET003().lengthOfLongestSubstring2("au"));// 2
-		System.out.println(new LEET003().lengthOfLongestSubstring2("a"));// 1
-		System.out.println(new LEET003().lengthOfLongestSubstring2(""));// 0
+		LEET003 l003 = new LEET003();
+		System.out.println(l003.lengthOfLongestSubstring("abcabcbb"));// 3
+		System.out.println(l003.lengthOfLongestSubstring("tmmzuxt"));// 5
+		System.out.println(l003.lengthOfLongestSubstring2("aabb"));// 2
+		System.out.println(l003.lengthOfLongestSubstring2("dvdf"));// 3
+		System.out.println(l003.lengthOfLongestSubstring2("aab"));// 2
+		System.out.println(l003.lengthOfLongestSubstring2("au"));// 2
+		System.out.println(l003.lengthOfLongestSubstring2("a"));// 1
+		System.out.println(l003.lengthOfLongestSubstring2(""));// 0
 	}
 
 	/**

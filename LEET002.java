@@ -13,9 +13,10 @@ import java.io.IOException;
  */
 public class LEET002 {
 	public static void main(String[] args) throws IOException {
+		LEET002 l002 = new LEET002();
 		ListNode l1 = stringToListNode("[2,4,3]");
 		ListNode l2 = stringToListNode("[5,6]");
-		ListNode ret = new LEET002().addTwoNumbers2(l1, l2);
+		ListNode ret = l002.addTwoNumbers2(l1, l2);
 		String out = listNodeToString(ret);
 		System.out.print(out);
 	}
