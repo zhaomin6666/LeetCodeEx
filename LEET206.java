@@ -16,7 +16,7 @@ public class LEET206 {
 		LEET206 l206 = new LEET206();
 		String s = "[1,2,3,3,4,2,6]";
 		ListNode node = CommonFunctions.stringToListNode(s);
-		System.out.println(CommonFunctions.listNodeToString(l206.reverseList2(node)));
+        System.out.println(CommonFunctions.listNodeToString(l206.reverseList3(node)));
 	}
 
 	/**
@@ -40,7 +40,7 @@ public class LEET206 {
 	}
 
 	/**
-	 * 循环
+     * 循环 新建节点
 	 * 
 	 * @param head
 	 * @return
@@ -61,4 +61,25 @@ public class LEET206 {
 		}
 		return nodeRevTemp;
 	}
+
+    /**
+     * 循环 对原节点进行交换
+     *
+     * @param head
+     * @return
+     */
+    public ListNode reverseList3(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode pre = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
+    }
 }
