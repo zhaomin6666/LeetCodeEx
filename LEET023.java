@@ -1,6 +1,7 @@
 package com.zm.LeetCodeEx;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -23,7 +24,7 @@ public class LEET023 {
 		list.add(CommonFunctions.stringToListNode("[2,6]"));
 		ListNode[] lists = new ListNode[3];
 		list.toArray(lists);
-		System.out.println(CommonFunctions.listNodeToString(l023.mergeKLists2(lists)));
+		System.out.println(CommonFunctions.listNodeToString(l023.mergeKLists3(lists)));
 	}
 
 	/**
@@ -78,5 +79,78 @@ public class LEET023 {
 			}
 		}
 		return nodeHead.next;
+	}
+
+	/**
+	 * 优化第一个方法，采用分治的思想逐一合并
+	 * @param lists
+	 * @return
+	 */
+	public ListNode mergeKLists3(ListNode[] lists) {
+		int amount = lists.length;
+		int interval = 1;
+		while (interval < amount) {
+			for (int i = 0; i < amount - interval; i = i + interval * 2) {
+				lists[i] = merge2Lists(lists[i], lists[i + interval]);
+			}
+			interval *= 2;
+		}
+		return amount > 0 ? lists[0] : null;
+	}
+
+	public ListNode merge2Lists(ListNode l1, ListNode l2) {
+		ListNode dummyNode = new ListNode(0);
+		ListNode point = dummyNode;
+		while (l1 != null && l2 != null) {
+			if (l1.val <= l2.val) {
+				point.next = l1;
+				l1 = l1.next;
+			} else {
+				point.next = l2;
+				l2 = l2.next;
+			}
+			point = point.next;
+		}
+		if (l1 == null) {
+			point.next = l2;
+		} else {
+			point.next = l1;
+		}
+		return dummyNode.next;
+	}
+
+	/**
+	 * 使用优先队列处理取最小的那个节点 时间复杂度： O(Nlogk)
+	 * 
+	 * @param lists
+	 * @return
+	 */
+	public ListNode mergeKLists4(ListNode[] lists) {
+		if (lists.length == 0) {
+			return null;
+		}
+		// 创建优先队列
+		PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, Comparator.comparingInt(list -> list.val));
+		for (ListNode listNode : lists) {
+			// 如果list非空才加入队列
+			if (listNode != null) {
+				queue.add(listNode);
+			}
+		}
+		ListNode dummyNode = new ListNode(0);
+		ListNode curNode = dummyNode;
+		while (!queue.isEmpty()) {
+			// 优先队列非空才能出队
+			ListNode node = queue.poll();
+			// 当前节点的 next 指针指向出队元素
+			curNode.next = node;
+			// 当前指针向前移动一个元素，指向了刚刚出队的那个元素
+			curNode = curNode.next;
+			if (curNode.next != null) {
+				// 只有非空节点才能加入到优先队列中，这样到最后队列中就没有链表了，结束循环
+				queue.add(curNode.next);
+			}
+		}
+		return dummyNode.next;
 	}
 }
