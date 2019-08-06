@@ -53,7 +53,7 @@ public class LEET033 {
 				return ret;
 			}
 		}
-		int mid = (first + last) / 2;
+		int mid = (first + last) >>> 1;
 		if (nums[first] > nums[last]) {
 			// 不是有序数列，分为两部分
 			ret = search(nums, first, mid, target);
