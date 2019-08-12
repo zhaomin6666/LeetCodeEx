@@ -18,20 +18,23 @@ package com.zm.LeetCodeEx;
 public class LEET035 {
 	public static void main(String[] args) {
 		LEET035 l035 = new LEET035();
-		int[] nums = { 1,3,5,6};
-		System.out.println(l035.searchInsert(nums, 5));
+		int[] nums = { 1, 3, 5, 6 };
+		System.out.println(l035.searchInsert(nums, 0));
 	}
 
 	public int searchInsert(int[] nums, int target) {
 		int first = 0;
 		int last = nums.length - 1;
-        while(first <= last) {
-        	int mid = (first + last) >>> 1;
-        	if (nums[mid] > target) {
-				
-			}else {
-				
+		while (first <= last) {
+			int mid = (first + last) >>> 1;
+			if (nums[mid] == target) {
+				return mid;
+			} else if (nums[mid] > target) {
+				last = mid - 1;
+			} else {
+				first = mid + 1;
 			}
-        }
-    }
+		}
+		return first;
+	}
 }
