@@ -52,8 +52,93 @@ public class LEET037 {
 	}
 
 	private boolean isSolved = false;
-	
+	private int[][] intBoard = new int[9][9];
+	private int[] row = new int[9];
+	private int[] col = new int[9];
+	private int[] box = new int[9];
+
 	public void solveSudoku(char[][] board) {
-		
+		intBoard = convertBoardCharToInt(board);
+		//System.out.println(JSON.toJSONString(intBoard));
+		backTrack(0, 0);
+		//System.out.println(JSON.toJSONString(intBoard));
+		convertBoardIntToChar(intBoard,board);
+		//System.out.println(JSON.toJSONString(board));
+	}
+
+	private void convertBoardIntToChar(int[][] intBoard, char[][] charBoard) {
+		for (int i = 0; i < intBoard.length; i++) {
+			for (int j = 0; j < intBoard[i].length; j++) {
+				if (intBoard[i][j] == 0) {
+					charBoard[i][j] = '.';
+				} else {
+					charBoard[i][j] = (char) (intBoard[i][j] + '0');
+				}
+			}
+		}
+	}
+
+	private void backTrack(int i, int j) {
+		if (intBoard[i][j] == 0) {
+			for (int num = 1; num < 10; num++) {
+				if (couldPlace(i, j, num)) {
+					placeNum(i, j, num);
+					placeNextNum(i, j);
+					if (!isSolved) {
+						removeNum(i, j);
+					}
+				}
+			}
+		} else {
+			placeNextNum(i, j);
+		}
+
+	}
+
+	private void removeNum(int i, int j) {
+		row[i] -= (1 << intBoard[i][j]);
+		col[j] -= (1 << intBoard[i][j]);
+		int boxNum = i / 3 * 3 + j / 3;
+		box[boxNum] -= (1 << intBoard[i][j]);
+		intBoard[i][j] = 0;
+	}
+
+	private void placeNum(int i, int j, int num) {
+		intBoard[i][j] = num;
+		row[i] += 1 << num;
+		col[j] += 1 << num;
+		int boxNum = i / 3 * 3 + j / 3;
+		box[boxNum] += 1 << num;
+	}
+
+	private boolean couldPlace(int i, int j, int num) {
+		int boxNum = i / 3 * 3 + j / 3;
+		return ((row[i] >> num) % 2 + (col[j] >> num) % 2 + (box[boxNum] >> num) % 2) == 0;
+	}
+
+	private void placeNextNum(int i, int j) {
+		if (i == 8 && j == 8) {
+			isSolved = true;
+		} else {
+			if (j == 8) {
+				backTrack(i + 1, 0);
+			} else {
+				backTrack(i, j + 1);
+			}
+		}
+	}
+
+	private int[][] convertBoardCharToInt(char[][] board) {
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				if (board[i][j] == '.') {
+					intBoard[i][j] = 0;
+				} else {
+					intBoard[i][j] = board[i][j] - '0';
+					placeNum(i, j, intBoard[i][j]);
+				}
+			}
+		}
+		return intBoard;
 	}
 }
