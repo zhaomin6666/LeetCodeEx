@@ -1,8 +1,8 @@
 package com.zm.LeetCodeEx;
 
-import java.util.HashMap;
-
 import com.alibaba.fastjson.JSON;
+
+import java.util.HashMap;
 
 /**
  * 给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
@@ -24,7 +24,7 @@ public class LEET001 {
      * 时间复杂度：O(n)， 我们只遍历了包含有 n个元素的列表一次。在表中进行的每次查找只花费 O(1)的时间。 空间复杂度：O(n)，
      * 所需的额外空间取决于哈希表中存储的元素数量，该表最多需要存储 n个元素
      *
-     * @param nums 传入数组
+     * @param nums   传入数组
      * @param target 目标和
      * @return
      */
@@ -36,6 +36,23 @@ public class LEET001 {
             if (hashMap.containsKey(num2)) {
                 result[1] = i;
                 result[0] = hashMap.get(num2);
+                break;
+            } else {
+                hashMap.put(nums[i], i);
+            }
+        }
+        return result;
+    }
+
+    private int[] twoSum2(int[] nums, int target) {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        int[] result = new int[2];
+        for (int i = 0; i < nums.length; i++) {
+            int num2 = target - nums[i];
+            Integer index;
+            if ((index = hashMap.get(num2)) != null) {
+                result[1] = i;
+                result[0] = index;
                 break;
             } else {
                 hashMap.put(nums[i], i);

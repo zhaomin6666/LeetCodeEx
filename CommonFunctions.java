@@ -23,8 +23,8 @@ public class CommonFunctions {
 
 	/**
 	 * 把word写成map key = 某个字母 ; value = 出现次数
-	 * 
-	 * @param words
+	 *
+     * @param word
 	 * @return
 	 */
 	public static HashMap<Character, Integer> convertStringToMap(String word) {
