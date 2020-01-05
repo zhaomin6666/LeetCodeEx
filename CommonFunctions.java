@@ -1,6 +1,6 @@
 package com.zm.LeetCodeEx;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class CommonFunctions {
 	/**
@@ -138,4 +138,112 @@ public class CommonFunctions {
 		}
 		return -1;
 	}
+
+    public static String treeNodeToString(TreeNode root) {
+        if (root == null) {
+            return "[]";
+        }
+
+        String output = "";
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        nodeQueue.add(root);
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.remove();
+
+            if (node == null) {
+                output += "null, ";
+                continue;
+            }
+
+            output += String.valueOf(node.val) + ", ";
+            nodeQueue.add(node.left);
+            nodeQueue.add(node.right);
+        }
+        return "[" + output.substring(0, output.length() - 2) + "]";
+    }
+
+    public static TreeNode stringToTreeNode(String input) {
+        input = input.trim();
+        input = input.substring(1, input.length() - 1);
+        if (input.length() == 0) {
+            return null;
+        }
+
+        String[] parts = input.split(",");
+        String item = parts[0];
+        TreeNode root = new TreeNode(Integer.parseInt(item));
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        nodeQueue.add(root);
+
+        int index = 1;
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.remove();
+
+            if (index == parts.length) {
+                break;
+            }
+
+            item = parts[index++];
+            item = item.trim();
+            if (!item.equals("null")) {
+                int leftNumber = Integer.parseInt(item);
+                node.left = new TreeNode(leftNumber);
+                nodeQueue.add(node.left);
+            }
+
+            if (index == parts.length) {
+                break;
+            }
+
+            item = parts[index++];
+            item = item.trim();
+            if (!item.equals("null")) {
+                int rightNumber = Integer.parseInt(item);
+                node.right = new TreeNode(rightNumber);
+                nodeQueue.add(node.right);
+            }
+        }
+        return root;
+    }
+
+    public static void prettyPrintTree(TreeNode node, String prefix, boolean isLeft) {
+        if (node == null) {
+            System.out.println("Empty tree");
+            return;
+        }
+
+        if (node.right != null) {
+            prettyPrintTree(node.right, prefix + (isLeft ? "│   " : "    "), false);
+        }
+
+        System.out.println(prefix + (isLeft ? "└── " : "┌── ") + node.val);
+
+        if (node.left != null) {
+            prettyPrintTree(node.left, prefix + (isLeft ? "    " : "│   "), true);
+        }
+    }
+
+    public static void prettyPrintTree(TreeNode node) {
+        prettyPrintTree(node, "", true);
+    }
+
+    public static int factorial(int n) {
+        int res = 1;
+        for (int i = 1; i <= n; i++) {
+            res *= n;
+        }
+        return res;
+    }
+
+    public static List<List<String>> stringArrayToList(String[][] args) {
+        List<List<String>> retList = new ArrayList<>();
+        for (int i = 0; i < args.length; i++) {
+            List<String> tempList = new ArrayList<>();
+            for (int j = 0; j < args[i].length; j++) {
+                tempList.add(args[i][j]);
+            }
+            retList.add(tempList);
+        }
+        return retList;
+    }
 }
