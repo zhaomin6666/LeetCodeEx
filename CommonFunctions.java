@@ -230,7 +230,7 @@ public class CommonFunctions {
     public static int factorial(int n) {
         int res = 1;
         for (int i = 1; i <= n; i++) {
-            res *= n;
+            res *= i;
         }
         return res;
     }
