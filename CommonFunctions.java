@@ -2,6 +2,8 @@ package com.zm.LeetCodeEx;
 
 import java.util.*;
 
+import com.alibaba.fastjson.JSON;
+
 public class CommonFunctions {
 	/**
 	 * 把words写成map key = 某个单词 ; value = 出现次数
@@ -246,4 +248,8 @@ public class CommonFunctions {
         }
         return retList;
     }
+    
+    public static int[][] stringToIntegerArray2(String strs) {
+    	return JSON.parseObject(strs, int[][].class);
+	}
 }
