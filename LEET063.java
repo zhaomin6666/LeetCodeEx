@@ -27,20 +27,55 @@ package com.zm.LeetCodeEx;
  * 从左上角到右下角一共有 2 条不同的路径：<br>
  * 1. 向右 -> 向右 -> 向下 -> 向下<br>
  * 2. 向下 -> 向下 -> 向右 -> 向右<br>
- * 
- * 
- * @author zm
  *
+ * @author zm
  */
 public class LEET063 {
-	public static void main(String[] args) {
-		LEET063 l063 = new LEET063();
-		System.out.println(l063.uniquePaths(2, 3));
-		System.out.println(l063.uniquePaths(23, 12));
-
-	}
-
-	public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-        
+    public static void main(String[] args) {
+        LEET063 l063 = new LEET063();
+        int[][] grid = {{0, 0, 0}, {0, 1, 0}, {0, 0, 0}};
+        int[][] grid2 = {{0, 0, 0, 0, 0, 0}, {1, 0, 0, 0, 0, 0}, {0, 1, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 1, 0}, {0, 0, 0, 0, 0, 0}};
+        System.out.println(l063.uniquePathsWithObstacles(grid));
+        System.out.println(l063.uniquePathsWithObstacles(grid2));
     }
+
+    /**
+     * 动态规划
+     * 要到达某一个点只有可能是从上或者从左，所以到这个点的路线就是到达它左边的点的路线数+到达他上面的点的路线数。
+     * 注意第一行特殊处理一下
+     *
+     * @param obstacleGrid
+     * @return
+     */
+    public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+        int[][] retTable = new int[obstacleGrid.length][obstacleGrid[0].length];
+        if (obstacleGrid[0][0] == 1) {
+            return 0;
+        }
+        boolean isFirstRowHasObstacle = false;
+        for (int i = 0; i < obstacleGrid[0].length; i++) {
+            if (isFirstRowHasObstacle) {
+                retTable[0][i] = 0;
+            } else if (obstacleGrid[0][i] == 0) {
+                retTable[0][i] = 1;
+            } else {
+                retTable[0][i] = 0;
+                isFirstRowHasObstacle = true;
+            }
+        }
+
+        for (int i = 1; i < obstacleGrid.length; i++) {
+            for (int j = 0; j < obstacleGrid[0].length; j++) {
+                if (obstacleGrid[i][j] == 1) {
+                    retTable[i][j] = 0;
+                } else if (j == 0) {
+                    retTable[i][j] = retTable[i - 1][j];
+                } else {
+                    retTable[i][j] = retTable[i - 1][j] + retTable[i][j - 1];
+                }
+            }
+        }
+        return retTable[obstacleGrid.length - 1][obstacleGrid[0].length - 1];
+    }
+
 }
