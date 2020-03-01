@@ -3,7 +3,7 @@ package com.zm.LeetCodeEx;
 import com.alibaba.fastjson.JSON;
 
 /**
- * 周赛 2019年1月12日  5307. 将整数转换为两个无零整数的和
+ * 周赛 2020年1月12日  5307. 将整数转换为两个无零整数的和
  * <p>
  * 「无零整数」是十进制表示中 不含任何 0 的正整数。
  * <p>

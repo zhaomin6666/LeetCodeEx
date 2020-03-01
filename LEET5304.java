@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import java.util.ArrayList;
 
 /**
- * 周赛 2019年1月5日  5304. 子数组异或查询
+ * 周赛 2020年1月5日  5304. 子数组异或查询
  * <p>
  * 有一个正整数数组 arr，现给你一个对应的查询数组 queries，其中 queries[i] = [Li, Ri]。
  * <p>

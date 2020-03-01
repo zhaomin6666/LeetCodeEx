@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import java.util.*;
 
 /**
- * 周赛 2019年1月5日  5305. 获取你好友已观看的视频
+ * 周赛 2020年1月5日  5305. 获取你好友已观看的视频
  * <p>
  * 有 n 个人，每个人都有一个  0 到 n-1 的唯一 id 。
  * <p>
