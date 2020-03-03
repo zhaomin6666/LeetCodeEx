@@ -38,9 +38,33 @@ public class LEET070 {
     }
 
     /**
-     * 斐波那切数列通项直接求解
+     * dp通项  dp[i] = dp[i-1]+dp[i-2]
+     * 由于只用到前两项，所以仅需要两个变量记录，再用一个标识位来判断当前是第一个数还是第二个数
      */
     class Solution {
+        public int climbStairs(int n) {
+            if (n <= 3) {
+                return n;
+            }
+            boolean f = true;
+            int i1 = 2;
+            int i2 = 3;
+            for (int i = 4; i <= n; i++) {
+                if (f) {
+                    i1 += i2;
+                } else {
+                    i2 += i1;
+                }
+                f = !f;
+            }
+            return f ? i2 : i1;
+        }
+    }
+
+    /**
+     * 斐波那切数列通项直接求解
+     */
+    class Solution2 {
         public int climbStairs(int n) {
             if (n <= 3) {
                 return n;
