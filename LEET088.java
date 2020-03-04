@@ -49,4 +49,21 @@ public class LEET088 {
 		}
 	}
 
+	public void merge2(int[] nums1, int m, int[] nums2, int n) {
+		int pos = m+n-1;
+        int curM = m-1;
+        int curN = n-1;
+        while(curN >= 0 && curM >= 0) {
+            if(nums1[curM] < nums2[curN])
+                nums1[pos--] = nums2[curN--];
+            else {
+                nums1[pos--] = nums1[curM--];
+            }
+        }
+        
+        if(curN >= 0) {
+            for(int i = 0; i <= curN; i++)
+                nums1[i] = nums2[i];
+        }
+	}
 }
