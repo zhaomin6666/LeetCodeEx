@@ -28,9 +28,9 @@ public class LEET021 {
 	 * @param l2
 	 * @return
 	 */
-	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-		ListNode head = new ListNode(0);
-		ListNode node = head;
+	public ListNode mergeTwoLists(ListNode<Integer> l1, ListNode<Integer> l2) {
+		ListNode<Integer> head = new ListNode<>(0);
+		ListNode<Integer> node = head;
 		while (l1 != null || l2 != null) {
 			if (l1 == null) {
 				node.next = l2;

@@ -1,12 +1,12 @@
 package com.zm.LeetCodeEx.algorithms;
 
+import com.zm.LeetCodeEx.CommonFunctions;
+import com.zm.LeetCodeEx.ListNode;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
-
-import com.zm.LeetCodeEx.CommonFunctions;
-import com.zm.LeetCodeEx.ListNode;
 
 /**
  * 合并 k 个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。
@@ -55,13 +55,13 @@ public class LEET023 {
 	 * @param lists
 	 * @return
 	 */
-	public ListNode mergeKLists2(ListNode[] lists) {
-		ListNode nodeMain = new ListNode(0);
-		ListNode nodeHead = nodeMain;
+	public ListNode mergeKLists2(ListNode<Integer>[] lists) {
+		ListNode<Integer> nodeMain = new ListNode<>(0);
+		ListNode<Integer> nodeHead = nodeMain;
 		while (true) {
 			boolean subFlag = false;
 			int min = Integer.MAX_VALUE;
-			for (ListNode node : lists) {
+			for (ListNode<Integer> node : lists) {
 				if (node != null) {
 					min = Math.min(node.val, min);
 					subFlag = true;
@@ -101,9 +101,9 @@ public class LEET023 {
 		return amount > 0 ? lists[0] : null;
 	}
 
-	public ListNode merge2Lists(ListNode l1, ListNode l2) {
-		ListNode dummyNode = new ListNode(0);
-		ListNode point = dummyNode;
+	public ListNode merge2Lists(ListNode<Integer> l1, ListNode<Integer> l2) {
+		ListNode<Integer> dummyNode = new ListNode(0);
+		ListNode<Integer> point = dummyNode;
 		while (l1 != null && l2 != null) {
 			if (l1.val <= l2.val) {
 				point.next = l1;
@@ -128,23 +128,23 @@ public class LEET023 {
 	 * @param lists
 	 * @return
 	 */
-	public ListNode mergeKLists4(ListNode[] lists) {
+	public ListNode mergeKLists4(ListNode<Integer>[] lists) {
 		if (lists.length == 0) {
 			return null;
 		}
 		// 创建优先队列
-		PriorityQueue<ListNode> queue = new PriorityQueue<>(lists.length, Comparator.comparingInt(list -> list.val));
-		for (ListNode listNode : lists) {
+		PriorityQueue<ListNode<Integer>> queue = new PriorityQueue<>(lists.length, Comparator.comparingInt(list -> list.val));
+		for (ListNode<Integer> listNode : lists) {
 			// 如果list非空才加入队列
 			if (listNode != null) {
 				queue.add(listNode);
 			}
 		}
-		ListNode dummyNode = new ListNode(0);
-		ListNode curNode = dummyNode;
+		ListNode<Integer> dummyNode = new ListNode<>(0);
+		ListNode<Integer> curNode = dummyNode;
 		while (!queue.isEmpty()) {
 			// 优先队列非空才能出队
-			ListNode node = queue.poll();
+			ListNode<Integer> node = queue.poll();
 			// 当前节点的 next 指针指向出队元素
 			curNode.next = node;
 			// 当前指针向前移动一个元素，指向了刚刚出队的那个元素

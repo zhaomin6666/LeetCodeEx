@@ -31,26 +31,26 @@ public class LEET086 {
 	 * @param x
 	 * @return
 	 */
-	public ListNode partition(ListNode head, int x) {
-		ListNode part1 = null;
-		ListNode part2 = null;
-		ListNode part1head = null;
-		ListNode part2head = null;
+	public ListNode partition(ListNode<Integer> head, int x) {
+		ListNode<Integer> part1 = null;
+		ListNode<Integer> part2 = null;
+		ListNode<Integer> part1head = null;
+		ListNode<Integer> part2head = null;
 		while (head != null) {
 			if (head.val < x) {
 				if (part1 == null) {
-					part1 = new ListNode(head.val);
+					part1 = new ListNode<>(head.val);
 					part1head = part1;
 				} else {
-					part1.next = new ListNode(head.val);
+					part1.next = new ListNode<>(head.val);
 					part1 = part1.next;
 				}
 			} else {
 				if (part2 == null) {
-					part2 = new ListNode(head.val);
+					part2 = new ListNode<>(head.val);
 					part2head = part2;
 				} else {
-					part2.next = new ListNode(head.val);
+					part2.next = new ListNode<>(head.val);
 					part2 = part2.next;
 				}
 			}
@@ -70,11 +70,11 @@ public class LEET086 {
 	 * @param x
 	 * @return
 	 */
-	public ListNode partition2(ListNode head, int x) {
-		ListNode part1 = new ListNode(0);
-		ListNode part2 = new ListNode(0);
-		ListNode part1head = part1;
-		ListNode part2head = part2;
+	public ListNode partition2(ListNode<Integer> head, int x) {
+		ListNode<Integer> part1 = new ListNode<>(0);
+		ListNode<Integer> part2 = new ListNode<>(0);
+		ListNode<Integer> part1head = part1;
+		ListNode<Integer> part2head = part2;
 		while (head != null) {
 			if (head.val < x) {
 				part1.next = head;

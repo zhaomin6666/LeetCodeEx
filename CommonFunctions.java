@@ -1,8 +1,8 @@
 package com.zm.LeetCodeEx;
 
-import java.util.*;
-
 import com.alibaba.fastjson.JSON;
+
+import java.util.*;
 
 public class CommonFunctions {
 	/**
@@ -41,21 +41,21 @@ public class CommonFunctions {
 		return map;
 	}
 
-	public static ListNode stringToListNode(String input) {
+	public static ListNode<Integer> stringToListNode(String input) {
 		// Generate array from the input
 		int[] nodeValues = stringToIntegerArray(input);
 
 		// Now convert that list into linked list
-		ListNode dummyRoot = new ListNode(0);
-		ListNode ptr = dummyRoot;
+		ListNode<Integer> dummyRoot = new ListNode<>(0);
+		ListNode<Integer> ptr = dummyRoot;
 		for (int item : nodeValues) {
-			ptr.next = new ListNode(item);
+			ptr.next = new ListNode<>(item);
 			ptr = ptr.next;
 		}
 		return dummyRoot.next;
 	}
 
-	public static String listNodeToString(ListNode node) {
+	public static String listNodeToString(ListNode<Integer> node) {
 		if (node == null) {
 			return "[]";
 		}

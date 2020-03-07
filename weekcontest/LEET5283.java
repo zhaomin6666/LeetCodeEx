@@ -52,7 +52,7 @@ public class LEET5283 {
 
     public int getDecimalValue(ListNode head) {
         int ret = 0;
-        ListNode cur = head;
+        ListNode<Integer> cur = head;
         while (cur != null) {
             ret = (ret << 1) + cur.val;
             cur = cur.next;

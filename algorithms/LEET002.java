@@ -1,9 +1,9 @@
 package com.zm.LeetCodeEx.algorithms;
 
-import java.io.IOException;
-
 import com.zm.LeetCodeEx.CommonFunctions;
 import com.zm.LeetCodeEx.ListNode;
+
+import java.io.IOException;
 
 /**
  * 给出两个 非空 的链表用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。
@@ -31,11 +31,11 @@ public class LEET002 {
 	 * @param l2
 	 * @return
 	 */
-	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		ListNode result = null;
-		ListNode resulttemp = null;
-		ListNode temp1 = l1;
-		ListNode temp2 = l2;
+    public ListNode addTwoNumbers(ListNode<Integer> l1, ListNode<Integer> l2) {
+        ListNode<Integer> result = null;
+        ListNode<Integer> resulttemp = null;
+        ListNode<Integer> temp1 = l1;
+        ListNode<Integer> temp2 = l2;
 		int temp = 0;
 		while (true) {
 			int temp1val = temp1 == null ? 0 : temp1.val;
@@ -67,10 +67,10 @@ public class LEET002 {
 	 * @param l2
 	 * @return
 	 */
-	public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
-        ListNode dummyHead = new ListNode(0);
+    public ListNode addTwoNumbers2(ListNode<Integer> l1, ListNode<Integer> l2) {
+        ListNode<Integer> dummyHead = new ListNode<>(0);
 		int sum = 0;
-        ListNode cur = dummyHead;
+        ListNode<Integer> cur = dummyHead;
 		while (l1 != null || l2 != null) {
 			if (l1 != null) {
 				sum += l1.val;
@@ -80,12 +80,12 @@ public class LEET002 {
 				sum += l2.val;
 				l2 = l2.next;
 			}
-			cur.next = new ListNode(sum % 10);
+            cur.next = new ListNode<>(sum % 10);
 			sum /= 10;
 			cur = cur.next;
 		}
 		if (sum == 1) {
-			cur.next = new ListNode(sum);
+            cur.next = new ListNode<>(sum);
 		}
         return dummyHead.next;
 	}
