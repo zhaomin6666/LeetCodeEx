@@ -58,12 +58,12 @@ import java.util.TreeMap;
  */
 public class LEET5336 {
     public static void main(String[] args) {
-        LEET5336 l5344 = new LEET5336();
-        System.out.println(l5344.new Solution().sortString("aaaabbbbcccc"));
-        System.out.println(l5344.new Solution().sortString("rat"));
-        System.out.println(l5344.new Solution().sortString("leetcode"));
-        System.out.println(l5344.new Solution().sortString("ggggggg"));
-        System.out.println(l5344.new Solution().sortString("spo"));
+        LEET5336 l5336 = new LEET5336();
+        System.out.println(l5336.new Solution().sortString("aaaabbbbcccc"));
+        System.out.println(l5336.new Solution().sortString("rat"));
+        System.out.println(l5336.new Solution().sortString("leetcode"));
+        System.out.println(l5336.new Solution().sortString("ggggggg"));
+        System.out.println(l5336.new Solution().sortString("spo"));
     }
 
     class Solution {

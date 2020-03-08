@@ -20,9 +20,9 @@ import com.zm.LeetCodeEx.TreeNode;
  */
 public class LEET5338 {
     public static void main(String[] args) {
-        LEET5338 l5344 = new LEET5338();
-        System.out.println(l5344.new Solution().longestZigZag(CommonFunctions.stringToTreeNode("[1,null,1,1,1,null,null,1,1,null,1,null,null,null,1,null,1]")));
-        System.out.println(l5344.new Solution().longestZigZag(CommonFunctions.stringToTreeNode("[1,1,1,null,1,null,null,1,1,null,1]")));
+        LEET5338 l5338 = new LEET5338();
+        System.out.println(l5338.new Solution().longestZigZag(CommonFunctions.stringToTreeNode("[1,null,1,1,1,null,null,1,1,null,1,null,null,null,1,null,1]")));
+        System.out.println(l5338.new Solution().longestZigZag(CommonFunctions.stringToTreeNode("[1,1,1,null,1,null,null,1,1,null,1]")));
     }
 
     class Solution {

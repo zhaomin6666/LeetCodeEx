@@ -53,11 +53,11 @@ import java.util.Map;
  */
 public class LEET5355 {
     public static void main(String[] args) {
-        LEET5355 l5344 = new LEET5355();
-        System.out.println(l5344.new Solution().frogPosition(7, new int[][]{{1, 2}, {1, 3}, {1, 7}, {2, 4}, {2, 6}, {3, 5}}, 2, 4));
-        System.out.println(l5344.new Solution().frogPosition(7, new int[][]{{1, 2}, {1, 3}, {1, 7}, {2, 4}, {2, 6}, {3, 5}}, 1, 7));
-        System.out.println(l5344.new Solution().frogPosition(7, new int[][]{{1, 2}, {1, 3}, {1, 7}, {2, 4}, {2, 6}, {3, 5}}, 20, 6));
-        System.out.println(l5344.new Solution().frogPosition(3, new int[][]{{2, 1}, {3, 2}}, 1, 2));
+        LEET5355 l5355 = new LEET5355();
+        System.out.println(l5355.new Solution().frogPosition(7, new int[][]{{1, 2}, {1, 3}, {1, 7}, {2, 4}, {2, 6}, {3, 5}}, 2, 4));
+        System.out.println(l5355.new Solution().frogPosition(7, new int[][]{{1, 2}, {1, 3}, {1, 7}, {2, 4}, {2, 6}, {3, 5}}, 1, 7));
+        System.out.println(l5355.new Solution().frogPosition(7, new int[][]{{1, 2}, {1, 3}, {1, 7}, {2, 4}, {2, 6}, {3, 5}}, 20, 6));
+        System.out.println(l5355.new Solution().frogPosition(3, new int[][]{{2, 1}, {3, 2}}, 1, 2));
 
     }
 

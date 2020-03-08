@@ -73,12 +73,12 @@ import java.util.LinkedList;
  */
 public class LEET5354 {
     public static void main(String[] args) {
-        LEET5354 l5344 = new LEET5354();
-        System.out.println(l5344.new Solution().numOfMinutes(1, 0, new int[]{-1}, new int[]{0}));
-        System.out.println(l5344.new Solution().numOfMinutes(6, 2, new int[]{2, 2, -1, 2, 2, 2}, new int[]{0, 0, 1, 0, 0, 0}));
-        System.out.println(l5344.new Solution().numOfMinutes(7, 6, new int[]{1, 2, 3, 4, 5, 6, -1}, new int[]{0, 6, 5, 4, 3, 2, 1}));
-        System.out.println(l5344.new Solution().numOfMinutes(15, 0, new int[]{-1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6}, new int[]{1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0}));
-        System.out.println(l5344.new Solution().numOfMinutes(4, 2, new int[]{3, 3, -1, 2}, new int[]{0, 0, 162, 914}));
+        LEET5354 l5354 = new LEET5354();
+        System.out.println(l5354.new Solution().numOfMinutes(1, 0, new int[]{-1}, new int[]{0}));
+        System.out.println(l5354.new Solution().numOfMinutes(6, 2, new int[]{2, 2, -1, 2, 2, 2}, new int[]{0, 0, 1, 0, 0, 0}));
+        System.out.println(l5354.new Solution().numOfMinutes(7, 6, new int[]{1, 2, 3, 4, 5, 6, -1}, new int[]{0, 6, 5, 4, 3, 2, 1}));
+        System.out.println(l5354.new Solution().numOfMinutes(15, 0, new int[]{-1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6}, new int[]{1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0}));
+        System.out.println(l5354.new Solution().numOfMinutes(4, 2, new int[]{3, 3, -1, 2}, new int[]{0, 0, 162, 914}));
     }
 
     class Solution {

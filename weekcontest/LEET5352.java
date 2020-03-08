@@ -33,10 +33,10 @@ package com.zm.LeetCodeEx.weekcontest;
  */
 public class LEET5352 {
     public static void main(String[] args) {
-        LEET5352 l5344 = new LEET5352();
-        System.out.println(l5344.new Solution().generateTheString(4));
-        System.out.println(l5344.new Solution().generateTheString(2));
-        System.out.println(l5344.new Solution().generateTheString(7));
+        LEET5352 l5352 = new LEET5352();
+        System.out.println(l5352.new Solution().generateTheString(4));
+        System.out.println(l5352.new Solution().generateTheString(2));
+        System.out.println(l5352.new Solution().generateTheString(7));
     }
 
     class Solution {

@@ -55,12 +55,12 @@ import java.util.HashSet;
  */
 public class LEET5353 {
     public static void main(String[] args) {
-        LEET5353 l5344 = new LEET5353();
-        System.out.println(l5344.new Solution().numTimesAllBlue(new int[]{2, 1, 3, 5, 4}));
-        System.out.println(l5344.new Solution().numTimesAllBlue(new int[]{3, 2, 4, 1, 5}));
-        System.out.println(l5344.new Solution().numTimesAllBlue(new int[]{4, 1, 2, 3}));
-        System.out.println(l5344.new Solution().numTimesAllBlue(new int[]{2, 1, 4, 3, 6, 5}));
-        System.out.println(l5344.new Solution().numTimesAllBlue(new int[]{1, 2, 3, 4, 5, 6}));
+        LEET5353 l5353 = new LEET5353();
+        System.out.println(l5353.new Solution().numTimesAllBlue(new int[]{2, 1, 3, 5, 4}));
+        System.out.println(l5353.new Solution().numTimesAllBlue(new int[]{3, 2, 4, 1, 5}));
+        System.out.println(l5353.new Solution().numTimesAllBlue(new int[]{4, 1, 2, 3}));
+        System.out.println(l5353.new Solution().numTimesAllBlue(new int[]{2, 1, 4, 3, 6, 5}));
+        System.out.println(l5353.new Solution().numTimesAllBlue(new int[]{1, 2, 3, 4, 5, 6}));
     }
 
     class Solution {

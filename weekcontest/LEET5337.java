@@ -35,10 +35,10 @@ import java.util.*;
  */
 public class LEET5337 {
     public static void main(String[] args) {
-        LEET5337 l5344 = new LEET5337();
-        System.out.println(l5344.new Solution().findTheLongestSubstring("eleetminicoworoep"));
-        System.out.println(l5344.new Solution().findTheLongestSubstring("leetcodeisgreat"));
-        System.out.println(l5344.new Solution().findTheLongestSubstring("bcbcbc"));
+        LEET5337 l5337 = new LEET5337();
+        System.out.println(l5337.new Solution().findTheLongestSubstring("eleetminicoworoep"));
+        System.out.println(l5337.new Solution().findTheLongestSubstring("leetcodeisgreat"));
+        System.out.println(l5337.new Solution().findTheLongestSubstring("bcbcbc"));
     }
 
     /**
