@@ -60,9 +60,9 @@ public class CommonFunctions {
 			return "[]";
 		}
 
-		String result = "";
+        StringBuilder result = new StringBuilder();
 		while (node != null) {
-			result += Integer.toString(node.val) + ", ";
+            result.append(Integer.toString(node.val)).append(", ");
 			node = node.next;
 		}
 		return "[" + result.substring(0, result.length() - 2) + "]";
@@ -102,10 +102,10 @@ public class CommonFunctions {
 		int[] nodeValues = stringToIntegerArray(input);
 
 		// Now convert that list into linked list
-		ListNode dummyRoot = new ListNode(0);
+        ListNode dummyRoot = new ListNode<>(0);
 		ListNode ptr = dummyRoot;
 		for (int item : nodeValues) {
-			ptr.next = new ListNode(item);
+            ptr.next = new ListNode<>(item);
 			ptr = ptr.next;
 		}
 		ListNode posNode = dummyRoot.next;
@@ -164,7 +164,7 @@ public class CommonFunctions {
         return "[" + output.substring(0, output.length() - 2) + "]";
     }
 
-    public static TreeNode stringToTreeNode(String input) {
+    public static TreeNode<Integer> stringToTreeNode(String input) {
         input = input.trim();
         input = input.substring(1, input.length() - 1);
         if (input.length() == 0) {
@@ -173,7 +173,7 @@ public class CommonFunctions {
 
         String[] parts = input.split(",");
         String item = parts[0];
-        TreeNode root = new TreeNode(Integer.parseInt(item));
+        TreeNode<Integer> root = new TreeNode<>(Integer.parseInt(item));
         Queue<TreeNode> nodeQueue = new LinkedList<>();
         nodeQueue.add(root);
 
@@ -189,7 +189,7 @@ public class CommonFunctions {
             item = item.trim();
             if (!item.equals("null")) {
                 int leftNumber = Integer.parseInt(item);
-                node.left = new TreeNode(leftNumber);
+                node.left = new TreeNode<>(leftNumber);
                 nodeQueue.add(node.left);
             }
 
@@ -201,7 +201,7 @@ public class CommonFunctions {
             item = item.trim();
             if (!item.equals("null")) {
                 int rightNumber = Integer.parseInt(item);
-                node.right = new TreeNode(rightNumber);
+                node.right = new TreeNode<>(rightNumber);
                 nodeQueue.add(node.right);
             }
         }
