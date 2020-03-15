@@ -162,6 +162,10 @@ public class LEET084 {
 
     /**
      * 使用栈
+     * 找到一个矩形是在往下降的话，那么如果后面有更高的矩形，算面积的时候也算不到该矩形的前面那些
+     *
+     * 假设如果[1,2,3,2,4] 当循环至3,2时，就算后面有4，计算面积的时候最高高度也只能是2，
+     * 所以前面的3就没有用了（2前面高度大于2的其实都没有用，所以用while删除）
      */
     public class Solution4 {
         public int largestRectangleArea(int[] heights) {
