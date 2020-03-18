@@ -1,10 +1,6 @@
 package com.zm.LeetCodeEx.algorithms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 import com.alibaba.fastjson.JSON;
@@ -39,7 +35,7 @@ public class LEET078 {
 		LEET078 l078 = new LEET078();
 		int[] nums1 = { 1, 2, 3 };
 		int[] nums2 = { 1, 2, 3, 4 };
-		System.out.println(JSON.toJSONString(l078.new Solution().subsets(nums1)));
+		System.out.println(JSON.toJSONString(l078.new Solution3().subsets(nums1)));
 		System.out.println(l078.new Solution().subsets(nums2));
 	}
 
@@ -96,7 +92,7 @@ public class LEET078 {
 	}
 
 	/**
-	 * 递归
+	 * 循环在原来的基础上添加新的数
 	 * @author zm
 	 *
 	 */
