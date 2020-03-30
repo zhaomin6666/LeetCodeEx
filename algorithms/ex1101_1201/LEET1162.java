@@ -38,10 +38,21 @@ import java.util.Queue;
 public class LEET1162 {
     public static void main(String[] args) {
         LEET1162 l1160 = new LEET1162();
-        System.out.println(l1160.new Solution().maxDistance(new int[][]{{1, 0, 1}, {0, 0, 0}, {1, 0, 1}}));
-        System.out.println(l1160.new Solution().maxDistance(new int[][]{{1, 0, 0}, {0, 0, 0}, {0, 0, 0}}));
+        System.out.println(l1160.new Solution2().maxDistance(new int[][]{{1, 0, 1}, {0, 0, 0}, {1, 0, 1}}));
+        System.out.println(l1160.new Solution2().maxDistance(new int[][]{{1, 0, 0}, {0, 0, 0}, {0, 1, 0}}));
+        System.out.println(l1160.new Solution2().maxDistance(new int[][]{{1, 0, 0}, {0, 0, 0}, {0, 0, 0}}));
+        System.out.println(l1160.new Solution2().maxDistance(new int[][]{{1, 0, 0}, {0, 0, 0}, {1, 0, 1}}));
+        System.out.println(l1160.new Solution2().maxDistance(new int[][]{{1, 0, 0, 0}, {0, 0, 0, 0}, {1, 0, 1, 0}, {0, 0, 0, 1}}));
+        System.out.println(l1160.new Solution2().maxDistance(new int[][]{{0, 0}, {0, 0}}));
+        System.out.println(l1160.new Solution2().maxDistance(new int[][]{{1, 1}, {1, 1}}));
+
     }
 
+    /**
+     * 思路1：陆地不断扩散，直到最后一片海洋被覆盖
+     * 思路2：Dijkstra算法/最短路问题：其实就是从各个陆地到各个海洋的最短路径中的最大值。
+     * 想象一个s0连接各个陆地，s0到各个陆地的距离为0，求s0到各个海洋的最短路问题，中间各连接均为1。
+     */
     class Solution {
         public int maxDistance(int[][] grid) {
             int[] dx = {0, 0, 1, -1};
@@ -85,6 +96,78 @@ public class LEET1162 {
             // 返回最后一次遍历到的海洋的距离。
             return grid[point[0]][point[1]] - 1;
 
+        }
+    }
+
+    /**
+     * 两次动态规划，左上到右下，右下到左上
+     */
+    class Solution2 {
+        public int maxDistance(int[][] grid) {
+            // 初始化
+            boolean hasLand = false;
+            boolean hasOcean = false;
+            for (int i = 0; i < grid.length; i++) {
+                for (int j = 0; j < grid[0].length; j++) {
+                    if (grid[i][j] == 0) {
+                        grid[i][j] = 256;
+                        hasOcean = true;
+                    } else {
+                        hasLand = true;
+                    }
+                }
+            }
+            if (!hasLand || !hasOcean) {
+                return -1;
+            }
+
+            // 左上到右下
+            for (int i = 1; i < grid.length; i++) {
+                if (grid[i - 1][0] != 0) {
+                    grid[i][0] = Math.min(grid[i][0], grid[i - 1][0] + 1);
+                }
+            }
+            for (int i = 1; i < grid[0].length; i++) {
+                if (grid[0][i - 1] != 0) {
+                    grid[0][i] = Math.min(grid[0][i], grid[0][i - 1] + 1);
+                }
+            }
+            for (int i = 1; i < grid.length; i++) {
+                for (int j = 1; j < grid[0].length; j++) {
+                    int m = Math.min(grid[i - 1][j], grid[i][j - 1]);
+                    if (m != 0) {
+                        grid[i][j] = Math.min(grid[i][j], m + 1);
+                    }
+                }
+            }
+            // 右下到左上
+            int max = grid[grid.length - 1][grid[0].length - 1];
+            for (int i = grid.length - 2; i >= 0; i--) {
+                if (grid[i + 1][grid[0].length - 1] != 0) {
+                    int min = Math.min(grid[i][grid[0].length - 1], grid[i + 1][grid[0].length - 1] + 1);
+                    grid[i][grid[0].length - 1] = min;
+                    max = Math.max(max, min);
+                }
+            }
+            for (int i = grid[0].length - 2; i >= 0; i--) {
+                if (grid[grid.length - 1][i + 1] != 0) {
+                    int min = Math.min(grid[grid.length - 1][i], grid[grid.length - 1][i + 1] + 1);
+                    grid[grid.length - 1][i] = min;
+                    max = Math.max(max, min);
+                }
+            }
+            for (int i = grid.length - 2; i >= 0; i--) {
+                for (int j = grid[0].length - 2; j >= 0; j--) {
+                    int m = Math.min(grid[i + 1][j], grid[i][j + 1]);
+                    if (m != 0) {
+                        int min = Math.min(grid[i][j], m + 1);
+                        grid[i][j] = min;
+                        max = Math.max(max, min);
+                    }
+                }
+            }
+            //System.out.println(JSON.toJSONString(grid));
+            return max - 1;
         }
     }
 }
