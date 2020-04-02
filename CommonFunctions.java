@@ -1,6 +1,7 @@
 package com.zm.LeetCodeEx;
 
 import com.alibaba.fastjson.JSON;
+import com.sun.org.apache.regexp.internal.recompile;
 
 import java.util.*;
 
@@ -145,23 +146,32 @@ public class CommonFunctions {
         if (root == null) {
             return "[]";
         }
-
-        String output = "";
+        LinkedList<String> output = new LinkedList<>();
+        //String output = "";
         Queue<TreeNode> nodeQueue = new LinkedList<>();
         nodeQueue.add(root);
         while (!nodeQueue.isEmpty()) {
             TreeNode node = nodeQueue.remove();
 
             if (node == null) {
-                output += "null, ";
+            	output.add("null");
+                //output += "null, ";
                 continue;
             }
-
-            output += String.valueOf(node.val) + ", ";
+            output.add(String.valueOf(node.val));
+            //output += String.valueOf(node.val) + ", ";
             nodeQueue.add(node.left);
             nodeQueue.add(node.right);
         }
-        return "[" + output.substring(0, output.length() - 2) + "]";
+        while("null".equals(output.peekLast())) {
+        	output.removeLast();
+        }
+        StringBuilder sBuilder = new StringBuilder("[");
+        for (String treeNode : output) {
+        	sBuilder.append(treeNode).append(", ");
+		}
+        return sBuilder.substring(0, sBuilder.length()-2).concat("]");
+        //return "[" + output.substring(0, output.length() - 2) + "]";
     }
 
     public static TreeNode<Integer> stringToTreeNode(String input) {
