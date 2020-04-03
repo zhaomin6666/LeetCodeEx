@@ -22,55 +22,102 @@ package com.zm.LeetCodeEx.algorithms.ex1_100;
  *
  */
 public class LEET008 {
-	/**
-	 * 去掉空格后判断第一个字符，然后去除连续的数字
-	 * 
-	 * @param str
-	 * @return
-	 */
-	public int myAtoi(String str) {
-		str = str.trim();
-
-		if (str.length() == 0) {
-			return 0;
-		}
-
-		int i = 0, digit = 0;
-		double sum = 0;
-
-		// 判断正负
-		if (str.charAt(0) == '-') {
-			digit = -1;
-			i++; // 下标后移
-		} else if (str.charAt(0) == '+') {
-			digit = 1;
-			i++;
-		} else if (str.charAt(0) >= '0' && str.charAt(0) <= '9') {
-			digit = 1;
-		} else {
-			return 0;
-		}
-
-		while (i < str.length()) {
-			if (sum > Integer.MAX_VALUE) {
-				return Integer.MAX_VALUE;
-			}
-			if (sum < Integer.MIN_VALUE) {
-				return Integer.MIN_VALUE;
-			}
-			if (str.charAt(i) >= '0' && str.charAt(i) <= '9') {
-				sum = sum * 10 + (str.charAt(i) - '0') * digit;
-			} else {
-				break;
-			}
-			i++;
-		}
-
-		return (int) sum;
-	}
-
 	public static void main(String[] args) {
 		LEET008 L008 = new LEET008();
-		System.out.println(L008.myAtoi("  -000123415611"));
+		//System.out.println(L008.new Solution2().myAtoi("  -000123415611"));
+		
+		System.out.println(L008.new Solution2().myAtoi(String.valueOf(Integer.MIN_VALUE)));
+		System.out.println(L008.new Solution2().myAtoi(String.valueOf(Integer.MAX_VALUE)));
+		System.out.println(L008.new Solution2().myAtoi("-91283472332"));
+		
+
+	}
+
+	class Solution {
+		/**
+		 * 去掉空格后判断第一个字符，然后去除连续的数字
+		 * 
+		 * @param str
+		 * @return
+		 */
+		public int myAtoi(String str) {
+			str = str.trim();
+
+			if (str.length() == 0) {
+				return 0;
+			}
+
+			int i = 0, digit = 0;
+			double sum = 0;
+
+			// 判断正负
+			if (str.charAt(0) == '-') {
+				digit = -1;
+				i++; // 下标后移
+			} else if (str.charAt(0) == '+') {
+				digit = 1;
+				i++;
+			} else if (str.charAt(0) >= '0' && str.charAt(0) <= '9') {
+				digit = 1;
+			} else {
+				return 0;
+			}
+
+			while (i < str.length()) {
+				if (sum > Integer.MAX_VALUE) {
+					return Integer.MAX_VALUE;
+				}
+				if (sum < Integer.MIN_VALUE) {
+					return Integer.MIN_VALUE;
+				}
+				if (str.charAt(i) >= '0' && str.charAt(i) <= '9') {
+					sum = sum * 10 + (str.charAt(i) - '0') * digit;
+				} else {
+					break;
+				}
+				i++;
+			}
+			return (int) sum;
+		}
+	}
+	
+	class Solution2 {
+	    public int myAtoi(String str) {
+	        char[] chars = str.toCharArray();
+	        int n = chars.length;
+	        int idx = 0;
+	        while (idx < n && chars[idx] == ' ') {
+	            // 去掉前导空格
+	            idx++;
+	        }
+	        if (idx == n) {
+	            //去掉前导空格以后到了末尾了
+	            return 0;
+	        }
+	        boolean negative = false;
+	        if (chars[idx] == '-') {
+	            //遇到负号
+	            negative = true;
+	            idx++;
+	        } else if (chars[idx] == '+') {
+	            // 遇到正号
+	            idx++;
+	        } else if (!Character.isDigit(chars[idx])) {
+	            // 其他符号
+	            return 0;
+	        }
+	        int ans = 0;
+	        while (idx < n && Character.isDigit(chars[idx])) {
+	            int digit = chars[idx] - '0';
+	            if (ans > (Integer.MAX_VALUE - digit) / 10) {
+	                // 本来应该是 ans * 10 + digit > Integer.MAX_VALUE
+	                // 但是 *10 和 + digit 都有可能越界，所有都移动到右边去就可以了。
+	                return negative? Integer.MIN_VALUE : Integer.MAX_VALUE;
+	            }
+	            ans = ans * 10 + digit;
+	            idx++;
+	        }
+	        return negative? -ans : ans;
+	    }
 	}
 }
