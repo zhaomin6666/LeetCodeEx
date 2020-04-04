@@ -72,10 +72,10 @@ public class LEET5362 {
 			}
 			int odd = 0; // 奇数
 			for (int i = 0; i < map.length; i++) {
-				if (map[i]%2 != 0) {
-					odd ++;
+				if (map[i] % 2 != 0) {
+					odd++;
 				}
-			} 
+			}
 			return odd <= k;
 		}
 	}

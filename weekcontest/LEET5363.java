@@ -48,11 +48,11 @@ import java.util.Arrays;
  */
 public class LEET5363 {
 	public static void main(String[] args) {
-		LEET5363 l5361 = new LEET5363();
-		System.out.println(l5361.new Solution2().maxSatisfaction(new int[] { -1, -8, 0, 5, -9 }));
-		System.out.println(l5361.new Solution2().maxSatisfaction(new int[] { 4, 3, 2 }));
-		System.out.println(l5361.new Solution2().maxSatisfaction(new int[] { -1, -4, -5 }));
-		System.out.println(l5361.new Solution2().maxSatisfaction(new int[] { -2, 5, -1, 0, 3, -3 }));
+		LEET5363 l5363 = new LEET5363();
+		System.out.println(l5363.new Solution2().maxSatisfaction(new int[] { -1, -8, 0, 5, -9 }));
+		System.out.println(l5363.new Solution2().maxSatisfaction(new int[] { 4, 3, 2 }));
+		System.out.println(l5363.new Solution2().maxSatisfaction(new int[] { -1, -4, -5 }));
+		System.out.println(l5363.new Solution2().maxSatisfaction(new int[] { -2, 5, -1, 0, 3, -3 }));
 	}
 
 	/**
