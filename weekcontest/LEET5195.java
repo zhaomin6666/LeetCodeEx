@@ -2,8 +2,6 @@ package com.zm.LeetCodeEx.weekcontest;
 
 import java.util.Arrays;
 
-import com.alibaba.fastjson.JSON;
-
 /**
  * 周赛 2020年4月5日
  * <p>
@@ -49,95 +47,87 @@ public class LEET5195 {
 		System.out.println(l5195.new Solution().longestDiverseString(1, 1, 7));
 		System.out.println(l5195.new Solution().longestDiverseString(2, 1, 1));
 		System.out.println(l5195.new Solution().longestDiverseString(7, 1, 0));
+		System.out.println(l5195.new Solution().longestDiverseString(6, 2, 0));
+		System.out.println(l5195.new Solution().longestDiverseString(6, 1, 1));
 		System.out.println(l5195.new Solution().longestDiverseString(4, 4, 3));
 
 	}
 
 	class Solution {
 		public String longestDiverseString(int a, int b, int c) {
-			int[] array = new int[3];
-			array[0] = a;
-			array[1] = b;
-			array[2] = c;
-			Arrays.sort(array);
-			char[] cs = { 'd', 'd', 'd' };
-
-			for (int i = cs.length - 1; i >= 0; i--) {
-				if (array[i] == a && cs[i] == 'd') {
-					cs[i] = 'a';
-					break;
-				}
-			}
-			for (int i = cs.length - 1; i >= 0; i--) {
-				if (array[i] == b && cs[i] == 'd') {
-					cs[i] = 'b';
-					break;
-				}
-			}
-			for (int i = cs.length - 1; i >= 0; i--) {
-				if (array[i] == c && cs[i] == 'd') {
-					cs[i] = 'c';
-					break;
-				}
-			}
-			System.out.println(JSON.toJSONString(cs));
-			System.out.println(JSON.toJSONString(array));
-			if ((array[0] + array[1] + 1) * 2 < array[2]) {
-				StringBuilder sb = new StringBuilder();
-				while (array[0] + array[1] > 0) {
-					sb.append(cs[2]).append(cs[2]);
-					if (array[1] > 0) {
-						sb.append(cs[1]);
-						array[1]--;
+			MyChar[] myChars = new MyChar[] { new MyChar('a', a), new MyChar('b', b), new MyChar('c', c), };
+			Arrays.sort(myChars);
+			// for (int i = 0; i < myChars.length; i++) {
+			// System.out.println(myChars[i].toString());
+			// }
+			MyChar myChar1 = myChars[0];
+			MyChar myChar2 = myChars[1];
+			MyChar myChar3 = myChars[2];
+			StringBuilder sb = new StringBuilder();
+			if ((myChar1.count + myChar2.count + 1) * 2 < myChar3.count) {
+				while (myChar1.count + myChar2.count > 0) {
+					// 如果最多的字符不能被全用用完，则每次增加两个最多的字符，再加一个其他的字符
+					sb.append(myChar3.ch).append(myChar3.ch);
+					if (myChar2.count > 0) {
+						sb.append(myChar2.ch);
+						myChar2.count--;
 					} else {
-						sb.append(cs[0]);
-						array[0]--;
+						sb.append(myChar1.ch);
+						myChar1.count--;
 					}
 				}
-				sb.append(cs[2]).append(cs[2]);
+				// 最后再加上两个最多的字符
+				sb.append(myChar3.ch).append(myChar3.ch);
 				return sb.toString();
 			} else {
-				StringBuilder sb = new StringBuilder();
-				while (array[0] + array[1] > 0) {
-					if (array[2] > 0) {
-						sb.append(cs[2]);
-						array[2]--;
-					}
-					if (array[2] > 0) {
-						sb.append(cs[2]);
-						array[2]--;
-					}
-					if (array[1] > 0) {
-						sb.append(cs[1]);
-						if (array[1] > array[2] && array[1] > 1) {
-							sb.append(cs[1]);
-							array[1]--;
+				// 如果所有字符都能被用完，先用2个最多的字符，
+				// 第二、三个字符就要考虑此时字符能否被都用完，如果用了第二（三）个字符之后，最多的字符不能被用完那么就不用。
+				while (myChar1.count + myChar2.count + myChar3.count > 0) {
+					// 最多的字符
+					for (int i = 0; i < 2; i++) {
+						if (myChar3.count > 0) {
+							sb.append(myChar3.ch);
+							myChar3.count--;
 						}
-						array[1]--;
 					}
-					if (array[0] > 0) {
-						sb.append(cs[0]);
-						if (array[0] > array[2] && array[0] > 1) {
-							sb.append(cs[0]);
-							array[0]--;
+					// 第二多的字符
+					for (int i = 0; i < 2; i++) {
+						if (myChar2.count > 0 && (myChar2.count + myChar1.count) * 2 >= myChar3.count) {
+							sb.append(myChar2.ch);
+							myChar2.count--;
 						}
-						array[0]--;
 					}
-				}
-				while (array[2] > 0) {
-					sb.append(cs[2]);
-					array[2]--;
-				}
-				while (array[1] > 0) {
-					sb.append(cs[1]);
-					array[1]--;
-				}
-				while (array[0] > 0) {
-					sb.append(cs[0]);
-					array[0]--;
+					// 最少的字符
+					for (int i = 0; i < 2; i++) {
+						if (myChar1.count > 0 && (myChar1.count + myChar2.count) * 2 >= myChar3.count) {
+							sb.append(myChar1.ch);
+							myChar1.count--;
+						}
+					}
 				}
 				return sb.toString();
 			}
+		}
+	}
+
+	private class MyChar implements Comparable<MyChar> {
+		char ch;
+		int count;
+
+		public MyChar(char ch, int count) {
+			this.ch = ch;
+			this.count = count;
+		}
+
+		@Override
+		public int compareTo(MyChar o) {
+			MyChar other = o;
+			return this.count - other.count == 0 ? other.ch - this.ch : this.count - other.count;
+		}
+
+		@Override
+		public String toString() {
+			return "'" + ch + "': " + count;
 		}
 	}
 }
