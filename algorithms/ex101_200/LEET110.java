@@ -4,7 +4,7 @@ import com.zm.LeetCodeEx.CommonFunctions;
 import com.zm.LeetCodeEx.TreeNode;
 
 /**
- * 109. 有序链表转换二叉搜索树
+ * 110. 平衡二叉树
  * <p>
  * 给定一个二叉树，判断它是否是高度平衡的二叉树。
  * <p>
