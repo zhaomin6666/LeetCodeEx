@@ -1,8 +1,10 @@
 package com.zm.LeetCodeEx.algorithms.ex1_100;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 
@@ -57,5 +59,56 @@ public class LEET056 {
 			}
 		}
 		return (int[][]) retList.toArray(new int[retList.size()][2]);
+	}
+
+	/**
+	 * 由于所有数字都是整数，用一个数组来标识当前位置数字是否在区域内
+	 * @author zm
+	 *
+	 */
+	class Solution2 {
+		public int[][] merge(int[][] intervals) {
+			int max = 0;
+			for (int i = 0; i < intervals.length; i++) {
+				for (int j = 0; j < intervals[0].length; j++) {
+					if (intervals[i][j] > max) {
+						max = intervals[i][j];
+					}
+				}
+			}
+			int[] base = new int[max + 1];
+			for (int i = 0; i < intervals.length; i++) {
+				int a = intervals[i][0];
+				int b = intervals[i][1];
+				for (int k = a; k < b; k++) {
+					base[k] = 1;
+				}
+				if (base[b] != 1) {
+					base[b] = -1;
+				}
+			}
+			List<int[]> ret = new ArrayList<>();
+			boolean flag = false;
+			int[] temp = new int[2];
+			for (int i = 0; i < base.length; i++) {
+				if ((flag == false || i == 0) && base[i] == 1) {
+					flag = true;
+					temp = new int[2];
+					temp[0] = i;
+				}
+				if (base[i] == -1) {
+					if (flag == true) {
+						temp[1] = i;
+						ret.add(temp);
+					} else {
+						ret.add(new int[] { i, i });
+					}
+					flag = false;
+				}
+			}
+			int[][] result = new int[ret.size()][];
+			result = ret.toArray(result);
+			return result;
+		}
 	}
 }
