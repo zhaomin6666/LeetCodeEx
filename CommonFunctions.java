@@ -1,7 +1,6 @@
 package com.zm.LeetCodeEx;
 
 import com.alibaba.fastjson.JSON;
-import com.sun.org.apache.regexp.internal.recompile;
 
 import java.util.*;
 
@@ -258,8 +257,12 @@ public class CommonFunctions {
         }
         return retList;
     }
-    
+
     public static int[][] stringToIntegerArray2(String strs) {
-    	return JSON.parseObject(strs, int[][].class);
-	}
+        return JSON.parseObject(strs, int[][].class);
+    }
+
+    public static List<List<Integer>> stringToIntegerArrayList(String strs) {
+        return JSON.parseObject(strs, List.class);
+    }
 }
