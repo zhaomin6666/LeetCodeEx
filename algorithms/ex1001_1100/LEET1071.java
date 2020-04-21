@@ -1,4 +1,4 @@
-package com.zm.LeetCodeEx.algorithms.ex1001_1101;
+package com.zm.LeetCodeEx.algorithms.ex1001_1100;
 
 /**
  * 1071. 字符串的最大公因子

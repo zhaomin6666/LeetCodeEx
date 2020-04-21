@@ -97,7 +97,7 @@ public class LEET542 {
 	/**
 	 * 动态规划 
 	 * 类似于1162. 地图分析
-	 * {@link com.zm.LeetCodeEx.algorithms.ex1101_1201.LEET1162.Solution2}
+     * {@link com.zm.LeetCodeEx.algorithms.ex1101_1200.LEET1162.Solution2}
 	 * @author zm
 	 *
 	 */

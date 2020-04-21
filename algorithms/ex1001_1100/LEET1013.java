@@ -1,4 +1,4 @@
-package com.zm.LeetCodeEx.algorithms.ex1001_1101;
+package com.zm.LeetCodeEx.algorithms.ex1001_1100;
 
 /**
  * 1013. 将数组分成和相等的三个部分
