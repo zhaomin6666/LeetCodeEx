@@ -97,18 +97,18 @@ public class CommonFunctions {
 	 * @param pos
 	 * @return
 	 */
-	public static ListNode stringToListNodeWithCircle(String input, int pos) {
+	public static ListNode<Integer> stringToListNodeWithCircle(String input, int pos) {
 		// Generate array from the input
 		int[] nodeValues = stringToIntegerArray(input);
 
 		// Now convert that list into linked list
-        ListNode dummyRoot = new ListNode<>(0);
-		ListNode ptr = dummyRoot;
+        ListNode<Integer> dummyRoot = new ListNode<>(0);
+		ListNode<Integer> ptr = dummyRoot;
 		for (int item : nodeValues) {
             ptr.next = new ListNode<>(item);
 			ptr = ptr.next;
 		}
-		ListNode posNode = dummyRoot.next;
+		ListNode<Integer> posNode = dummyRoot.next;
 		for (int i = 0; i < pos; i++) {
 			posNode = posNode.next;
 		}
@@ -125,7 +125,7 @@ public class CommonFunctions {
 	 * @param node
 	 * @return
 	 */
-	public static int findIndexOfNode(ListNode head, ListNode node) {
+	public static int findIndexOfNode(ListNode<?> head, ListNode<?> node) {
 		if (head == null) {
 			return -1;
 		}
@@ -141,16 +141,16 @@ public class CommonFunctions {
 		return -1;
 	}
 
-    public static String treeNodeToString(TreeNode root) {
+    public static String treeNodeToString(TreeNode<Integer> root) {
         if (root == null) {
             return "[]";
         }
         LinkedList<String> output = new LinkedList<>();
         //String output = "";
-        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        Queue<TreeNode<Integer>> nodeQueue = new LinkedList<>();
         nodeQueue.add(root);
         while (!nodeQueue.isEmpty()) {
-            TreeNode node = nodeQueue.remove();
+            TreeNode<Integer> node = nodeQueue.remove();
 
             if (node == null) {
             	output.add("null");
@@ -183,12 +183,12 @@ public class CommonFunctions {
         String[] parts = input.split(",");
         String item = parts[0];
         TreeNode<Integer> root = new TreeNode<>(Integer.parseInt(item));
-        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        Queue<TreeNode<Integer>> nodeQueue = new LinkedList<>();
         nodeQueue.add(root);
 
         int index = 1;
         while (!nodeQueue.isEmpty()) {
-            TreeNode node = nodeQueue.remove();
+            TreeNode<Integer> node = nodeQueue.remove();
 
             if (index == parts.length) {
                 break;
@@ -196,7 +196,7 @@ public class CommonFunctions {
 
             item = parts[index++];
             item = item.trim();
-            if (!item.equals("null")) {
+            if (!"null".equals(item)) {
                 int leftNumber = Integer.parseInt(item);
                 node.left = new TreeNode<>(leftNumber);
                 nodeQueue.add(node.left);
@@ -208,7 +208,7 @@ public class CommonFunctions {
 
             item = parts[index++];
             item = item.trim();
-            if (!item.equals("null")) {
+            if (!"null".equals(item)) {
                 int rightNumber = Integer.parseInt(item);
                 node.right = new TreeNode<>(rightNumber);
                 nodeQueue.add(node.right);
@@ -217,7 +217,7 @@ public class CommonFunctions {
         return root;
     }
 
-    public static void prettyPrintTree(TreeNode node, String prefix, boolean isLeft) {
+    public static void prettyPrintTree(TreeNode<?> node, String prefix, boolean isLeft) {
         if (node == null) {
             System.out.println("Empty tree");
             return;
@@ -226,15 +226,13 @@ public class CommonFunctions {
         if (node.right != null) {
             prettyPrintTree(node.right, prefix + (isLeft ? "│   " : "    "), false);
         }
-
         System.out.println(prefix + (isLeft ? "└── " : "┌── ") + node.val);
-
         if (node.left != null) {
             prettyPrintTree(node.left, prefix + (isLeft ? "    " : "│   "), true);
         }
     }
 
-    public static void prettyPrintTree(TreeNode node) {
+    public static void prettyPrintTree(TreeNode<?> node) {
         prettyPrintTree(node, "", true);
     }
 
@@ -262,7 +260,49 @@ public class CommonFunctions {
         return JSON.parseObject(strs, int[][].class);
     }
 
-    public static List<List<Integer>> stringToIntegerArrayList(String strs) {
+    @SuppressWarnings("unchecked")
+	public static List<List<Integer>> stringToIntegerArrayList(String strs) {
         return JSON.parseObject(strs, List.class);
     }
+    
+    public static Node stringToTreeNodeWithNext(String input) {
+		input = input.trim();
+		input = input.substring(1, input.length() - 1);
+		if (input.length() == 0) {
+			return null;
+		}
+		String[] parts = input.split(",");
+		String item = parts[0];
+		Node root = new Node(Integer.parseInt(item));
+		Queue<Node> nodeQueue = new LinkedList<>();
+		nodeQueue.add(root);
+
+		int index = 1;
+		while (!nodeQueue.isEmpty()) {
+			Node node = nodeQueue.remove();
+			if (index == parts.length) {
+				break;
+			}
+			item = parts[index++];
+			item = item.trim();
+			if (!"null".equals(item)) {
+				int leftNumber = Integer.parseInt(item);
+				node.left = new Node(leftNumber);
+				nodeQueue.add(node.left);
+			}
+
+			if (index == parts.length) {
+				break;
+			}
+
+			item = parts[index++];
+			item = item.trim();
+			if (!"null".equals(item)) {
+				int rightNumber = Integer.parseInt(item);
+				node.right = new Node(rightNumber);
+				nodeQueue.add(node.right);
+			}
+		}
+		return root;
+	}
 }
