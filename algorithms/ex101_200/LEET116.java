@@ -49,10 +49,9 @@ import com.zm.LeetCodeEx.Node;
  */
 public class LEET116 {
 	public static void main(String[] args) {
-		LEET116 l115 = new LEET116();
-		System.out.println(JSON.toJSONString(l115.new Solution().connect(CommonFunctions.stringToTreeNodeWithNext("[1,2,3,4,5,6,7]"))));
-		System.out
-				.println(JSON.toJSONString(l115.new Solution().connect(CommonFunctions.stringToTreeNodeWithNext("[1,2,3,4,5,null,7]"))));
+		LEET116 l116 = new LEET116();
+		System.out.println(JSON.toJSONString(
+				l116.new Solution().connect(CommonFunctions.stringToTreeNodeWithNext("[1,2,3,4,5,6,7]"))));
 	}
 
 	/**
@@ -67,77 +66,71 @@ public class LEET116 {
 			queue.add(root);
 			while (!queue.isEmpty()) {
 				int size = queue.size();
-				Node pre = queue.poll();
-				if (pre.left != null) {
-					queue.add(pre.left);
-				}
-				if (pre.right != null) {
-					queue.add(pre.right);
-				}
-				for (int i = 1; i < size; i++) {
+				for (int i = 0; i < size; i++) {
 					Node temp = queue.poll();
+					if (i < size - 1) {
+						temp.next = queue.peek();
+	                }
 					if (temp.left != null) {
-						queue.add(pre.left);
+						queue.add(temp.left);
 					}
 					if (temp.right != null) {
-						queue.add(pre.right);
+						queue.add(temp.right);
 					}
-					pre.next = temp;
-					pre = temp;
 				}
 			}
 			return root;
 		}
 	}
-	
+
 	/**
 	 * 官方题解
 	 * 
 	 * 1.由于是一颗完美二叉树，所以每层的第一个节点可以使用leftmost=leftmost.left来到达下一层
-	 * 2.处理第n层是在遍历第n-1层的时候操作的
-	 * 3.分清两种情况，一种是把n-1层的某个节点的左子节点next指向右子节点，
+	 * 2.处理第n层是在遍历第n-1层的时候操作的 3.分清两种情况，一种是把n-1层的某个节点的左子节点next指向右子节点，
 	 * 另一种是把n-1层某个节点x的右子节点next指向x的next节点的左子节点。
+	 * 
 	 * @author zm
 	 *
 	 */
 	class Solution2 {
-	    public Node connect(Node root) {
-	        
-	        if (root == null) {
-	            return root;
-	        }
-	        
-	        // Start with the root node. There are no next pointers
-	        // that need to be set up on the first level
-	        Node leftmost = root;
-	        
-	        // Once we reach the final level, we are done
-	        while (leftmost.left != null) {
-	            
-	            // Iterate the "linked list" starting from the head
-	            // node and using the next pointers, establish the 
-	            // corresponding links for the next level
-	            Node head = leftmost;
-	            
-	            while (head != null) {
-	                
-	                // CONNECTION 1
-	                head.left.next = head.right;
-	                
-	                // CONNECTION 2
-	                if (head.next != null) {
-	                    head.right.next = head.next.left;
-	                }
-	                
-	                // Progress along the list (nodes on the current level)
-	                head = head.next;
-	            }
-	            
-	            // Move onto the next level
-	            leftmost = leftmost.left;
-	        }
-	        
-	        return root;
-	    }
+		public Node connect(Node root) {
+
+			if (root == null) {
+				return root;
+			}
+
+			// Start with the root node. There are no next pointers
+			// that need to be set up on the first level
+			Node leftmost = root;
+
+			// Once we reach the final level, we are done
+			while (leftmost.left != null) {
+
+				// Iterate the "linked list" starting from the head
+				// node and using the next pointers, establish the
+				// corresponding links for the next level
+				Node head = leftmost;
+
+				while (head != null) {
+
+					// CONNECTION 1
+					head.left.next = head.right;
+
+					// CONNECTION 2
+					if (head.next != null) {
+						head.right.next = head.next.left;
+					}
+
+					// Progress along the list (nodes on the current level)
+					head = head.next;
+				}
+
+				// Move onto the next level
+				leftmost = leftmost.left;
+			}
+
+			return root;
+		}
 	}
 }
