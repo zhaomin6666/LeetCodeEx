@@ -30,105 +30,135 @@ import java.util.Arrays;
  * @author zm
  */
 public class LEET123 {
-    public static void main(String[] args) {
-        LEET123 l0123 = new LEET123();
-        int[] prices1 = {7, 1, 5, 3, 6, 4};
-        int[] prices2 = {7, 6, 4, 3, 1};
-        int[] prices3 = {1, 6, 4, 5, 7};
-        int[] prices4 = {1, 2, 3, 4, 5};
-        int[] prices5 = {3, 3, 5, 0, 0, 3, 1, 4};
-        int[] prices6 = {1, 2, 4, 2, 5, 7, 2, 4, 9, 0};
-        int[] prices7 = {2, 1, 4};
-        int[] prices8 = {8, 3, 6, 2, 8, 8, 8, 4, 2, 0, 7, 2, 9, 4, 9};
-        /*System.out.println(l0123.new Solution2().maxProfit(prices1));
-        System.out.println(l0123.new Solution2().maxProfit(prices2));
-        System.out.println(l0123.new Solution2().maxProfit(prices3));
-        System.out.println(l0123.new Solution2().maxProfit(prices4));
-        System.out.println(l0123.new Solution2().maxProfit(prices5));
-        System.out.println(l0123.new Solution2().maxProfit(prices6));
-        System.out.println(l0123.new Solution2().maxProfit(prices7));*/
-        System.out.println(l0123.new Solution2().maxProfit(prices8));
-    }
+	public static void main(String[] args) {
+		LEET123 l0123 = new LEET123();
+		int[] prices1 = { 7, 1, 5, 3, 6, 4 };
+		int[] prices2 = { 7, 6, 4, 3, 1 };
+		int[] prices3 = { 1, 6, 4, 5, 7 };
+		int[] prices4 = { 1, 2, 3, 4, 5 };
+		int[] prices5 = { 3, 3, 5, 0, 0, 3, 1, 4 };
+		int[] prices6 = { 1, 2, 4, 2, 5, 7, 2, 4, 9, 0 };
+		int[] prices7 = { 2, 1, 4 };
+		int[] prices8 = { 8, 3, 6, 2, 8, 8, 8, 4, 2, 0, 7, 2, 9, 4, 9 };
 
-    /**
-     * 利用121题来做，但是时间复杂度为O(n2)
-     */
-    class Solution {
-        public int maxProfit(int[] prices) {
-            int ret = 0;
-            int l = 0, r = 1;
-            while (r < prices.length) {
-                if (prices[r] > prices[l]) {
-                    if (r + 1 < prices.length && prices[r + 1] > prices[r]) {
-                    } else {
-                        ret = Math.max(ret,
-                                prices[r] - prices[l] + maxProfitForOnce(Arrays.copyOfRange(prices, r, prices.length)));
-                    }
-                }
-                if (r + 1 < prices.length) {
-                    r++;
-                } else {
-                    l++;
-                    r = l + 1;
-                }
+		System.out.println(l0123.new Solution2().maxProfit(prices1));
+		System.out.println(l0123.new Solution2().maxProfit(prices2));
+		System.out.println(l0123.new Solution2().maxProfit(prices3));
+		System.out.println(l0123.new Solution2().maxProfit(prices4));
+		System.out.println(l0123.new Solution2().maxProfit(prices5));
+		System.out.println(l0123.new Solution2().maxProfit(prices6));
+		System.out.println(l0123.new Solution2().maxProfit(prices7));
 
-            }
-            return ret;
-        }
+		System.out.println(l0123.new Solution3().maxProfit(prices8));
+	}
 
-        private int maxProfitForOnce(int[] prices) {
-            int max = 0;
-            int l = 0, r = 1;
-            while (r < prices.length) {
-                if (prices[r] <= prices[l]) {
-                    l = r++;
-                } else {
-                    int inteval = prices[r++] - prices[l];
-                    max = inteval > max ? inteval : max;
-                }
-            }
-            return max;
-        }
-    }
+	/**
+	 * 利用121题来做，但是时间复杂度为O(n2)
+	 */
+	class Solution {
+		public int maxProfit(int[] prices) {
+			int ret = 0;
+			int l = 0, r = 1;
+			while (r < prices.length) {
+				if (prices[r] > prices[l]) {
+					if (r + 1 < prices.length && prices[r + 1] > prices[r]) {
+					} else {
+						ret = Math.max(ret,
+								prices[r] - prices[l] + maxProfitForOnce(Arrays.copyOfRange(prices, r, prices.length)));
+					}
+				}
+				if (r + 1 < prices.length) {
+					r++;
+				} else {
+					l++;
+					r = l + 1;
+				}
 
-    /**
-     * 优化方法1
-     */
-    class Solution2 {
-        public int maxProfit(int[] prices) {
-            int l = prices.length;
-            int[] change = new int[l];
-            for (int i = 1; i < l; i++) {
-                change[i] = prices[i] - prices[i - 1];
-            }
-            int cur = 0;
-            int max = 0;
-            for (int i = 0; i < l; i++) {
-                cur += change[i];
-                if (change[i] > 0 && (i + 1 >= l || change[i + 1] <= 0)) {
-                    max = Math.max(max, cur + maxProfitForOnce(change, i + 1));
-                } else {
-                    if (cur < 0) {
-                        cur = 0;
-                    }
-                }
-            }
-            return max;
-        }
+			}
+			return ret;
+		}
 
-        private int maxProfitForOnce(int[] change, int start) {
-            int max = 0;
-            int cur = 0;
-            while (start < change.length) {
-                cur += change[start];
-                if (cur < 0) {
-                    cur = 0;
-                } else {
-                    max = Math.max(max, cur);
-                }
-                start++;
-            }
-            return max;
-        }
-    }
+		private int maxProfitForOnce(int[] prices) {
+			int max = 0;
+			int l = 0, r = 1;
+			while (r < prices.length) {
+				if (prices[r] <= prices[l]) {
+					l = r++;
+				} else {
+					int inteval = prices[r++] - prices[l];
+					max = inteval > max ? inteval : max;
+				}
+			}
+			return max;
+		}
+	}
+
+	/**
+	 * 优化方法1
+	 */
+	class Solution2 {
+		public int maxProfit(int[] prices) {
+			int l = prices.length;
+			int[] change = new int[l];
+			for (int i = 1; i < l; i++) {
+				change[i] = prices[i] - prices[i - 1];
+			}
+			int cur = 0;
+			int max = 0;
+			for (int i = 0; i < l; i++) {
+				cur += change[i];
+				if (change[i] > 0 && (i + 1 >= l || change[i + 1] <= 0)) {
+					max = Math.max(max, cur + maxProfitForOnce(change, i + 1));
+				} else {
+					if (cur < 0) {
+						cur = 0;
+					}
+				}
+			}
+			return max;
+		}
+
+		private int maxProfitForOnce(int[] change, int start) {
+			int max = 0;
+			int cur = 0;
+			while (start < change.length) {
+				cur += change[start];
+				if (cur < 0) {
+					cur = 0;
+				} else {
+					max = Math.max(max, cur);
+				}
+				start++;
+			}
+			return max;
+		}
+	}
+
+	/**
+	 * 题解中的股票类通用解法
+	 */
+	class Solution3 {
+		public int maxProfit(int[] prices) {
+			int n = prices.length;
+			if (n == 0) {
+				return 0;
+			}
+			int max_k = 2;
+			int[][][] dp = new int[n][max_k + 1][2];
+			for (int i = 0; i < n; i++) {
+				for (int k = max_k; k >= 1; k--) {
+					if (i - 1 == -1) {
+						/* 处理 base case */
+						dp[i][k][0] = 0;
+						dp[i][k][1] = -prices[0];
+					} else {
+						dp[i][k][0] = Math.max(dp[i - 1][k][0], dp[i - 1][k][1] + prices[i]);
+						dp[i][k][1] = Math.max(dp[i - 1][k][1], dp[i - 1][k - 1][0] - prices[i]);
+					}
+				}
+			}
+			// 穷举了 n × max_k × 2 个状态，正确。
+			return dp[n - 1][max_k][0];
+		}
+	}
 }
