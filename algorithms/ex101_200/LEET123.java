@@ -40,7 +40,7 @@ public class LEET123 {
 		int[] prices6 = { 1, 2, 4, 2, 5, 7, 2, 4, 9, 0 };
 		int[] prices7 = { 2, 1, 4 };
 		int[] prices8 = { 8, 3, 6, 2, 8, 8, 8, 4, 2, 0, 7, 2, 9, 4, 9 };
-
+		// 7,0,8,4,6,13,3,15
 		System.out.println(l0123.new Solution2().maxProfit(prices1));
 		System.out.println(l0123.new Solution2().maxProfit(prices2));
 		System.out.println(l0123.new Solution2().maxProfit(prices3));
@@ -159,6 +159,51 @@ public class LEET123 {
 			}
 			// 穷举了 n × max_k × 2 个状态，正确。
 			return dp[n - 1][max_k][0];
+		}
+	}
+
+	/**
+	 * 由于k=2所以可以把循环写出来
+	 */
+	class Solution4 {
+		public int maxProfit(int[] prices) {
+			int n = prices.length;
+			if (n == 0) {
+				return 0;
+			}
+			int[][][] dp = new int[n][3][2];
+			dp[0][2][0] = 0;
+			dp[0][2][1] = -prices[0];
+			dp[0][1][0] = 0;
+			dp[0][1][1] = -prices[0];
+			for (int i = 1; i < n; i++) {
+				dp[i][2][0] = Math.max(dp[i - 1][2][0], dp[i - 1][2][1] + prices[i]);
+				dp[i][2][1] = Math.max(dp[i - 1][2][1], dp[i - 1][1][0] - prices[i]);
+				dp[i][1][0] = Math.max(dp[i - 1][1][0], dp[i - 1][1][1] + prices[i]);
+				dp[i][1][1] = Math.max(dp[i - 1][1][1], dp[i - 1][0][0] - prices[i]);
+			}
+			// 穷举了 n × 2 × 2 个状态，正确。
+			return dp[n - 1][2][0];
+		}
+	}
+
+	/**
+	 * 代码进一步化简
+	 * 
+	 * @author zm
+	 *
+	 */
+	class Solution5 {
+		public int maxProfit(int[] prices) {
+			int dp_i10 = 0, dp_i11 = Integer.MIN_VALUE;
+			int dp_i20 = 0, dp_i21 = Integer.MIN_VALUE;
+			for (int price : prices) {
+				dp_i20 = Math.max(dp_i20, dp_i21 + price);
+				dp_i21 = Math.max(dp_i21, dp_i10 - price);
+				dp_i10 = Math.max(dp_i10, dp_i11 + price);
+				dp_i11 = Math.max(dp_i11, -price);
+			}
+			return dp_i20;
 		}
 	}
 }
