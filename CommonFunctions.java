@@ -1,8 +1,12 @@
 package com.zm.LeetCodeEx;
 
-import com.alibaba.fastjson.JSON;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
-import java.util.*;
+import com.alibaba.fastjson.JSON;
 
 public class CommonFunctions {
 	/**
@@ -304,5 +308,9 @@ public class CommonFunctions {
 			}
 		}
 		return root;
+	}
+    
+    public static List<String> stringToStringList(String input) {
+		return JSON.parseArray(input, String.class);
 	}
 }

@@ -21,11 +21,11 @@ import java.util.PriorityQueue;
 public class LEET023 {
 	public static void main(String[] args) {
 		LEET023 l023 = new LEET023();
-		List<ListNode> list = new ArrayList<>();
+		List<ListNode<Integer>> list = new ArrayList<>();
 		list.add(CommonFunctions.stringToListNode("[1,4,5]"));
 		list.add(CommonFunctions.stringToListNode("[1,3,4]"));
 		list.add(CommonFunctions.stringToListNode("[2,6]"));
-		ListNode[] lists = new ListNode[3];
+		ListNode<Integer>[] lists = new ListNode[3];
 		list.toArray(lists);
 		System.out.println(CommonFunctions.listNodeToString(l023.mergeKLists3(lists)));
 	}
@@ -37,13 +37,13 @@ public class LEET023 {
 	 * @param lists
 	 * @return
 	 */
-	public ListNode mergeKLists(ListNode[] lists) {
+	public ListNode<Integer> mergeKLists(ListNode<Integer>[] lists) {
 		if (lists == null || lists.length == 0) {
 			return null;
 		}
-		ListNode nodeMain = lists[0];
+		ListNode<Integer> nodeMain = lists[0];
 		for (int i = 1; i < lists.length; i++) {
-			nodeMain = new LEET021().mergeTwoLists(nodeMain, lists[i]);
+			nodeMain = new LEET021().new Solution().mergeTwoLists(nodeMain, lists[i]);
 		}
 		return nodeMain;
 	}
@@ -55,7 +55,7 @@ public class LEET023 {
 	 * @param lists
 	 * @return
 	 */
-	public ListNode mergeKLists2(ListNode<Integer>[] lists) {
+	public ListNode<Integer> mergeKLists2(ListNode<Integer>[] lists) {
 		ListNode<Integer> nodeMain = new ListNode<>(0);
 		ListNode<Integer> nodeHead = nodeMain;
 		while (true) {
@@ -89,7 +89,7 @@ public class LEET023 {
 	 * @param lists
 	 * @return
 	 */
-	public ListNode mergeKLists3(ListNode[] lists) {
+	public ListNode<Integer> mergeKLists3(ListNode<Integer>[] lists) {
 		int amount = lists.length;
 		int interval = 1;
 		while (interval < amount) {
@@ -101,8 +101,8 @@ public class LEET023 {
 		return amount > 0 ? lists[0] : null;
 	}
 
-	public ListNode merge2Lists(ListNode<Integer> l1, ListNode<Integer> l2) {
-		ListNode<Integer> dummyNode = new ListNode(0);
+	public ListNode<Integer> merge2Lists(ListNode<Integer> l1, ListNode<Integer> l2) {
+		ListNode<Integer> dummyNode = new ListNode<Integer>(0);
 		ListNode<Integer> point = dummyNode;
 		while (l1 != null && l2 != null) {
 			if (l1.val <= l2.val) {
@@ -128,7 +128,7 @@ public class LEET023 {
 	 * @param lists
 	 * @return
 	 */
-	public ListNode mergeKLists4(ListNode<Integer>[] lists) {
+	public ListNode<Integer> mergeKLists4(ListNode<Integer>[] lists) {
 		if (lists.length == 0) {
 			return null;
 		}
