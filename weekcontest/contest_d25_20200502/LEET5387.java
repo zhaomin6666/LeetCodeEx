@@ -1,4 +1,4 @@
-package com.zm.LeetCodeEx.weekcontest.contest_187_20200502;
+package com.zm.LeetCodeEx.weekcontest.contest_d25_20200502;
 
 import java.util.Comparator;
 import java.util.HashMap;
