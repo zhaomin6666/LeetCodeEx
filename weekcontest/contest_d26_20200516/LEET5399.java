@@ -2,10 +2,7 @@ package com.zm.LeetCodeEx.weekcontest.contest_d26_20200516;
 
 import com.alibaba.fastjson.JSON;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * 双周赛 2020年5月16日
@@ -65,7 +62,7 @@ import java.util.PriorityQueue;
 public class LEET5399 {
     public static void main(String[] args) {
         LEET5399 l5384 = new LEET5399();
-        System.out.println(JSON.toJSONString(l5384.new Solution().largestNumber(new int[]{4, 3, 2, 5, 6, 7, 2, 5, 5}, 9)));
+        System.out.println(JSON.toJSONString(l5384.new Solution2().largestNumber(new int[]{4, 3, 2, 5, 6, 7, 2, 5, 5}, 9)));
         System.out.println(JSON.toJSONString(l5384.new Solution().largestNumber(new int[]{7, 6, 5, 5, 5, 6, 8, 7, 8}, 12)));
         System.out.println(JSON.toJSONString(l5384.new Solution().largestNumber(new int[]{2, 4, 6, 2, 4, 6, 4, 4, 4}, 5)));
         System.out.println(JSON.toJSONString(l5384.new Solution().largestNumber(new int[]{6, 10, 15, 40, 40, 40, 40, 40, 40}, 47)));
@@ -152,6 +149,60 @@ public class LEET5399 {
             return true;
         }
     }
+
+
+    /**
+     * 完全背包问题：
+     * 所有值都能选0~n次。
+     * 每次决策，选了这个cost是否比原有cost大。
+     * <p>
+     * 作者：zha-bi-xiao-xin-27
+     * 链接：https://leetcode-cn.com/problems/form-largest-integer-with-digits-that-add-up-to-target/solution/bei-bao-dong-tai-gui-hua-by-zha-bi-xiao-xin-27/
+     * 来源：力扣（LeetCode）
+     * 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+     */
+    class Solution2 {
+        public String largestNumber(int[] cost, int target) {
+            Map<Integer, Integer> map = new HashMap<>();// cst -->  number
+            for (int i = cost.length - 1; i >= 0; i--) {
+                if (!map.containsKey(cost[i])) {//cost数组中，相同的数字只留下下标大的数
+                    map.put(cost[i], i + 1);
+                }
+            }
+            //dp[i]表示cost为i时最大数字
+            String[] dp = new String[target + 1];
+            dp[0] = "";
+            for (int i = 1; i <= target; i++) {
+                for (int cst : map.keySet()) {
+                    //选择花掉这个成本与不选择花这个成本，相比较
+                    if (cst <= i && dp[i - cst] != null) {
+                        String b = dp[i - cst] + map.get(cst);  // 如果选择花掉这个成本，得到的数字
+                        dp[i] = compare(dp[i], b);
+                    }
+                }
+            }
+            return dp[target] == null ? "0" : dp[target];
+        }
+
+        //比较两个数的大小
+        private String compare(String a, String b) {
+            if (a == null) {
+                return b;
+            }
+            if (a.length() > b.length()) {
+                return a;
+            }
+            if (a.length() == b.length()) {
+                if (a.compareTo(b) > 0) {
+                    return a;
+                } else {
+                    return b;
+                }
+            }
+            return b;
+        }
+    }
+
 }
 
 
