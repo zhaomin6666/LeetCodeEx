@@ -28,8 +28,8 @@ import java.util.*;
  */
 public class LEET297 {
     public static void main(String[] args) {
-        LEET297 l287 = new LEET297();
-        Codec codec = l287.new Codec();
+        LEET297 l297 = new LEET297();
+        Codec codec = l297.new Codec();
         TreeNode<Integer> treeNode = codec.deserialize("[1,2,3,null,null,4,5]");
         System.out.println(codec.serialize(treeNode));
     }
@@ -135,6 +135,7 @@ public class LEET297 {
 
     /**
      * 官方解法1
+     * 递归解法
      */
     public class Codec3 {
         public String rserialize(TreeNode root, String str) {
