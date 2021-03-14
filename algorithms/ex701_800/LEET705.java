@@ -20,7 +20,6 @@ import java.util.LinkedList;
  */
 public class LEET705 {
     public static void main(String[] args) {
-        LEET705 l705 = new LEET705();
         MyHashSet myHashSet = new MyHashSet();
         String[] methods = new String[]{"MyHashSet", "add", "add", "contains", "contains", "add",
                 "contains", "remove", "contains"};
