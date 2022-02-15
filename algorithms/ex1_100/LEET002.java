@@ -26,16 +26,16 @@ public class LEET002 {
 
 	/**
 	 * 循环末尾判断，两数都取完并没有进位
-     *
+	 *
 	 * @param l1
 	 * @param l2
 	 * @return
 	 */
-    public ListNode addTwoNumbers(ListNode<Integer> l1, ListNode<Integer> l2) {
-        ListNode<Integer> result = null;
-        ListNode<Integer> resulttemp = null;
-        ListNode<Integer> temp1 = l1;
-        ListNode<Integer> temp2 = l2;
+	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+		ListNode result = null;
+		ListNode resulttemp = null;
+		ListNode temp1 = l1;
+		ListNode temp2 = l2;
 		int temp = 0;
 		while (true) {
 			int temp1val = temp1 == null ? 0 : temp1.val;
@@ -45,7 +45,8 @@ public class LEET002 {
 			if (result == null) {
 				result = new ListNode(sum % 10);
 				resulttemp = result;
-			} else {
+			}
+			else {
 				resulttemp.val = sum % 10;
 			}
 			temp1 = temp1 == null ? null : temp1.next;
@@ -62,15 +63,15 @@ public class LEET002 {
 
 	/**
 	 * 只要两个数有一个没有取完，则循环继续，结束之后判断是否有进位，加上
-	 * 
+	 *
 	 * @param l1
 	 * @param l2
 	 * @return
 	 */
-    public ListNode addTwoNumbers2(ListNode<Integer> l1, ListNode<Integer> l2) {
-        ListNode<Integer> dummyHead = new ListNode<>(0);
+	public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+		ListNode dummyHead = new ListNode(0);
 		int sum = 0;
-        ListNode<Integer> cur = dummyHead;
+		ListNode cur = dummyHead;
 		while (l1 != null || l2 != null) {
 			if (l1 != null) {
 				sum += l1.val;
@@ -80,12 +81,12 @@ public class LEET002 {
 				sum += l2.val;
 				l2 = l2.next;
 			}
-            cur.next = new ListNode<>(sum % 10);
+			cur.next = new ListNode(sum % 10);
 			sum /= 10;
 			cur = cur.next;
 		}
 		if (sum == 1) {
-            cur.next = new ListNode<>(sum);
+			cur.next = new ListNode(sum);
 		}
         return dummyHead.next;
 	}

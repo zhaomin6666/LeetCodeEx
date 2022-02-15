@@ -99,16 +99,18 @@ public class LEET103 {
      * 官方的DFS
      */
     class Solution2 {
-        protected void DFS(TreeNode<Integer> node, int level, List<List<Integer>> results) {
+        protected void DFS(TreeNode node, int level, List<List<Integer>> results) {
             if (level >= results.size()) {
                 LinkedList<Integer> newLevel = new LinkedList<>();
                 newLevel.add(node.val);
                 results.add(newLevel);
-            } else {
+            }
+            else {
                 // 如果是奇数行数字加在前面，偶数行加在后面
                 if (level % 2 == 0) {
                     results.get(level).add(node.val);
-                } else {
+                }
+                else {
                     results.get(level).add(0, node.val);
                 }
             }
@@ -121,7 +123,7 @@ public class LEET103 {
             }
         }
 
-        public List<List<Integer>> zigzagLevelOrder(TreeNode<Integer> root) {
+        public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
             if (root == null) {
                 return new ArrayList<>();
             }

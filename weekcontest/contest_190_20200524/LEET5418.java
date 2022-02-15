@@ -58,11 +58,12 @@ public class LEET5418 {
             return ret;
         }
 
-        public void dfs(TreeNode<Integer> node, int[] cnt) {
+        public void dfs(TreeNode node, int[] cnt) {
             cnt[node.val]++;
             if (node.left == null && node.right == null) {
                 ret += check(cnt);
-            } else {
+            }
+            else {
                 if (node.left != null) {
                     dfs(node.left, cnt);
                 }

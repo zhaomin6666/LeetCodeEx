@@ -123,7 +123,7 @@ public class LEET1028 {
             return helper(S, 0);
         }
 
-        public TreeNode<Integer> helper(String S, int depth) {
+        public TreeNode helper(String S, int depth) {
             if (index >= S.length()) {
                 return null;
             }
@@ -142,7 +142,7 @@ public class LEET1028 {
                 val = val * 10 + (S.charAt(index) - '0');
                 index++;
             }
-            TreeNode<Integer> node = new TreeNode<>(val);
+            TreeNode node = new TreeNode(val);
             node.left = helper(S, depth + 1);
             node.right = helper(S, depth + 1);
             return node;

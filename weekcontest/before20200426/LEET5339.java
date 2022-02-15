@@ -67,7 +67,7 @@ public class LEET5339 {
     class Solution {
         private int ret = 0;
 
-        public int maxSumBST(TreeNode<Integer> root) {
+        public int maxSumBST(TreeNode root) {
             if (root != null) {
                 Integer[] leftRet = helper(root.left, Integer.MIN_VALUE, root.val, Integer.MIN_VALUE, Integer.MAX_VALUE);
                 Integer[] rightRet = helper(root.right, root.val, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MAX_VALUE);
@@ -79,7 +79,7 @@ public class LEET5339 {
             return ret;
         }
 
-        private Integer[] helper(TreeNode<Integer> node, int LastLevelmin, int LastLevelmax, int Last2Levelmin, int Last2Levelmax) {
+        private Integer[] helper(TreeNode node, int LastLevelmin, int LastLevelmax, int Last2Levelmin, int Last2Levelmax) {
             if (node == null) {
                 return new Integer[]{1, 1, 0};
             }

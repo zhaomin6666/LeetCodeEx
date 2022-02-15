@@ -70,13 +70,13 @@ public class LEET1530 {
         int ret = 0;
         int dis = 0;
 
-        public int countPairs(TreeNode<Integer> root, int distance) {
+        public int countPairs(TreeNode root, int distance) {
             dis = distance;
             doCountPairs(root);
             return ret;
         }
 
-        public int[] doCountPairs(TreeNode<Integer> node) {
+        public int[] doCountPairs(TreeNode node) {
             if (node.left == null && node.right == null) {
                 return new int[]{1};
             }

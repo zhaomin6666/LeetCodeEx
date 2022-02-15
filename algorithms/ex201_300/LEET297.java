@@ -30,7 +30,7 @@ public class LEET297 {
     public static void main(String[] args) {
         LEET297 l297 = new LEET297();
         Codec codec = l297.new Codec();
-        TreeNode<Integer> treeNode = codec.deserialize("[1,2,3,null,null,4,5]");
+        TreeNode treeNode = codec.deserialize("[1,2,3,null,null,4,5]");
         System.out.println(codec.serialize(treeNode));
     }
 
@@ -39,17 +39,18 @@ public class LEET297 {
      */
     public class Codec {
         // Encodes a tree to a single string.
-        public String serialize(TreeNode<Integer> root) {
+        public String serialize(TreeNode root) {
             StringBuilder sb = new StringBuilder();
             sb.append("[");
-            Queue<TreeNode<Integer>> queue = new LinkedList<>();
+            Queue<TreeNode> queue = new LinkedList<>();
             queue.add(root);
             int nullCnt = 0;
             while (!queue.isEmpty()) {
-                TreeNode<Integer> node = queue.poll();
+                TreeNode node = queue.poll();
                 if (node == null) {
                     nullCnt++;
-                } else {
+                }
+                else {
                     for (int i = 0; i < nullCnt; i++) {
                         sb.append("null,");
                         queue.add(null);
@@ -68,13 +69,13 @@ public class LEET297 {
         }
 
         // Decodes your encoded data to tree.
-        public TreeNode<Integer> deserialize(String data) {
+        public TreeNode deserialize(String data) {
             String realData = data.substring(1, data.length() - 1);
             String[] dataSplit = realData.split(",");
             TreeNode[] nodes = new TreeNode[dataSplit.length];
             for (int i = dataSplit.length - 1; i >= 0; i--) {
                 if (!"null".equals(dataSplit[i])) {
-                    nodes[i] = new TreeNode<>(Integer.valueOf(dataSplit[i]));
+                    nodes[i] = new TreeNode(Integer.valueOf(dataSplit[i]));
                     if (i * 2 < dataSplit.length) {
                         nodes[i].left = nodes[i * 2 + 1];
                     }

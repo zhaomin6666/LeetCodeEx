@@ -81,7 +81,7 @@ public class LEET019 {
 		return dummyRoot.next;
 	}
 
-	public static String listNodeToString(ListNode<Integer> node) {
+	public static String listNodeToString(ListNode node) {
 		if (node == null) {
 			return "[]";
 		}

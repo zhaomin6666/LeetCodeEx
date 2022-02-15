@@ -36,12 +36,12 @@ public class LEET094 {
     class Solution {
         List<Integer> list = new LinkedList<>();
 
-        public List<Integer> inorderTraversal(TreeNode<Integer> root) {
+        public List<Integer> inorderTraversal(TreeNode root) {
             helper(root);
             return list;
         }
 
-        private void helper(TreeNode<Integer> node) {
+        private void helper(TreeNode node) {
             if (node != null) {
                 if (node.left != null) {
                     helper(node.left);
@@ -55,15 +55,16 @@ public class LEET094 {
     }
 
     class Solution2 {
-        public List<Integer> inorderTraversal(TreeNode<Integer> root) {
+        public List<Integer> inorderTraversal(TreeNode root) {
             List<Integer> list = new LinkedList<>();
-            Stack<TreeNode<Integer>> stack = new Stack<>();
-            TreeNode<Integer> cur = root;
+            Stack<TreeNode> stack = new Stack<>();
+            TreeNode cur = root;
             while (cur != null || !stack.isEmpty()) {
                 if (cur != null) {
                     stack.push(cur);
                     cur = cur.left;
-                } else {
+                }
+                else {
                     cur = stack.pop();
                     list.add(cur.val);
                     cur = cur.right;

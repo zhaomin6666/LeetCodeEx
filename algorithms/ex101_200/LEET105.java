@@ -66,7 +66,7 @@ public class LEET105 {
 
 		}
 
-		private TreeNode<Integer> helper(int in_left, int in_right) {
+		private TreeNode helper(int in_left, int in_right) {
 			// if there is no elements to construct subtrees
 			if (in_left == in_right) {
 				return null;

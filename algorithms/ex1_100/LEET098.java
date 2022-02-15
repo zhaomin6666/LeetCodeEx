@@ -45,12 +45,12 @@ public class LEET098 {
     }
 
     class Solution {
-        public boolean isValidBST(TreeNode<Integer> root) {
+        public boolean isValidBST(TreeNode root) {
             return root == null || ((root.left == null || valid(root.left, null, root.val))
                     && (root.right == null || valid(root.right, root.val, null)));
         }
 
-        private boolean valid(TreeNode<Integer> node, Integer min, Integer max) {
+        private boolean valid(TreeNode node, Integer min, Integer max) {
             return (min == null || node.val > min) && (max == null || node.val < max)
                     && (node.left == null || valid(node.left, min, node.val))
                     && (node.right == null || valid(node.right, node.val, max));

@@ -36,7 +36,7 @@ public class LEET5153 {
 
     }
 
-    public int deepestLeavesSum(TreeNode<Integer> root) {
+    public int deepestLeavesSum(TreeNode root) {
         JSONObject rootJo = new JSONObject();
         rootJo.put("Node", root);
         rootJo.put("Deep", 0);
@@ -46,7 +46,7 @@ public class LEET5153 {
         int curDeep = 0;
         while (!nodeQueue.isEmpty()) {
             JSONObject jo = nodeQueue.remove();
-            TreeNode<Integer> node = (TreeNode) jo.get("Node");
+            TreeNode node = (TreeNode) jo.get("Node");
             int deepLvl = (int) jo.get("Deep");
             if (node == null) {
                 continue;
@@ -69,7 +69,7 @@ public class LEET5153 {
         return leavesSum;
     }
 
-    public int deepestLeavesSum2(TreeNode<Integer> root) {
+    public int deepestLeavesSum2(TreeNode root) {
         HashMap<String, Object> rootJo = new HashMap<>();
         rootJo.put("Node", root);
         rootJo.put("Deep", 0);
@@ -79,7 +79,7 @@ public class LEET5153 {
         int curDeep = 0;
         while (!nodeQueue.isEmpty()) {
             HashMap jo = nodeQueue.remove();
-            TreeNode<Integer> node = (TreeNode<Integer>) jo.get("Node");
+            TreeNode node = (TreeNode) jo.get("Node");
             int deepLvl = (int) jo.get("Deep");
             if (node == null) {
                 continue;

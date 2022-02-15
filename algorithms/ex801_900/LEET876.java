@@ -41,8 +41,8 @@ public class LEET876 {
     }
 
     class Solution {
-        public ListNode<Integer> middleNode(ListNode<Integer> head) {
-            ListNode<Integer> fast = head;
+        public ListNode middleNode(ListNode head) {
+            ListNode fast = head;
             while (fast != null && fast.next != null) {
                 fast = fast.next.next;
                 head = head.next;

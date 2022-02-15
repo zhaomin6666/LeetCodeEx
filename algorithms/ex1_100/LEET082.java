@@ -33,28 +33,31 @@ public class LEET082 {
 	}
 
 	class Solution {
-		public ListNode<Integer> deleteDuplicates(ListNode<Integer> head) {
+		public ListNode deleteDuplicates(ListNode head) {
 			if (head == null) {
 				return null;
 			}
-			ListNode<Integer> dummyHead = new ListNode<Integer>(-1);
+			ListNode dummyHead = new ListNode(-1);
 			dummyHead.next = head;
-			ListNode<Integer> temp = dummyHead;
+			ListNode temp = dummyHead;
 			int cur = head.val;
 			boolean isDuplicate = false;
 			while (temp.next != null) {
 				if (isDuplicate) {
 					if (temp.next.val == cur) {
 						temp.next = temp.next.next;
-					} else {
+					}
+					else {
 						isDuplicate = false;
 					}
-				} else {
-					if (temp.next.next != null && temp.next.val.equals(temp.next.next.val)) {
+				}
+				else {
+					if (temp.next.next != null && temp.next.val == temp.next.next.val) {
 						cur = temp.next.val;
 						isDuplicate = true;
 						temp.next = temp.next.next.next;
-					} else {
+					}
+					else {
 						isDuplicate = false;
 						temp = temp.next;
 					}

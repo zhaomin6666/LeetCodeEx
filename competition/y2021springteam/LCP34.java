@@ -26,7 +26,7 @@ public class LCP34 {
             return getMax(dp);
         }
 
-        private int[] doPaint(TreeNode<Integer> root, int k) {
+        private int[] doPaint(TreeNode root, int k) {
             int[] dp = new int[k + 1];
             // 当前节点不paint，可以直接取左节点的最大值和右节点的最大值
             int[] dpLeft = root.left == null ? new int[k + 1] : doPaint(root.left, k);

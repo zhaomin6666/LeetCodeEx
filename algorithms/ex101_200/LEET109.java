@@ -1,18 +1,18 @@
 package com.zm.LeetCodeEx.algorithms.ex101_200;
 
-import java.util.ArrayList;
-
 import com.zm.LeetCodeEx.CommonFunctions;
 import com.zm.LeetCodeEx.ListNode;
 import com.zm.LeetCodeEx.TreeNode;
+
+import java.util.ArrayList;
 
 /**
  * 109. 有序链表转换二叉搜索树
  * <p>
  * 给定一个单链表，其中的元素按升序排序，将其转换为高度平衡的二叉搜索树。
- * 
+ *
  * 本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过.1。 <br>
- * 
+ *
  * 示例: <br>
  * 
  * 给定的有序链表： [-10, -3, 0, 5, 9], <br>
@@ -36,7 +36,7 @@ public class LEET109 {
 	}
 
 	class Solution {
-		public TreeNode<Integer> sortedListToBST(ListNode<Integer> head) {
+		public TreeNode sortedListToBST(ListNode head) {
 			while (head != null) {
 				nums.add(head.val);
 				head = head.next;
@@ -46,12 +46,12 @@ public class LEET109 {
 
 		private ArrayList<Integer> nums = new ArrayList<>();
 
-		private TreeNode<Integer> helper(int l, int r) {
+		private TreeNode helper(int l, int r) {
 			if (l > r) {
 				return null;
 			}
 			int mid = (l + r + 1) >>> 1;
-			TreeNode<Integer> node = new TreeNode<>(nums.get(mid));
+			TreeNode node = new TreeNode(nums.get(mid));
 			node.left = helper(l, mid - 1);
 			node.right = helper(mid + 1, r);
 			return node;

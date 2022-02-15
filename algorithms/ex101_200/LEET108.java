@@ -36,22 +36,23 @@ public class LEET108 {
 	}
 
 	class Solution {
-		private int[] nums;
-		public TreeNode<Integer> sortedArrayToBST(int[] nums) {
-			this.nums = nums;
-			return helper(0, nums.length - 1);
-		}
+        private int[] nums;
 
-		private TreeNode<Integer> helper(int l, int r) {
-			if (l > r) {
-				return null;
-			}
-			// 这里也可以不用+1，只是为了和题目示例的答案相同
-			int mid = (l + r + 1) >>> 1;
-			TreeNode<Integer> node = new TreeNode<Integer>(nums[mid]);
-			node.left = helper(l, mid - 1);
-			node.right = helper(mid + 1, r);
-			return node;
-		}
-	}
+        public TreeNode sortedArrayToBST(int[] nums) {
+            this.nums = nums;
+            return helper(0, nums.length - 1);
+        }
+
+        private TreeNode helper(int l, int r) {
+            if (l > r) {
+                return null;
+            }
+            // 这里也可以不用+1，只是为了和题目示例的答案相同
+            int mid = (l + r + 1) >>> 1;
+            TreeNode node = new TreeNode(nums[mid]);
+            node.left = helper(l, mid - 1);
+            node.right = helper(mid + 1, r);
+            return node;
+        }
+    }
 }

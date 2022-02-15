@@ -63,7 +63,7 @@ public class LEET106 {
 			}
 			int v = postorder[postIdx];
 			postIdx--;
-			TreeNode<Integer> node = new TreeNode<Integer>(v);
+			TreeNode node = new TreeNode(v);
 			node.right = helper(inorderMap.get(v) + 1, r);
 			node.left = helper(l, inorderMap.get(v) - 1);
 			return node;

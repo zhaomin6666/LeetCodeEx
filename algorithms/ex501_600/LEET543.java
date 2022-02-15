@@ -31,25 +31,25 @@ public class LEET543 {
 	}
 
 	class Solution {
-		private int max = 0;
+        private int max = 0;
 
-		public int diameterOfBinaryTree(TreeNode<Integer> root) {
-			if (root == null) {
+        public int diameterOfBinaryTree(TreeNode root) {
+            if (root == null) {
                 return 0;
             }
-			int treeDepthLeft = root.left == null ? 0 : depthOfBinaryTree(root.left);
-			int treeDepthRight = root.right == null ? 0 : depthOfBinaryTree(root.right);
-			int width = treeDepthLeft + treeDepthRight + 1;
-			max = width > max ? width : max;
-			return max-1;
-		}
+            int treeDepthLeft = root.left == null ? 0 : depthOfBinaryTree(root.left);
+            int treeDepthRight = root.right == null ? 0 : depthOfBinaryTree(root.right);
+            int width = treeDepthLeft + treeDepthRight + 1;
+            max = width > max ? width : max;
+            return max - 1;
+        }
 
-		private int depthOfBinaryTree(TreeNode<Integer> node) {
-			int treeDepthLeft = node.left == null ? 0 : depthOfBinaryTree(node.left);
-			int treeDepthRight = node.right == null ? 0 : depthOfBinaryTree(node.right);
-			int width = treeDepthLeft + treeDepthRight + 1;
-			max = width > max ? width : max;
-			return (treeDepthLeft > treeDepthRight ? treeDepthLeft : treeDepthRight) + 1;
-		}
-	}
+        private int depthOfBinaryTree(TreeNode node) {
+            int treeDepthLeft = node.left == null ? 0 : depthOfBinaryTree(node.left);
+            int treeDepthRight = node.right == null ? 0 : depthOfBinaryTree(node.right);
+            int width = treeDepthLeft + treeDepthRight + 1;
+            max = width > max ? width : max;
+            return (treeDepthLeft > treeDepthRight ? treeDepthLeft : treeDepthRight) + 1;
+        }
+    }
 }

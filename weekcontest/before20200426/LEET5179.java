@@ -42,14 +42,14 @@ public class LEET5179 {
     class Solution {
         private List<Integer> nums;
 
-        public TreeNode balanceBST(TreeNode<Integer> root) {
+        public TreeNode balanceBST(TreeNode root) {
             nums = new ArrayList<>();
             getNum(root);
             Collections.sort(nums);
             return dfs(0, nums.size() - 1);
         }
 
-        private void getNum(TreeNode<Integer> node) {
+        private void getNum(TreeNode node) {
             if (node == null) {
                 return;
             }
@@ -58,12 +58,12 @@ public class LEET5179 {
             getNum(node.right);
         }
 
-        private TreeNode<Integer> dfs(int l, int r) {
+        private TreeNode dfs(int l, int r) {
             if (l > r) {
                 return null;
             }
             int m = (l + r) >>> 1;
-            TreeNode<Integer> res = new TreeNode<>(nums.get(m));
+            TreeNode res = new TreeNode(nums.get(m));
             res.left = dfs(l, m - 1);
             res.right = dfs(m + 1, r);
             return res;

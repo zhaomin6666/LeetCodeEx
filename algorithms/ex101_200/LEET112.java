@@ -61,7 +61,7 @@ public class LEET112 {
      * 另一种递归
      */
     class Solution {
-        public boolean hasPathSum(TreeNode<Integer> root, int sum) {
+        public boolean hasPathSum(TreeNode root, int sum) {
             // 当节点已经不在树中了，仍然没有返回true说明，该路没有所要的解
             if (root == null) {
                 return false;
@@ -78,14 +78,14 @@ public class LEET112 {
      *
      */
     class Solution2 {
-        public boolean hasPathSum(TreeNode<Integer> root, int sum) {
+        public boolean hasPathSum(TreeNode root, int sum) {
             if (root == null) {
                 return false;
             }
-            Queue<TreeNode<Integer>> queue = new LinkedList<>();
+            Queue<TreeNode> queue = new LinkedList<>();
             queue.add(root);
             while (!queue.isEmpty()) {
-                TreeNode<Integer> temp = queue.poll();
+                TreeNode temp = queue.poll();
                 if (temp.right == null && temp.left == null) {
                     if (temp.val == sum) {
                         return true;
@@ -108,12 +108,12 @@ public class LEET112 {
     class Solution3 {
         private int sum;
 
-        public boolean hasPathSum(TreeNode<Integer> root, int sum) {
+        public boolean hasPathSum(TreeNode root, int sum) {
             this.sum = sum;
             return root != null && helper(root, 0);
         }
 
-        private boolean helper(TreeNode<Integer> node, int i) {
+        private boolean helper(TreeNode node, int i) {
             int temp = i + node.val;
             if (node.left == null && node.right == null) {
                 return sum == temp;

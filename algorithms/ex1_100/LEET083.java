@@ -32,19 +32,20 @@ public class LEET083 {
 	}
 
 	class Solution {
-		public ListNode<Integer> deleteDuplicates(ListNode<Integer> head) {
-			if (head == null) {
-				return null;
-			}
-			ListNode<Integer> temp = head;
-			while (temp.next != null) {
-				if (temp.next.val == temp.val) {
-					temp.next = temp.next.next;
-				}else {
-					temp = temp.next;
-				}
-			}
-			return head;
-		}
-	}
+        public ListNode deleteDuplicates(ListNode head) {
+            if (head == null) {
+                return null;
+            }
+            ListNode temp = head;
+            while (temp.next != null) {
+                if (temp.next.val == temp.val) {
+                    temp.next = temp.next.next;
+                }
+                else {
+                    temp = temp.next;
+                }
+            }
+            return head;
+        }
+    }
 }

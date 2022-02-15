@@ -54,13 +54,13 @@ public class LEET5398 {
     class Solution {
         private int ret = 0;
 
-        public int goodNodes(TreeNode<Integer> root) {
+        public int goodNodes(TreeNode root) {
             int curMax = root.val;
             dfs(root, curMax);
             return ret;
         }
 
-        public void dfs(TreeNode<Integer> node, int curMax) {
+        public void dfs(TreeNode node, int curMax) {
             if (curMax <= node.val) {
                 ret++;
                 curMax = node.val;

@@ -76,7 +76,7 @@ public class LEET113 {
             return retList;
         }
 
-        private void helper(TreeNode<Integer> node, int sum, List<Integer> preList) {
+        private void helper(TreeNode node, int sum, List<Integer> preList) {
             if (node == null) {
                 return;
             }
@@ -96,13 +96,13 @@ public class LEET113 {
     class Solution2 {
         private List<List<Integer>> retList;
 
-        public List<List<Integer>> pathSum(TreeNode<Integer> root, int sum) {
+        public List<List<Integer>> pathSum(TreeNode root, int sum) {
             retList = new LinkedList<>();
             helper(root, sum, new LinkedList<>());
             return retList;
         }
 
-        private void helper(TreeNode<Integer> node, int sum, LinkedList<Integer> preList) {
+        private void helper(TreeNode node, int sum, LinkedList<Integer> preList) {
             if (node == null) {
                 return;
             }

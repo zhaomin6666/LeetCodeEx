@@ -42,16 +42,16 @@ public class LEET236 {
         LEET236 l236 = new LEET236();
         System.out.println(l236.new Solution().lowestCommonAncestor(
                 CommonFunctions.stringToTreeNode("[3,5,1,6,2,0,8,null,null,7,4]"),
-                new TreeNode<>(5), new TreeNode<>(1)).val);
+                new TreeNode(5), new TreeNode(1)).val);
         System.out.println(l236.new Solution().lowestCommonAncestor(
                 CommonFunctions.stringToTreeNode("[3,5,1,6,2,0,8,null,null,7,4]"),
-                new TreeNode<>(5), new TreeNode<>(4)).val);
+                new TreeNode(5), new TreeNode(4)).val);
         System.out.println(l236.new Solution().lowestCommonAncestor(
                 CommonFunctions.stringToTreeNode("[3,5,1,6,2,0,8,null,null,7,4]"),
-                new TreeNode<>(7), new TreeNode<>(0)).val);
+                new TreeNode(7), new TreeNode(0)).val);
         System.out.println(l236.new Solution().lowestCommonAncestor(
                 CommonFunctions.stringToTreeNode("[3,5,1,6,2,0,8,null,null,7,4]"),
-                new TreeNode<>(1), new TreeNode<>(0)).val);
+                new TreeNode(1), new TreeNode(0)).val);
     }
 
     class Solution {
@@ -59,7 +59,7 @@ public class LEET236 {
         private int qVal;
         private TreeNode retNode;
 
-        public TreeNode lowestCommonAncestor(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer> q) {
+        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
             pVal = p.val;
             qVal = q.val;
             // 查找左右树中是否包含符合的结点，如果都在左边那就是左子树内（右边相同），一个左一个右那么就这个这个根节点。
@@ -68,7 +68,7 @@ public class LEET236 {
             return retNode;
         }
 
-        private boolean dfs(TreeNode<Integer> node) {
+        private boolean dfs(TreeNode node) {
             if (node == null) {
                 return false;
             }
@@ -83,10 +83,10 @@ public class LEET236 {
     }
 
     class Solution2 {
-        Map<Integer, TreeNode<Integer>> parent = new HashMap<>();
+        Map<Integer, TreeNode> parent = new HashMap<>();
         Set<Integer> visited = new HashSet<>();
 
-        public void dfs(TreeNode<Integer> root) {
+        public void dfs(TreeNode root) {
             if (root.left != null) {
                 parent.put(root.left.val, root);
                 dfs(root.left);
@@ -97,7 +97,7 @@ public class LEET236 {
             }
         }
 
-        public TreeNode<Integer> lowestCommonAncestor(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer> q) {
+        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
             dfs(root);
             while (p != null) {
                 visited.add(p.val);

@@ -49,28 +49,28 @@ public class LEET124 {
 	}
 
 	/**
-	 * 递归，按照二叉树的后序遍历，先处理子节点，返回子节点可以贡献的最大值。
-	 * 每次递归的时候把左右子节点可以贡献的最大值相加再加上本身值和ret取最大值。
-	 * @author zm
-	 *
-	 */
-	class Solution {
-		private int ret = Integer.MIN_VALUE;
+     * 递归，按照二叉树的后序遍历，先处理子节点，返回子节点可以贡献的最大值。
+     * 每次递归的时候把左右子节点可以贡献的最大值相加再加上本身值和ret取最大值。
+     *
+     * @author zm
+     */
+    class Solution {
+        private int ret = Integer.MIN_VALUE;
 
-		public int maxPathSum(TreeNode<Integer> root) {
-			maxPathSumHelper(root);
-			return ret;
-		}
-		
-		private int maxPathSumHelper(TreeNode<Integer> root) {
-			if (root == null) {
-				return 0;
-			}
-			int left = maxPathSumHelper(root.left);
-			int right = maxPathSumHelper(root.right);
-			int pathSum = left + right + root.val;
-			ret = Math.max(pathSum, ret);
-			return Math.max(0, Math.max(right, left) + root.val);
-		}
-	}
+        public int maxPathSum(TreeNode root) {
+            maxPathSumHelper(root);
+            return ret;
+        }
+
+        private int maxPathSumHelper(TreeNode root) {
+            if (root == null) {
+                return 0;
+            }
+            int left = maxPathSumHelper(root.left);
+            int right = maxPathSumHelper(root.right);
+            int pathSum = left + right + root.val;
+            ret = Math.max(pathSum, ret);
+            return Math.max(0, Math.max(right, left) + root.val);
+        }
+    }
 }

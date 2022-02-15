@@ -80,11 +80,11 @@ public class LEET173 {
      * 用栈保存有左子树的结点
      */
     class BSTIterator {
-        TreeNode<Integer> next;
-        Stack<TreeNode<Integer>> stack;
+        TreeNode next;
+        Stack<TreeNode> stack;
 
-        public BSTIterator(TreeNode<Integer> root) {
-            TreeNode<Integer> cur = root;
+        public BSTIterator(TreeNode root) {
+            TreeNode cur = root;
             stack = new Stack<>();
             while (cur.left != null) {
                 stack.push(cur);
@@ -99,7 +99,7 @@ public class LEET173 {
             }
             int retInt = next.val;
             if (next.right != null) {
-                TreeNode<Integer> cur = next.right;
+                TreeNode cur = next.right;
                 while (cur.left != null) {
                     stack.push(cur);
                     cur = cur.left;
@@ -120,10 +120,10 @@ public class LEET173 {
      * 官方题解
      */
     class BSTIterator2 {
-        private TreeNode<Integer> cur;
-        private Deque<TreeNode<Integer>> stack;
+        private TreeNode cur;
+        private Deque<TreeNode> stack;
 
-        public BSTIterator2(TreeNode<Integer> root) {
+        public BSTIterator2(TreeNode root) {
             cur = root;
             stack = new LinkedList<>();
         }

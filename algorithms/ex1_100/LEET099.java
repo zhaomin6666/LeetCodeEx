@@ -76,7 +76,7 @@ public class LEET099 {
             recover(root, 2, swapped[0], swapped[1]);
         }
 
-        public void inorder(TreeNode<Integer> root, List<Integer> nums) {
+        public void inorder(TreeNode root, List<Integer> nums) {
             if (root == null) {
                 return;
             }
@@ -103,7 +103,7 @@ public class LEET099 {
             return new int[]{x, y};
         }
 
-        public void recover(TreeNode<Integer> r, int count, int x, int y) {
+        public void recover(TreeNode r, int count, int x, int y) {
             if (r != null) {
                 if (r.val == x || r.val == y) {
                     r.val = r.val == x ? y : x;
@@ -124,18 +124,18 @@ public class LEET099 {
      * 网上找到的资料 https://www.cnblogs.com/AnnieKim/archive/2013/06/15/MorrisTraversal.html
      */
     class Solution2 {
-        public void swap(TreeNode<Integer> a, TreeNode<Integer> b) {
+        public void swap(TreeNode a, TreeNode b) {
             int tmp = a.val;
             a.val = b.val;
             b.val = tmp;
         }
 
-        public void recoverTree(TreeNode<Integer> root) {
+        public void recoverTree(TreeNode root) {
             // predecessor is a Morris predecessor.
             // In the 'loop' cases it could be equal to the node itself predecessor == root.
             // pred is a 'true' predecessor,
             // the previous node in the inorder traversal.
-            TreeNode<Integer> x = null, y = null, pred = null, predecessor = null;
+            TreeNode x = null, y = null, pred = null, predecessor = null;
 
             while (root != null) {
                 // If there is a left child

@@ -75,7 +75,7 @@ public class LEET572 {
             return false;
         }
 
-        private boolean isSameTree(TreeNode<Integer> p, TreeNode<Integer> q) {
+        private boolean isSameTree(TreeNode p, TreeNode q) {
             if (p != null) {
                 if (q == null) {
                     return false;

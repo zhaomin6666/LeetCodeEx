@@ -32,41 +32,40 @@ public class LEET095 {
 	}
 
 	/**
-	 * 卡特兰数问题 满足递推关系式：h(n)= h(0)*h(n-1)+h(1)*h(n-2) + ... + h(n-1)*h(0) (n>=2)
-	 * 例如：h(2)=h(0)*h(1)+h(1)*h(0)=1*1+1*1=2
-	 * h(3)=h(0)*h(2)+h(1)*h(1)+h(2)*h(0)=1*2+1*1+2*1=5
-	 * 
-	 * @author zm
-	 *
-	 */
-	class Solution {
-		public List<TreeNode<Integer>> generateTrees(int n) {
-			if (n == 0) {
-				return new LinkedList<>();
-			}
-			return helper(1, n);
-		}
+     * 卡特兰数问题 满足递推关系式：h(n)= h(0)*h(n-1)+h(1)*h(n-2) + ... + h(n-1)*h(0) (n>=2)
+     * 例如：h(2)=h(0)*h(1)+h(1)*h(0)=1*1+1*1=2
+     * h(3)=h(0)*h(2)+h(1)*h(1)+h(2)*h(0)=1*2+1*1+2*1=5
+     *
+     * @author zm
+     */
+    class Solution {
+        public List<TreeNode> generateTrees(int n) {
+            if (n == 0) {
+                return new LinkedList<>();
+            }
+            return helper(1, n);
+        }
 
-		private List<TreeNode<Integer>> helper(int l, int r) {
-			List<TreeNode<Integer>> list = new LinkedList<>();
-			if (l > r) {
-				list.add(null);
-				return list;
-			}
-			for (int i = l; i <= r; i++) {
-				List<TreeNode<Integer>> leftTrees = helper(l, i - 1);
-				List<TreeNode<Integer>> rightTrees = helper(i + 1, r);
-				// 将左右树的所有可能进行组合
-				for (TreeNode<Integer> left : leftTrees) {
-					for (TreeNode<Integer> right : rightTrees) {
-						TreeNode<Integer> cur = new TreeNode<>(i);
-						cur.left = left;
-						cur.right = right;
-						list.add(cur);
-					}
-				}
-			}
-			return list;
-		}
-	}
+        private List<TreeNode> helper(int l, int r) {
+            List<TreeNode> list = new LinkedList<>();
+            if (l > r) {
+                list.add(null);
+                return list;
+            }
+            for (int i = l; i <= r; i++) {
+                List<TreeNode> leftTrees = helper(l, i - 1);
+                List<TreeNode> rightTrees = helper(i + 1, r);
+                // 将左右树的所有可能进行组合
+                for (TreeNode left : leftTrees) {
+                    for (TreeNode right : rightTrees) {
+                        TreeNode cur = new TreeNode(i);
+                        cur.left = left;
+                        cur.right = right;
+                        list.add(cur);
+                    }
+                }
+            }
+            return list;
+        }
+    }
 }

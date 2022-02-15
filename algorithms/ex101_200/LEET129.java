@@ -52,15 +52,15 @@ public class LEET129 {
     }
 
     class Solution {
-        public int sumNumbers(TreeNode<Integer> root) {
+        public int sumNumbers(TreeNode root) {
             if (root == null) {
                 return 0;
             }
             int sum = 0;
-            Stack<TreeNode<Integer>> stack = new Stack<>();
+            Stack<TreeNode> stack = new Stack<>();
             stack.push(root);
             while (!stack.isEmpty()) {
-                TreeNode<Integer> cur = stack.pop();
+                TreeNode cur = stack.pop();
                 if (cur.left == null && cur.right == null) {
                     sum += cur.val;
                 } else {
@@ -84,7 +84,7 @@ public class LEET129 {
     class Solution2 {
         private int sum = 0;
 
-        public int sumNumbers(TreeNode<Integer> root) {
+        public int sumNumbers(TreeNode root) {
             if (root == null) {
                 return 0;
             }
@@ -92,7 +92,7 @@ public class LEET129 {
             return sum;
         }
 
-        private void sumNumbers(TreeNode<Integer> cur, int curSum) {
+        private void sumNumbers(TreeNode cur, int curSum) {
             curSum = cur.val + curSum * 10;
             if (cur.right == null && cur.left == null) {
                 sum += curSum;

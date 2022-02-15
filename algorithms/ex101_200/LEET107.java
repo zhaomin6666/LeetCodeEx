@@ -40,64 +40,66 @@ public class LEET107 {
 	}
 
 	class Solution {
-		public List<List<Integer>> levelOrderBottom(TreeNode<Integer> root) {
-			if (root == null) {
-				return new LinkedList<>();
-			}
-			Stack<List<TreeNode<Integer>>> stack = new Stack<>();
-			List<TreeNode<Integer>> list = new LinkedList<TreeNode<Integer>>();
-			list.add(root);
-			stack.add(list);
-			while (true) {
-				List<TreeNode<Integer>> listTemp = new LinkedList<TreeNode<Integer>>();
-				List<TreeNode<Integer>> listLast = stack.peek();
-				for (TreeNode<Integer> treeNode : listLast) {
-					if (treeNode.left != null) {
-						listTemp.add(treeNode.left);
-					}
-					if (treeNode.right != null) {
-						listTemp.add(treeNode.right);
-					}
-				}
-				if (listTemp.isEmpty()) {
-					break;
-				} else {
-					stack.add(listTemp);
-				}
-			}
-			LinkedList<List<Integer>> ret = new LinkedList<>();
-			while (!stack.isEmpty()) {
-				List<TreeNode<Integer>> temp = stack.pop();
-				List<Integer> item = new LinkedList<>();
-				for (TreeNode<Integer> treeNode : temp) {
-					item.add(treeNode.val);
-				}
-				ret.add(item);
-			}
-			return ret;
-		}
-	}
+        public List<List<Integer>> levelOrderBottom(TreeNode root) {
+            if (root == null) {
+                return new LinkedList<>();
+            }
+            Stack<List<TreeNode>> stack = new Stack<>();
+            List<TreeNode> list = new LinkedList<TreeNode>();
+            list.add(root);
+            stack.add(list);
+            while (true) {
+                List<TreeNode> listTemp = new LinkedList<TreeNode>();
+                List<TreeNode> listLast = stack.peek();
+                for (TreeNode treeNode : listLast) {
+                    if (treeNode.left != null) {
+                        listTemp.add(treeNode.left);
+                    }
+                    if (treeNode.right != null) {
+                        listTemp.add(treeNode.right);
+                    }
+                }
+                if (listTemp.isEmpty()) {
+                    break;
+                }
+                else {
+                    stack.add(listTemp);
+                }
+            }
+            LinkedList<List<Integer>> ret = new LinkedList<>();
+            while (!stack.isEmpty()) {
+                List<TreeNode> temp = stack.pop();
+                List<Integer> item = new LinkedList<>();
+                for (TreeNode treeNode : temp) {
+                    item.add(treeNode.val);
+                }
+                ret.add(item);
+            }
+            return ret;
+        }
+    }
 
-	class Solution2 {
-		private LinkedList<List<Integer>> ret = new LinkedList<List<Integer>>();
+    class Solution2 {
+        private LinkedList<List<Integer>> ret = new LinkedList<List<Integer>>();
 
-		public List<List<Integer>> levelOrderBottom(TreeNode<Integer> root) {
-			helper(root, 0);
-			return ret;
-		}
+        public List<List<Integer>> levelOrderBottom(TreeNode root) {
+            helper(root, 0);
+            return ret;
+        }
 
-		private void helper(TreeNode<Integer> node, int i) {
-			if (node != null) {
-				if (ret.size() <= i) {
-					List<Integer> row = new LinkedList<>();
-					row.add(node.val);
-					ret.addFirst(row);
-				} else {
-					ret.get(ret.size() - i - 1).add(node.val);
-				}
-				helper(node.left, i + 1);
-				helper(node.right, i + 1);
-			}
-		}
-	}
+        private void helper(TreeNode node, int i) {
+            if (node != null) {
+                if (ret.size() <= i) {
+                    List<Integer> row = new LinkedList<>();
+                    row.add(node.val);
+                    ret.addFirst(row);
+                }
+                else {
+                    ret.get(ret.size() - i - 1).add(node.val);
+                }
+                helper(node.left, i + 1);
+                helper(node.right, i + 1);
+            }
+        }
+    }
 }

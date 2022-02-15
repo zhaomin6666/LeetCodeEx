@@ -50,14 +50,14 @@ public class LEET100 {
 	}
 
 	class Solution {
-		public boolean isSameTree(TreeNode<Integer> p, TreeNode<Integer> q) {
+		public boolean isSameTree(TreeNode p, TreeNode q) {
 			if (p != null) {
 				if (q == null) {
 					return false;
 				}
 				return p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 			}
-			if(q != null) {
+			if (q != null) {
 				return false;
 			}
 			return true;
