@@ -34,16 +34,15 @@ import java.util.List;
  */
 public class LEET131 {
     public static void main(String[] args) {
-        LEET131 l131 = new LEET131();
-        System.out.println(JSON.toJSONString(l131.new Solution().partition("aab")));
-        System.out.println(JSON.toJSONString(l131.new Solution().partition("a")));
-        System.out.println(JSON.toJSONString(l131.new Solution().partition("aabc")));
-        System.out.println(JSON.toJSONString(l131.new Solution().partition("aabccba")));
-        System.out.println(JSON.toJSONString(l131.new Solution().partition("aabccbaa")));
-        System.out.println(JSON.toJSONString(l131.new Solution().partition("aabccbaab")));
+        System.out.println(JSON.toJSONString(new Solution().partition("aab")));
+        System.out.println(JSON.toJSONString(new Solution().partition("a")));
+        System.out.println(JSON.toJSONString(new Solution().partition("aabc")));
+        System.out.println(JSON.toJSONString(new Solution().partition("aabccba")));
+        System.out.println(JSON.toJSONString(new Solution().partition("aabccbaa")));
+        System.out.println(JSON.toJSONString(new Solution().partition("aabccbaab")));
     }
 
-    class Solution {
+    static class Solution {
         private int len;
         private List<String>[] palindromesByIndex;
 
@@ -72,7 +71,8 @@ public class LEET131 {
                 ArrayList<String> resultStr = new ArrayList<>(strings);
                 result.add(resultStr);
                 return;
-            } else if (start > len) {
+            }
+            else if (start > len) {
                 return;
             }
             for (String pStr : palindromesByIndex[start]) {
@@ -112,7 +112,8 @@ public class LEET131 {
                     pList.add(s.substring(i, j + 1));
                     i--;
                     j++;
-                } else {
+                }
+                else {
                     break;
                 }
             }
@@ -135,7 +136,9 @@ public class LEET131 {
             for (int i = 0; i < n; ++i) {
                 Arrays.fill(f[i], true);
             }
-
+            // dp预处理，f[i][j]表示字符串中从i到j的子字符串是否为回文字符串
+            // 由于转移方程为 f[i][j] = (s.charAt(i) == s.charAt(j)) && f[i + 1][j - 1];
+            // 需要用到i+1，所以i循环的时候从大到小遍历。
             for (int i = n - 1; i >= 0; --i) {
                 for (int j = i + 1; j < n; ++j) {
                     f[i][j] = (s.charAt(i) == s.charAt(j)) && f[i + 1][j - 1];
