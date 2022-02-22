@@ -98,9 +98,13 @@ public class LEET1994 {
 				//（确保考虑一个新数值 i 时，依赖的子集 prev 存储的为尚未考虑 i 的方案数）
 				for (int prev = mask - 1; prev >= 0; prev--) {
 					// 只有当前选择数与前一个状态不冲突，则能够进行转移，将方案数进行累加
+					// 如prev的num为2，cur的num为15(3,5)即prev=1,cur=110,prev&cur=0
+					// 如prev的num为2，cur的num为10(2,5)即prev=1,cur=101,prev&cur=1
 					if ((prev & cur) != 0) {
 						continue;
 					}
+					// dp[prev | cur] 表示在dp[prev]状态的基础上加上dp[cur]状态依然没有重复的质数
+					// 如prev的num为2，cur的num为15(3,5)即prev=1,cur=110,prev|cur=111
 					dp[prev | cur] = (dp[prev | cur] + dp[prev] * cntNum[i]) % MOD;
 				}
 			}
