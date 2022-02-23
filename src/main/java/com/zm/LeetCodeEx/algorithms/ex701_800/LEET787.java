@@ -49,57 +49,80 @@ import java.util.*;
  * @author zm
  */
 public class LEET787 {
-    public static void main(String[] args) {
-        LEET787 l787 = new LEET787();
-        System.out.println(l787.new Solution().findCheapestPrice(
-                3, new int[][]{{0, 1, 100}, {1, 2, 100}, {0, 2, 500}},
-                0, 2, 0));
-    }
+	public static void main(String[] args) {
+		System.out.println(new Solution().findCheapestPrice(
+				3, new int[][]{{0, 1, 100}, {1, 2, 100}, {0, 2, 500}}, 0, 2, 1));
+		System.out.println(new Solution().findCheapestPrice(
+				3, new int[][]{{0, 1, 100}, {1, 2, 100}, {0, 2, 500}}, 0, 2, 0));
+	}
 
-    class Solution {
-        public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
-            if (src == dst) {
-                return 0;
-            }
-            k++;
-            int[] minCost = new int[n];
-            Arrays.fill(minCost, Integer.MAX_VALUE);
+	static class Solution {
+		public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+			if (src == dst) {
+				return 0;
+			}
+			// 记录到达每个点可能的最小值
+			int[] minCost = new int[n];
+			Arrays.fill(minCost, Integer.MAX_VALUE);
 
-            HashMap<Integer, List<int[]>> startAndEdgeMap = new HashMap<>();
-            for (int[] flight : flights) {
-                if (startAndEdgeMap.containsKey(flight[0])) {
-                    startAndEdgeMap.get(flight[0]).add(flight);
-                } else {
-                    List<int[]> list = new ArrayList<>();
-                    list.add(flight);
-                    startAndEdgeMap.put(flight[0], list);
-                }
-            }
-            int flightCount = 0;
-            LinkedList<int[]> queue = new LinkedList<>();
-            queue.add(new int[]{src, 0});
-            while (flightCount < k && !queue.isEmpty()) {
-                int len = queue.size();
-                for (int i = 0; i < len; i++) {
-                    int[] curPlace = queue.removeFirst();
-                    List<int[]> list = startAndEdgeMap.get(curPlace[0]);
-                    if (list != null) {
-                        for (int[] flight : list) {
-                            int des = flight[1];
-                            int cost = curPlace[1] + flight[2];
-                            if (minCost[des] > cost) {
-                                minCost[des] = cost;
-                                queue.add(new int[]{des, cost});
-                            }
-                        }
-                    }
-                }
-                flightCount++;
-            }
-            if (minCost[dst] == Integer.MAX_VALUE) {
-                return -1;
-            }
-            return minCost[dst];
-        }
-    }
+			// 记录起点所在的航线
+			HashMap<Integer, List<int[]>> startAndEdgeMap = new HashMap<>();
+			for (int[] flight : flights) {
+				startAndEdgeMap.compute(flight[0], (key, value) -> value == null ? new ArrayList<>() : value).add(flight);
+			}
+
+			// BFS
+			int flightCount = 0;
+			Deque<int[]> queue = new ArrayDeque<>();
+			queue.add(new int[]{src, 0});
+			while (flightCount <= k && !queue.isEmpty()) {
+				int len = queue.size();
+				for (int i = 0; i < len; i++) {
+					int[] curPlace = queue.removeFirst();
+					List<int[]> list = startAndEdgeMap.get(curPlace[0]);
+					if (list != null) {
+						for (int[] flight : list) {
+							int des = flight[1];
+							int cost = curPlace[1] + flight[2];
+							// 只有当前消耗的钱比原有少的时候才值得把当前结果加入队列
+							if (minCost[des] > cost) {
+								minCost[des] = cost;
+								queue.addLast(new int[]{des, cost});
+							}
+						}
+					}
+				}
+				flightCount++;
+			}
+			if (minCost[dst] == Integer.MAX_VALUE) {
+				return -1;
+			}
+			return minCost[dst];
+		}
+	}
+
+	/**
+	 * dp, f[t][i] = Math.min(f[t][i], f[t - 1][j] + cost);
+     * t代表飞行几次，i表示当前到达的点，j表示出发的点
+	 */
+	static class Sulotion2 {
+		public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+			int[][] f = new int[k + 2][n];
+			for (int i = 0; i < k + 2; ++i) {
+				Arrays.fill(f[i], Integer.MAX_VALUE);
+			}
+			f[0][src] = 0;
+			for (int t = 1; t <= k + 1; ++t) {
+				for (int[] flight : flights) {
+					int j = flight[0], i = flight[1], cost = flight[2];
+					f[t][i] = Math.min(f[t][i], f[t - 1][j] + cost);
+				}
+			}
+			int ans = Integer.MAX_VALUE;
+			for (int t = 1; t <= k + 1; ++t) {
+				ans = Math.min(ans, f[t][dst]);
+			}
+			return ans == Integer.MAX_VALUE ? -1 : ans;
+		}
+	}
 }
