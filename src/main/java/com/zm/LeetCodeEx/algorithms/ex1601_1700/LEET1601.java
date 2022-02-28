@@ -2,6 +2,8 @@ package com.zm.LeetCodeEx.algorithms.ex1601_1700;
 
 import com.alibaba.fastjson.JSON;
 
+import java.util.Arrays;
+
 /**
  * 1601. 最多可达成的换楼请求数目
  * 我们有 n 栋楼，编号从 0 到 n - 1 。每栋楼有若干员工。由于现在是换楼的季节，部分员工想要换一栋楼居住。
@@ -44,70 +46,106 @@ import com.alibaba.fastjson.JSON;
  * @author zm
  */
 public class LEET1601 {
-	public static void main(String[] args) {
-		System.out.println(JSON.toJSONString(new Solution().maximumRequests(5,
-				new int[][]{{0, 1}, {1, 0}, {0, 1}, {1, 2}, {2, 0}, {3, 4}})));
-		System.out.println(JSON.toJSONString(new Solution().maximumRequests(3,
-				new int[][]{{0, 0}, {1, 2}, {2, 1}})));
-		System.out.println(JSON.toJSONString(new Solution().maximumRequests(4,
-				new int[][]{{0, 3}, {3, 1}, {1, 2}, {2, 0}})));
+    public static void main(String[] args) {
+        System.out.println(JSON.toJSONString(new Solution().maximumRequests(5,
+                new int[][]{{0, 1}, {1, 0}, {0, 1}, {1, 2}, {2, 0}, {3, 4}})));
+        System.out.println(JSON.toJSONString(new Solution().maximumRequests(3,
+                new int[][]{{0, 0}, {1, 2}, {2, 1}})));
+        System.out.println(JSON.toJSONString(new Solution().maximumRequests(4,
+                new int[][]{{0, 3}, {3, 1}, {1, 2}, {2, 0}})));
+    }
 
-	}
+    /**
+     * dfs枚举所有可能情况
+     * 用一个数组来记录完成耨写请求之后每幢的人员进出情况，只有全是0的时候才满足条件
+     */
+    static class Solution {
+        // 请求之后每幢的人员进出情况
+        private int[] delta;
+        // delta中0的数量
+        private int cntZero;
+        // 返回结果
+        private int result = 0;
+        // 当前请求数量
+        private int cnt = 0;
+        // 楼房数
+        private int n;
 
-	/**
-	 * dfs枚举所有可能情况
-	 * 用一个数组来记录完成耨写请求之后每幢的人员进出情况，只有全是0的时候才满足条件
-	 */
-	static class Solution {
-		// 请求之后每幢的人员进出情况
-		private int[] delta;
-		// delta中0的数量
-		private int cntZero;
-		// 返回结果
-		private int result = 0;
-		// 当前请求数量
-		private int cnt = 0;
-		// 楼房数
-		private int n;
+        public int maximumRequests(int n, int[][] requests) {
+            delta = new int[n];
+            this.n = n;
+            cntZero = n;
+            dfs(requests, 0);
+            return result;
+        }
 
-		public int maximumRequests(int n, int[][] requests) {
-			delta = new int[n];
-			this.n = n;
-			cntZero = n;
-			dfs(requests, 0);
-			return result;
-		}
+        private void dfs(int[][] requests, int position) {
+            if (position == requests.length) {
+                // 如果遍历到最后一个
+                if (cntZero == n) {
+                    // 并且所有楼房中的人员进出数为0，更新最大值
+                    result = Math.max(result, cnt);
+                }
+                return;
+            }
+            // 不选request[position]直接dfs
+            dfs(requests, position + 1);
+            // 选request[position]更新对应状态
+            int z = cntZero;
+            cnt++;
+            int[] request = requests[position];
+            // x出发，y到达
+            int x = request[0], y = request[1];
+            cntZero -= delta[x] == 0 ? 1 : 0;
+            --delta[x];
+            cntZero += delta[x] == 0 ? 1 : 0;
+            cntZero -= delta[y] == 0 ? 1 : 0;
+            ++delta[y];
+            cntZero += delta[y] == 0 ? 1 : 0;
+            // dfs
+            dfs(requests, position + 1);
+            // 还原状态
+            --delta[y];
+            ++delta[x];
+            --cnt;
+            cntZero = z;
+        }
+    }
 
-		private void dfs(int[][] requests, int position) {
-			if (position == requests.length) {
-				// 如果遍历到最后一个
-				if (cntZero == n) {
-					// 并且所有楼房中的人员进出数为0，更新最大值
-					result = Math.max(result, cnt);
-				}
-				return;
-			}
-			// 不选request[position]直接dfs
-			dfs(requests, position + 1);
-			// 选request[position]更新对应状态
-			int z = cntZero;
-			cnt++;
-			int[] request = requests[position];
-			// x出发，y到达
-			int x = request[0], y = request[1];
-			cntZero -= delta[x] == 0 ? 1 : 0;
-			--delta[x];
-			cntZero += delta[x] == 0 ? 1 : 0;
-			cntZero -= delta[y] == 0 ? 1 : 0;
-			++delta[y];
-			cntZero += delta[y] == 0 ? 1 : 0;
-			// dfs
-			dfs(requests, position + 1);
-			// 还原状态
-			--delta[y];
-			++delta[x];
-			--cnt;
-			cntZero = z;
-		}
-	}
+    /**
+     * 用二进制数mask来表示每个request是否接收，枚举所有可能性，使mask从000...0到111...1
+     */
+    static class Solution2 {
+        public int maximumRequests(int n, int[][] requests) {
+            // 请求之后每幢的人员进出情况
+            int[] delta = new int[n];
+            int ans = 0, m = requests.length;
+            // 枚举mask所有可能性
+            for (int mask = 0; mask < (1 << m); ++mask) {
+                int cnt = Integer.bitCount(mask);
+                if (cnt <= ans) {
+                    continue;
+                }
+                // 计算delta并判断是否有非零数
+                Arrays.fill(delta, 0);
+                for (int i = 0; i < m; ++i) {
+                    if ((mask & (1 << i)) != 0) {
+                        ++delta[requests[i][0]];
+                        --delta[requests[i][1]];
+                    }
+                }
+                boolean flag = true;
+                for (int x : delta) {
+                    if (x != 0) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    ans = cnt;
+                }
+            }
+            return ans;
+        }
+    }
 }
