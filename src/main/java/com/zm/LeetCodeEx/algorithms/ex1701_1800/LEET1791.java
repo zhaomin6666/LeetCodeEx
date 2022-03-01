@@ -8,8 +8,6 @@ import com.alibaba.fastjson.JSON;
  * <p>
  * 给你一个二维整数数组 edges ，其中 edges[i] = [ui, vi] 表示在节点 ui 和 vi 之间存在一条边。请你找出并返回 edges 所表示星型图的中心节点。
  * <p>
- * <p>
- * <p>
  * 示例 1：
  * <p>
  * <p>
@@ -34,19 +32,19 @@ import com.alibaba.fastjson.JSON;
  * @author zm
  */
 public class LEET1791 {
-    public static void main(String[] args) {
-        System.out.println(JSON.toJSONString(new Solution().findCenter(new int[][]{{1, 2}, {2, 3}, {4, 2}})));
-        System.out.println(JSON.toJSONString(new Solution().findCenter(new int[][]{{1, 2}, {5, 1}, {1, 3}, {1, 4}})));
-    }
+	public static void main(String[] args) {
+		System.out.println(JSON.toJSONString(new Solution().findCenter(new int[][]{{1, 2}, {2, 3}, {4, 2}})));
+		System.out.println(JSON.toJSONString(new Solution().findCenter(new int[][]{{1, 2}, {5, 1}, {1, 3}, {1, 4}})));
+	}
 
-    /**
-     * 由于题目中说明了恰有 n - 1 条边将中心节点与其他每个节点连接起来，所以中心节点出现在每一个数对中。
-     * 而其他节点不相连，所以只会有中心节点在所有数对中出现多次。
-     */
-    static class Solution {
-        public int findCenter(int[][] edges) {
-            return (edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1]) ?
-                    edges[0][0] : edges[0][1];
-        }
-    }
+	/**
+	 * 由于题目中说明了恰有 n - 1 条边将中心节点与其他每个节点连接起来，所以中心节点出现在每一个数对中。
+	 * 而其他节点不相连，所以只会有中心节点在所有数对中出现多次。
+	 */
+	static class Solution {
+		public int findCenter(int[][] edges) {
+			return (edges[0][0] == edges[1][0] || edges[0][0] == edges[1][1]) ?
+					edges[0][0] : edges[0][1];
+		}
+	}
 }
