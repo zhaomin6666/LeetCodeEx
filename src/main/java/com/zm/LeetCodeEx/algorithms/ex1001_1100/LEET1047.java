@@ -1,7 +1,5 @@
 package com.zm.LeetCodeEx.algorithms.ex1001_1100;
 
-import java.util.*;
-
 /**
  * 1047. 删除字符串中的所有相邻重复项
  * 给出由小写字母组成的字符串 S，重复项删除操作会选择两个相邻且相同的字母，并删除它们。
@@ -28,49 +26,49 @@ import java.util.*;
  * @author zm
  */
 public class LEET1047 {
-    public static void main(String[] args) {
-        System.out.println(new Solution2().removeDuplicates("azxxzy"));
-    }
+	public static void main(String[] args) {
+		System.out.println(new Solution2().removeDuplicates("azxxzy"));
+	}
 
-    /**
-     * 用一个指针标识栈顶元素位置
-     */
-    static class Solution {
-        public String removeDuplicates(String s) {
-            StringBuilder stack = new StringBuilder();
-            char[] cs = s.toCharArray();
-            int index = -1;
-            for (char c : cs) {
-                if (index >= 0 && stack.charAt(index) == c) {
-                    stack.deleteCharAt(index);
-                    index--;
-                }
-                else {
-                    index++;
-                    stack.append(c);
-                }
-            }
-            return stack.toString();
-        }
-    }
+	/**
+	 * 用一个指针标识栈顶元素位置
+	 */
+	static class Solution {
+		public String removeDuplicates(String s) {
+			StringBuilder stack = new StringBuilder();
+			char[] cs = s.toCharArray();
+			int index = -1;
+			for (char c : cs) {
+				if (index >= 0 && stack.charAt(index) == c) {
+					stack.deleteCharAt(index);
+					index--;
+				}
+				else {
+					index++;
+					stack.append(c);
+				}
+			}
+			return stack.toString();
+		}
+	}
 
-    /**
-     * 优化，不使用StringBuilder，在原数组上进行操作。
-     * 把暂时不重复的值移动到有效index的位置。
-     */
-    static class Solution2 {
-        public String removeDuplicates(String s) {
-            char[] cs = s.toCharArray();
-            int index = -1;
-            for (char c : cs) {
-                if (index >= 0 && cs[index] == c) {
-                    index--;
-                }
-                else {
-                    cs[++index] = c;
-                }
-            }
-            return String.valueOf(cs, 0, index + 1);
-        }
-    }
+	/**
+	 * 优化，不使用StringBuilder，在原数组上进行操作。
+	 * 把暂时不重复的值移动到有效index的位置。
+	 */
+	static class Solution2 {
+		public String removeDuplicates(String s) {
+			char[] cs = s.toCharArray();
+			int index = -1;
+			for (char c : cs) {
+				if (index >= 0 && cs[index] == c) {
+					index--;
+				}
+				else {
+					cs[++index] = c;
+				}
+			}
+			return String.valueOf(cs, 0, index + 1);
+		}
+	}
 }
