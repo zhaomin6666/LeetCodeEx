@@ -61,7 +61,7 @@ public class LEET564 {
 
 			// 大于11的两位数数字，判断离11,22,33...99。哪个更近，如果就是本身则-11。
 			if (intN < 99) {
-				if (intN % 11 == 0){
+				if (intN % 11 == 0) {
 					return "" + (intN - 11);
 				}
 				else if (intN % 11 < 6) {
@@ -99,16 +99,30 @@ public class LEET564 {
 				lastOne = currentPal;
 				nextOne = currentPal + add;
 			}
-			String lastOneFinalStr = new String(pal(String.valueOf(lastOne)));
-			String nextOneFinalStr = new String(pal(String.valueOf(nextOne)));
-			System.out.println("n:" + n + ", lastOne:" + lastOneFinalStr + ", nextOne:" + nextOneFinalStr);
-			return Long.parseLong(nextOneFinalStr) - intN < intN - Long.parseLong(lastOneFinalStr) ?
-					nextOneFinalStr : lastOneFinalStr;
+			long lastOneFinal = palLong(lastOne);
+			long nextOneFinal = palLong(nextOne);
+			// System.out.println("n:" + n + ", lastOne:" + lastOneFinal + ", nextOne:" + nextOneFinal);
+			return "" + (nextOneFinal - intN < intN - lastOneFinal ?
+					nextOneFinal : lastOneFinal);
 		}
 
-		private char[] pal(String n){
+		public long palLong(long num) {
+			int n = 0;
+			long reverse = 0;
+			long raw = num;
+			while (num > 0) {
+				reverse *= 10;
+				reverse += num % 10;
+				num /= 10;
+				n++;
+			}
+			long mid = (long) Math.pow(10, n >> 1);
+			return raw / mid * mid + reverse % mid;
+		}
+
+		private char[] pal(String n) {
 			char[] cs = n.toCharArray();
-			for (int i = 0; i <= cs.length / 2; i++) {
+			for (int i = 0; i <= cs.length >> 1; i++) {
 				cs[cs.length - i - 1] = cs[i];
 			}
 			return cs;
