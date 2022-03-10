@@ -7,6 +7,25 @@
     <groupId>com.zm</groupId>
     <artifactId>LeetCodeEx</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <maven_compiler_plugin_version>3.3</maven_compiler_plugin_version>
+        <java_version>1.8</java_version>
+        <file_encoding>UTF-8</file_encoding>
+    </properties>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven_compiler_plugin_version}</version>
+                <configuration>
+                    <source>${java_version}</source>
+                    <target>${java_version}</target>
+                    <encoding>${file_encoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
@@ -16,6 +35,4 @@
             <version>1.2.79</version>
         </dependency>
     </dependencies>
-
-
 </project>
