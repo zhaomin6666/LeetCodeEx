@@ -16,7 +16,8 @@ public class CommonFunctions {
 		for (int i = 0; i < words.length; i++) {
 			if (map.get(words[i]) == null) {
 				map.put(words[i], 1);
-			} else {
+			}
+			else {
 				map.put(words[i], map.get(words[i]) + 1);
 			}
 		}
@@ -26,7 +27,7 @@ public class CommonFunctions {
 	/**
 	 * 把word写成map key = 某个字母 ; value = 出现次数
 	 *
-     * @param word
+	 * @param word
 	 * @return
 	 */
 	public static HashMap<Character, Integer> convertStringToMap(String word) {
@@ -71,7 +72,7 @@ public class CommonFunctions {
 
 	/**
 	 * "[1,2,3]" ----> [1,2,3]
-	 * 
+	 *
 	 * @param input
 	 * @return
 	 */
@@ -242,32 +243,32 @@ public class CommonFunctions {
 		int res = 1;
 		for (int i = 1; i <= n; i++) {
 			res *= i;
-        }
-        return res;
-    }
+		}
+		return res;
+	}
 
-    public static List<List<String>> stringArrayToList(String[][] args) {
-        List<List<String>> retList = new ArrayList<>();
-        for (int i = 0; i < args.length; i++) {
-            List<String> tempList = new ArrayList<>();
-            for (int j = 0; j < args[i].length; j++) {
-                tempList.add(args[i][j]);
-            }
-            retList.add(tempList);
-        }
-        return retList;
-    }
+	public static List<List<String>> stringArrayToList(String[][] args) {
+		List<List<String>> retList = new ArrayList<>();
+		for (int i = 0; i < args.length; i++) {
+			List<String> tempList = new ArrayList<>();
+			for (int j = 0; j < args[i].length; j++) {
+				tempList.add(args[i][j]);
+			}
+			retList.add(tempList);
+		}
+		return retList;
+	}
 
-    public static int[][] stringToIntegerArray2(String strs) {
-        return JSON.parseObject(strs, int[][].class);
-    }
+	public static int[][] stringToIntegerArray2(String strs) {
+		return JSON.parseObject(strs, int[][].class);
+	}
 
-    @SuppressWarnings("unchecked")
+	@SuppressWarnings("unchecked")
 	public static List<List<Integer>> stringToIntegerArrayList(String strs) {
-        return JSON.parseObject(strs, List.class);
-    }
-    
-    public static Node stringToTreeNodeWithNext(String input) {
+		return JSON.parseObject(strs, List.class);
+	}
+
+	public static NodeWithNext stringToTreeNodeWithNext(String input) {
 		input = input.trim();
 		input = input.substring(1, input.length() - 1);
 		if (input.length() == 0) {
@@ -275,13 +276,13 @@ public class CommonFunctions {
 		}
 		String[] parts = input.split(",");
 		String item = parts[0];
-		Node root = new Node(Integer.parseInt(item));
-		Queue<Node> nodeQueue = new LinkedList<>();
+		NodeWithNext root = new NodeWithNext(Integer.parseInt(item));
+		Queue<NodeWithNext> nodeQueue = new LinkedList<>();
 		nodeQueue.add(root);
 
 		int index = 1;
 		while (!nodeQueue.isEmpty()) {
-			Node node = nodeQueue.remove();
+			NodeWithNext node = nodeQueue.remove();
 			if (index == parts.length) {
 				break;
 			}
@@ -289,7 +290,7 @@ public class CommonFunctions {
 			item = item.trim();
 			if (!"null".equals(item)) {
 				int leftNumber = Integer.parseInt(item);
-				node.left = new Node(leftNumber);
+				node.left = new NodeWithNext(leftNumber);
 				nodeQueue.add(node.left);
 			}
 
@@ -301,14 +302,48 @@ public class CommonFunctions {
 			item = item.trim();
 			if (!"null".equals(item)) {
 				int rightNumber = Integer.parseInt(item);
-				node.right = new Node(rightNumber);
+				node.right = new NodeWithNext(rightNumber);
 				nodeQueue.add(node.right);
 			}
 		}
 		return root;
 	}
-    
-    public static List<String> stringToStringList(String input) {
+
+	public static List<String> stringToStringList(String input) {
 		return JSON.parseArray(input, String.class);
+	}
+
+	public static Node stringToNodeByLevel(String input) {
+		input = input.trim();
+		input = input.substring(1, input.length() - 1);
+		if (input.length() == 0) {
+			return null;
+		}
+		String[] parts = input.split(",");
+		String first = parts[0];
+		Node root = new Node(Integer.parseInt(first));
+		int i = 2;
+		Deque<Node> lastLevelNode = new ArrayDeque<>();
+		lastLevelNode.addLast(root);
+		List<Node> currentLevelNode = null;
+		while (i < parts.length) {
+			String item = parts[i++];
+			if ("null".equals(item)) {
+				lastLevelNode.removeFirst().children = currentLevelNode;
+				currentLevelNode = null;
+			}
+			else {
+				if (currentLevelNode == null) {
+					currentLevelNode = new ArrayList<>();
+				}
+				Node newNode = new Node(Integer.parseInt(item));
+				currentLevelNode.add(newNode);
+				lastLevelNode.addLast(newNode);
+			}
+		}
+		if (currentLevelNode != null) {
+			lastLevelNode.removeFirst().children = currentLevelNode;
+		}
+		return root;
 	}
 }
