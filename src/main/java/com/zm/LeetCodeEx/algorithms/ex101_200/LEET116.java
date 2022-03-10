@@ -5,7 +5,7 @@ import java.util.Queue;
 
 import com.alibaba.fastjson.JSON;
 import com.zm.LeetCodeEx.CommonFunctions;
-import com.zm.LeetCodeEx.Node;
+import com.zm.LeetCodeEx.NodeWithNext;
 
 /**
  * 116. 填充每个节点的下一个右侧节点指针
@@ -49,25 +49,24 @@ import com.zm.LeetCodeEx.Node;
  */
 public class LEET116 {
 	public static void main(String[] args) {
-		LEET116 l116 = new LEET116();
 		System.out.println(JSON.toJSONString(
-				l116.new Solution().connect(CommonFunctions.stringToTreeNodeWithNext("[1,2,3,4,5,6,7]"))));
+				new Solution().connect(CommonFunctions.stringToTreeNodeWithNext("[1,2,3,4,5,6,7]"))));
 	}
 
 	/**
 	 * 用bfs每层循环
 	 */
-	class Solution {
-		public Node connect(Node root) {
+	static class Solution {
+		public NodeWithNext connect(NodeWithNext root) {
 			if (root == null) {
 				return null;
 			}
-			Queue<Node> queue = new LinkedList<Node>();
+			Queue<NodeWithNext> queue = new LinkedList<>();
 			queue.add(root);
 			while (!queue.isEmpty()) {
 				int size = queue.size();
 				for (int i = 0; i < size; i++) {
-					Node temp = queue.poll();
+					NodeWithNext temp = queue.poll();
 					if (i < size - 1) {
 						temp.next = queue.peek();
 	                }
@@ -93,8 +92,8 @@ public class LEET116 {
 	 * @author zm
 	 *
 	 */
-	class Solution2 {
-		public Node connect(Node root) {
+	static class Solution2 {
+		public NodeWithNext connect(NodeWithNext root) {
 
 			if (root == null) {
 				return root;
@@ -102,7 +101,7 @@ public class LEET116 {
 
 			// Start with the root node. There are no next pointers
 			// that need to be set up on the first level
-			Node leftmost = root;
+			NodeWithNext leftmost = root;
 
 			// Once we reach the final level, we are done
 			while (leftmost.left != null) {
@@ -110,7 +109,7 @@ public class LEET116 {
 				// Iterate the "linked list" starting from the head
 				// node and using the next pointers, establish the
 				// corresponding links for the next level
-				Node head = leftmost;
+				NodeWithNext head = leftmost;
 
 				while (head != null) {
 
