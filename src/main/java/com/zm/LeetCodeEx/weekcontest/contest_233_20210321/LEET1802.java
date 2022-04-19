@@ -1,7 +1,7 @@
 package com.zm.LeetCodeEx.weekcontest.contest_233_20210321;
 
 /**
- * 5711. 有界数组中指定下标处的最大值
+ * 1802. 有界数组中指定下标处的最大值
  * <p>
  * <p>
  * 给你三个正整数 n、index 和 maxSum 。你需要构造一个同时满足下述所有条件的数组 nums（下标 从 0 开始 计数）：
@@ -33,13 +33,12 @@ package com.zm.LeetCodeEx.weekcontest.contest_233_20210321;
  * 1 <= n <= maxSum <= 109
  * 0 <= index < n
  */
-public class LEET5711 {
+public class LEET1802 {
     public static void main(String[] args) {
-        LEET5711 leet5711 = new LEET5711();
-        System.out.println(leet5711.new Solution().maxValue(4, 2, 6));
-        System.out.println(leet5711.new Solution().maxValue(6, 1, 10));
-        System.out.println(leet5711.new Solution().maxValue(4, 0, 4));
-        System.out.println(leet5711.new Solution().maxValue(3, 0, 815094800));
+        System.out.println(new Solution().maxValue(4, 2, 6));
+        System.out.println(new Solution().maxValue(6, 1, 10));
+        System.out.println(new Solution().maxValue(4, 0, 4));
+        System.out.println(new Solution().maxValue(3, 0, 815094800));
     }
 
 
@@ -47,7 +46,7 @@ public class LEET5711 {
      * 二分法
      * 计算左边+计算右边 判断是否满足
      */
-    class Solution {
+    static class Solution {
         public int maxValue(int n, int index, int maxSum) {
             int left = 1;
             int right = maxSum;
