@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
- * 5710. 积压订单中的订单总数
+ * 1801. 积压订单中的订单总数
  * <p>
  * 给你一个二维整数数组 orders ，其中每个 orders[i] = [price_i, amount_i, orderType_i] 表示有 amount_i 笔类型为orderType_i 、价格为price_i 的订单。
  * <p>
@@ -53,66 +53,68 @@ import java.util.PriorityQueue;
  * 1 <= price_i, amount_i <= 10^9
  * orderType_i 为 0 或 1
  */
-public class LEET5710 {
-    public static void main(String[] args) {
-        LEET5710 leet5710 = new LEET5710();
-        System.out.println(leet5710.new Solution().getNumberOfBacklogOrders(new int[][]{{10, 5, 0}, {15, 2, 1}, {25, 1, 1}, {30, 4, 0}}));
-        System.out.println(leet5710.new Solution().getNumberOfBacklogOrders(new int[][]{{7, 1000000000, 1}, {15, 3, 0}, {5, 999999995, 0}, {5, 1, 1}}));
-    }
+public class LEET1801 {
+	public static void main(String[] args) {
+		System.out.println(new Solution().getNumberOfBacklogOrders(new int[][]{{10, 5, 0}, {15, 2, 1}, {25, 1, 1}, {30, 4, 0}}));
+		System.out.println(new Solution().getNumberOfBacklogOrders(new int[][]{{7, 1000000000, 1}, {15, 3, 0}, {5, 999999995, 0}, {5, 1, 1}}));
+	}
 
 
-    /**
-     * 优先队列直接模拟
-     */
-    class Solution {
-        public int getNumberOfBacklogOrders(int[][] orders) {
-            PriorityQueue<int[]> pqSell = new PriorityQueue<>((Comparator.comparingInt(o -> o[0])));
-            PriorityQueue<int[]> pqBuy = new PriorityQueue<>((Comparator.comparingInt(o -> -o[0])));
-            int len = orders.length;
-            for (int i = 0; i < len; i++) {
-                if (orders[i][2] == 0) {
-                    while (!pqSell.isEmpty() && pqSell.peek()[0] <= orders[i][0] && orders[i][1] > 0) {
-                        int[] sell = pqSell.peek();
-                        if (orders[i][1] >= sell[1]) {
-                            orders[i][1] -= sell[1];
-                            pqSell.poll();
-                        } else {
-                            sell[1] -= orders[i][1];
-                            orders[i][1] = 0;
-                        }
-                    }
-                    if (orders[i][1] > 0) {
-                        pqBuy.add(orders[i]);
-                    }
-                } else {
-                    while (!pqBuy.isEmpty() && pqBuy.peek()[0] >= orders[i][0] && orders[i][1] > 0) {
-                        int[] buy = pqBuy.peek();
-                        if (orders[i][1] >= buy[1]) {
-                            orders[i][1] -= buy[1];
-                            pqBuy.poll();
-                        } else {
-                            buy[1] -= orders[i][1];
-                            orders[i][1] = 0;
-                        }
-                    }
-                    if (orders[i][1] > 0) {
-                        pqSell.add(orders[i]);
-                    }
-                }
+	/**
+	 * 优先队列直接模拟
+	 */
+	static class Solution {
+		public int getNumberOfBacklogOrders(int[][] orders) {
+			PriorityQueue<int[]> pqSell = new PriorityQueue<>((Comparator.comparingInt(o -> o[0])));
+			PriorityQueue<int[]> pqBuy = new PriorityQueue<>((Comparator.comparingInt(o -> -o[0])));
+			int len = orders.length;
+			for (int i = 0; i < len; i++) {
+				if (orders[i][2] == 0) {
+					while (!pqSell.isEmpty() && pqSell.peek()[0] <= orders[i][0] && orders[i][1] > 0) {
+						int[] sell = pqSell.peek();
+						if (orders[i][1] >= sell[1]) {
+							orders[i][1] -= sell[1];
+							pqSell.poll();
+						}
+						else {
+							sell[1] -= orders[i][1];
+							orders[i][1] = 0;
+						}
+					}
+					if (orders[i][1] > 0) {
+						pqBuy.add(orders[i]);
+					}
+				}
+				else {
+					while (!pqBuy.isEmpty() && pqBuy.peek()[0] >= orders[i][0] && orders[i][1] > 0) {
+						int[] buy = pqBuy.peek();
+						if (orders[i][1] >= buy[1]) {
+							orders[i][1] -= buy[1];
+							pqBuy.poll();
+						}
+						else {
+							buy[1] -= orders[i][1];
+							orders[i][1] = 0;
+						}
+					}
+					if (orders[i][1] > 0) {
+						pqSell.add(orders[i]);
+					}
+				}
 
-            }
-            long sum = 0;
-            while (!pqBuy.isEmpty()) {
-                int[] buyLeft = pqBuy.poll();
-                sum += buyLeft[1];
-                sum %= 1000000007;
-            }
-            while (!pqSell.isEmpty()) {
-                int[] sellLeft = pqSell.poll();
-                sum += sellLeft[1];
-                sum %= 1000000007;
-            }
-            return (int) sum;
-        }
-    }
+			}
+			long sum = 0;
+			while (!pqBuy.isEmpty()) {
+				int[] buyLeft = pqBuy.poll();
+				sum += buyLeft[1];
+				sum %= 1000000007;
+			}
+			while (!pqSell.isEmpty()) {
+				int[] sellLeft = pqSell.poll();
+				sum += sellLeft[1];
+				sum %= 1000000007;
+			}
+			return (int) sum;
+		}
+	}
 }
