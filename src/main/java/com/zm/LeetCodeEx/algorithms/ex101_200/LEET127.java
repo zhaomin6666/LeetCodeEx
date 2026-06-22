@@ -11,7 +11,6 @@ import java.util.Queue;
 
 import com.zm.LeetCodeEx.CommonFunctions;
 
-import javafx.util.Pair;
 
 /**
  * 127. 单词接龙 给定两个单词（beginWord 和 endWord）和一个字典，找到从 beginWord 到 endWord
@@ -339,5 +338,31 @@ public class LEET127 {
 			}
 			return bfs(next, ed, dic, l + 1);
 		}
+	}
+}
+
+class Pair<K, V> {
+	K key;
+	V value;
+
+	public Pair(K key, V value) {
+		this.key = key;
+		this.value = value;
+	}
+
+	public K getKey() {
+		return key;
+	}
+
+	public void setKey(K key) {
+		this.key = key;
+	}
+
+	public V getValue() {
+		return value;
+	}
+
+	public void setValue(V value) {
+		this.value = value;
 	}
 }
